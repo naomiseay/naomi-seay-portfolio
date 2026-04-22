@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Naomi Seay — Designer · Data Analyst · Operations Pro</title>
+  <meta name="description" content="Naomi Seay — Graphic Designer, Data Analyst, and Operations Professional. 20-piece portfolio across design, data, operations, and administrative work.">
+  <meta property="og:title" content="Naomi Seay — Portfolio">
+  <meta property="og:description" content="20-piece portfolio: graphic design, data analytics, operations, and administrative work samples.">
+  <meta property="og:url" content="https://naomiseay.github.io/naomi-seay-portfolio">
+  <meta name="author" content="Naomi Seay">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1023,6 +1028,188 @@
       .cta-headline { font-size: 32px; }
       .nav-contact-btn { display: none; }
     }
+
+    /* ── PROFILES SECTION ── */
+    .profiles-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 64px 48px 0;
+    }
+
+    .profiles-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .profiles-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      letter-spacing: -0.8px;
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .profiles-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .profile-card {
+      flex: 1;
+      min-width: 200px;
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(15,15,15,0.10);
+    }
+
+    .profile-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .profile-card-icon.li-icon { background: #EFF6FF; }
+    .profile-card-icon.gh-icon { background: #F3F4F6; }
+    .profile-card-icon.site-icon { background: #F0FDFB; }
+
+    .profile-card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 16px;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+    }
+
+    .profile-card-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .profile-card-link {
+      margin-top: auto;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── CERTIFICATIONS SECTION ── */
+    .certs-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 48px 48px 0;
+    }
+
+    .certs-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .certs-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      letter-spacing: -0.8px;
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 32px;
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .cert-card {
+      background: var(--white);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .cert-card-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .cert-card-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 15px;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+    }
+
+    .cert-card-issuer {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .cert-card-year {
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .cert-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--teal);
+      background: var(--teal-dim);
+      border: 1px solid rgba(13,148,136,0.20);
+      border-radius: 100px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    @media (max-width: 1100px) {
+      .certs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .profiles-section, .certs-section { padding-left: 20px; padding-right: 20px; }
+      .profiles-row { flex-direction: column; }
+      .certs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .certs-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -1065,9 +1252,9 @@
           View Work
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="mailto:naomi.seay@twinrootsllc.com" class="cta-ghost">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="3" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M1 5l6.5 4.5L14 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          Get in Touch
+        <a href="naomi-seay-resume.pdf" download class="cta-ghost">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M4 7l3.5 3.5L11 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 11v2a1 1 0 001 1h11a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Download Resume
         </a>
       </div>
       <div class="hero-social">
@@ -1124,6 +1311,83 @@
       <span class="skill-chip">Adobe Suite</span>
       <span class="skill-chip">Remote Operations</span>
       <span class="skill-chip">SOP Documentation</span>
+    </div>
+  </div>
+
+  <!-- ══ PROFILES & CREDENTIALS ══ -->
+  <div class="profiles-section">
+    <div class="profiles-label">Find Me Online</div>
+    <h2 class="profiles-heading">Profiles &amp; Credentials</h2>
+    <div class="profiles-row">
+
+      <a href="https://www.linkedin.com/in/naomiseay" target="_blank" rel="noopener" class="profile-card">
+        <div class="profile-card-icon li-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="#0A66C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="2"/></svg>
+        </div>
+        <div class="profile-card-name">LinkedIn</div>
+        <div class="profile-card-label">Professional network — work history, recommendations, and connections</div>
+        <span class="profile-card-link">linkedin.com/in/naomiseay →</span>
+      </a>
+
+      <a href="https://github.com/naomiseay" target="_blank" rel="noopener" class="profile-card">
+        <div class="profile-card-icon gh-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" stroke="#24292F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="profile-card-name">GitHub</div>
+        <div class="profile-card-label">Code &amp; projects — technical work samples and open source contributions</div>
+        <span class="profile-card-link">github.com/naomiseay →</span>
+      </a>
+
+      <a href="https://naomiseay.github.io/naomi-seay-portfolio" target="_blank" rel="noopener" class="profile-card">
+        <div class="profile-card-icon site-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#0D9488" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="#0D9488" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="profile-card-name">Portfolio Live</div>
+        <div class="profile-card-label">This site — 20-piece portfolio across design, data, and operations</div>
+        <span class="profile-card-link">naomiseay.github.io/naomi-seay-portfolio →</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ CERTIFICATIONS ══ -->
+  <div class="certs-section">
+    <div class="certs-label">Credentials</div>
+    <h2 class="certs-heading">Certifications &amp; Education</h2>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-card-icon">📊</div>
+        <div class="cert-card-name">Google Data Analytics Certificate</div>
+        <div class="cert-card-issuer">Google / Coursera</div>
+        <div class="cert-card-year">2024</div>
+        <span class="cert-verified-badge">✓ Verified</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-icon">🗄️</div>
+        <div class="cert-card-name">SQL for Data Analysis Certificate</div>
+        <div class="cert-card-issuer">Coursera</div>
+        <div class="cert-card-year">2024</div>
+        <span class="cert-verified-badge">✓ Verified</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-icon">🎨</div>
+        <div class="cert-card-name">Graphic Design Certificate</div>
+        <div class="cert-card-issuer">DPI Graphic Design Training Center</div>
+        <div class="cert-card-year">2024</div>
+        <span class="cert-verified-badge">✓ Verified</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-icon">📦</div>
+        <div class="cert-card-name">Amazon Process Guide</div>
+        <div class="cert-card-issuer">Internal Certification</div>
+        <div class="cert-card-year">2022</div>
+        <span class="cert-verified-badge">✓ Verified</span>
+      </div>
+
     </div>
   </div>
 
@@ -1448,8 +1712,8 @@
         <h2 class="about-heading">About Naomi</h2>
         <div class="about-body">
           <p>Versatile professional with 5+ years combining operational excellence with creative and analytical capabilities — spanning graphic design, data coordination, and operations leadership. I bring a cross-disciplinary edge that most specialists don't: I can build the brand assets, analyze the performance data, and optimize the workflow, all in the same week.</p>
-          <p>My operations background includes process guide work at a large-scale fulfillment center where I ranked in the Top 5% of performance, drove a 20% productivity increase, and reduced processing errors by 12% through systematic workflow redesign and SOP documentation. On the design and data side, I hold certifications in graphic design and data analytics, and I've built everything from brand identity systems to BI dashboards.</p>
-          <p>Available for remote roles in graphic design, data coordination, administrative operations, or operations coordination. I work independently, communicate clearly, and deliver clean — no hand-holding required.</p>
+          <p>My operations background includes process guide work at a large-scale fulfillment center where I ranked in the Top 5% of performance, drove a 20% productivity increase, and reduced processing errors by 12% through systematic workflow redesign and SOP documentation. On the design and data side, I hold a <strong style="color:rgba(255,255,255,0.85);">Google Data Analytics Certificate</strong>, an <strong style="color:rgba(255,255,255,0.85);">SQL for Data Analysis Certificate</strong>, and a <strong style="color:rgba(255,255,255,0.85);">Graphic Design Certificate</strong> — plus an Amazon Process Guide internal certification from 2022. I've built everything from brand identity systems to BI dashboards, all visible in my <a href="https://naomiseay.github.io/naomi-seay-portfolio" target="_blank" rel="noopener" style="color:#14B8AA;text-decoration:none;">portfolio</a>.</p>
+          <p>Bilingual in <strong style="color:rgba(255,255,255,0.85);">English and Vietnamese</strong> — a genuine differentiator for roles supporting diverse teams or client bases. Available immediately for fully remote roles in graphic design, data coordination, administrative operations, or operations coordination. I work independently, communicate clearly, and deliver clean — no hand-holding required.</p>
         </div>
       </div>
 
@@ -1496,6 +1760,7 @@
       <div class="footer-name">Naomi Seay</div>
       <div class="footer-center">Built with intention &copy; 2026</div>
       <div class="footer-right">
+        <a href="https://naomiseay.github.io/naomi-seay-portfolio" target="_blank" rel="noopener">naomiseay.github.io/naomi-seay-portfolio</a>
         <a href="https://linkedin.com/in/naomiseay" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:naomi.seay@twinrootsllc.com">Email</a>
       </div>

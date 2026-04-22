@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naomi Seay — Resume</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #1a1a2e;
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 36px 40px;
+  }
+
+  /* === HEADER === */
+  .header {
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+
+  .header-gradient {
+    height: 2px;
+    background: linear-gradient(to right, #0D9488, #7C3AED);
+    border-radius: 1px;
+    margin-bottom: 10px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    font-size: 10.5px;
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .contact-row a {
+    color: #0D9488;
+    text-decoration: none;
+  }
+
+  .contact-row .separator {
+    color: #ccc;
+  }
+
+  /* === SECTIONS === */
+  .section {
+    margin-bottom: 18px;
+  }
+
+  .section-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #0D9488;
+    border-bottom: 1.5px solid #e2e2e2;
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  /* === PROFESSIONAL SUMMARY === */
+  .summary-text {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #2f2f2f;
+  }
+
+  /* Links must never break across lines */
+  a {
+    white-space: nowrap;
+  }
+
+  /* === CORE COMPETENCIES === */
+  .competencies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .competency-tag {
+    font-size: 10px;
+    font-weight: 500;
+    color: #0D7A70;
+    background: #F0FDFB;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid #B2E0DB;
+  }
+
+  /* === WORK EXPERIENCE === */
+  .job {
+    margin-bottom: 14px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 2px;
+  }
+
+  .job-company {
+    font-size: 12px;
+    font-weight: 700;
+    color: #7C3AED;
+  }
+
+  .job-period {
+    font-size: 10px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  .job-role {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .job ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+
+  .job li {
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 3px;
+  }
+
+  /* === EDUCATION === */
+  .edu-item {
+    margin-bottom: 7px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .edu-title {
+    font-weight: 600;
+    font-size: 10.5px;
+    color: #333;
+  }
+
+  .edu-org {
+    color: #7C3AED;
+    font-weight: 500;
+  }
+
+  /* === CERTIFICATIONS === */
+  .cert-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 5px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cert-title {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .cert-org {
+    color: #7C3AED;
+    font-size: 10px;
+  }
+
+  .cert-year {
+    font-size: 10px;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  /* === SKILLS === */
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .skill-row {
+    font-size: 10.5px;
+    color: #444;
+    line-height: 1.5;
+  }
+
+  .skill-category {
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  /* === PRINT === */
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      padding: 24px 32px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Naomi Seay</h1>
+    <div class="header-gradient"></div>
+    <div class="contact-row">
+      <span>Cincinnati, Ohio</span>
+      <span class="separator">|</span>
+      <span>513-888-2900</span>
+      <span class="separator">|</span>
+      <a href="mailto:naomi.seay@twinrootsllc.com">naomi.seay@twinrootsllc.com</a>
+      <span class="separator">|</span>
+      <a href="https://www.linkedin.com/in/naomiseay">linkedin.com/in/naomiseay</a>
+      <span class="separator">|</span>
+      <a href="https://naomiseay.github.io/naomi-seay-portfolio">naomiseay.github.io/naomi-seay-portfolio</a>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary-text">Detail-oriented remote operations professional with 5+ years of experience in data accuracy, process optimization, and administrative support. Google-certified in Data Analytics. Bilingual in English and Vietnamese. Available immediately for remote roles.</div>
+  </div>
+
+  <!-- CORE COMPETENCIES -->
+  <div class="section">
+    <div class="section-title">Core Competencies</div>
+    <div class="competencies-grid">
+      <span class="competency-tag">Data Entry &amp; Accuracy</span>
+      <span class="competency-tag">Process Optimization</span>
+      <span class="competency-tag">Administrative Operations</span>
+      <span class="competency-tag">Recordkeeping &amp; Filing</span>
+      <span class="competency-tag">Data Analysis</span>
+      <span class="competency-tag">Inventory Control</span>
+      <span class="competency-tag">SOP Documentation</span>
+      <span class="competency-tag">Google Workspace</span>
+      <span class="competency-tag">Graphic Design</span>
+      <span class="competency-tag">Remote Operations</span>
+      <span class="competency-tag">Deadline Management</span>
+      <span class="competency-tag">Confidential Info Handling</span>
+    </div>
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Work Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Amazon Fresh — Cincinnati, Ohio</span>
+        <span class="job-period">Dec 2025 – Present</span>
+      </div>
+      <div class="job-role">FC Associate</div>
+      <ul>
+        <li>Maintained a pick rate of 100–120 units per hour, consistently exceeding standard requirements</li>
+        <li>Recognized by management for high productivity and accuracy in a fast-paced fulfillment environment</li>
+        <li>Ensured order accuracy through meticulous attention to detail during the picking process</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Ambiance Nail Spa — Cincinnati, Ohio</span>
+        <span class="job-period">Jul 2023 – Apr 2026</span>
+      </div>
+      <div class="job-role">Nail Technician</div>
+      <ul>
+        <li>Optimized appointment scheduling, reducing client wait times by 15% and improving customer retention</li>
+        <li>Maintained 75% client retention through personalized consultations and consistent high-quality service</li>
+        <li>Upheld detailed client records with 100% accuracy using an efficient recordkeeping system</li>
+        <li>Increased client retention by 10% through creative marketing initiatives</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Amazon — Cincinnati, Ohio</span>
+        <span class="job-period">Sep 2022 – Jun 2023</span>
+      </div>
+      <div class="job-role">Process Guide</div>
+      <ul>
+        <li>Boosted associate productivity by 20% through comprehensive training and process optimizations</li>
+        <li>Reduced order processing time by 15% by identifying and resolving operational inefficiencies</li>
+        <li>Enhanced inventory accuracy by 12% through advanced tracking system training</li>
+        <li>Reduced new-associate ramp-up time by 10% through detailed onboarding materials</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Pink Nail Salon — Las Vegas, NV</span>
+        <span class="job-period">Feb 2021 – May 2022</span>
+      </div>
+      <div class="job-role">Nail Technician</div>
+      <ul>
+        <li>Strengthened client relationships, achieving a 20% increase in repeat business and positive reviews</li>
+        <li>Coordinated daily appointments efficiently, ensuring high-quality service delivery and client satisfaction</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-company">Amazon — Cincinnati, Ohio</span>
+        <span class="job-period">Feb 2020 – Feb 2021</span>
+      </div>
+      <div class="job-role">FC Associate</div>
+      <ul>
+        <li>Decreased product picking errors by 10% through meticulous attention to detail</li>
+        <li>Ranked in the top 5% of associates for productivity and accuracy</li>
+        <li>Maintained a safe work environment with zero incidents during employment</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-title">Bachelor of Interdisciplinary Studies</span>
+      </div>
+      <span class="edu-org">University of Cincinnati</span>
+    </div>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-title">Associate of Arts — Direct Transfer Agreement</span>
+      </div>
+      <span class="edu-org">Shoreline Community College</span>
+    </div>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-title">Diploma in Commerce</span>
+      </div>
+      <span class="edu-org">Royal Melbourne Institute of Technology University</span>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Certifications</div>
+    <div class="cert-item">
+      <span class="cert-title">Google Data Analytics Certificate</span>
+      <span class="cert-org">Google / Coursera</span>
+      <span class="cert-year">2024</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-title">SQL for Data Science Certificate</span>
+      <span class="cert-org">Coursera</span>
+      <span class="cert-year">2024</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-title">Graphic Design Certificate</span>
+      <span class="cert-org">DPI Graphic Design Training Center</span>
+      <span class="cert-year">2024</span>
+    </div>
+    <div class="cert-item">
+      <span class="cert-title">Amazon Process Guide</span>
+      <span class="cert-org">Internal Certification</span>
+      <span class="cert-year">2022</span>
+    </div>
+  </div>
+
+  <!-- SKILLS & TECHNOLOGIES -->
+  <div class="section">
+    <div class="section-title">Skills &amp; Technologies</div>
+    <div class="skills-grid">
+      <div class="skill-row"><span class="skill-category">Data &amp; Analytics:</span> Microsoft Excel (VLOOKUP, Pivot Tables, Data Validation, Charts), Google Sheets, SQL, Data Entry, Data Quality Analysis</div>
+      <div class="skill-row"><span class="skill-category">Design:</span> Adobe Creative Suite (Photoshop, InDesign, Illustrator), Canva, UI/UX Design, Brand Identity</div>
+      <div class="skill-row"><span class="skill-category">Operations &amp; Admin:</span> SOP Documentation, Process Optimization, Recordkeeping, Inventory Control, Scheduling, MS Office Suite</div>
+      <div class="skill-row"><span class="skill-category">Languages:</span> English (fluent), Vietnamese (native) · Typing: 43 WPM</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
