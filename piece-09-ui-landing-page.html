@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taska — Smart Task Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo: #2D1B69;
+      --indigo-mid: #3D2690;
+      --indigo-light: #4a30a8;
+      --lime: #A8FF3E;
+      --slate: #64748B;
+      --slate-light: #94A3B8;
+      --white: #FFFFFF;
+      --bg: #F8F7FF;
+      --card: #FFFFFF;
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--indigo);
+      min-width: 1200px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--indigo);
+      padding: 0 60px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.nav-active {
+      color: var(--white);
+      border-bottom-color: var(--lime);
+    }
+
+    .nav-cta {
+      background: var(--lime);
+      color: var(--indigo) !important;
+      font-weight: 700 !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      border-bottom: none !important;
+      /* CTA fill hover animation */
+      background-size: 200% 100%;
+      background-image: linear-gradient(to right, #A8FF3E 50%, #c8ff72 50%);
+      background-position: 0 0;
+      transition: background-position 0.3s ease !important;
+    }
+    .nav-cta:hover { background-position: -100% 0; }
+
+    /* Hamburger (CSS toggle) */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    @media (max-width: 900px) {
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--indigo);
+        padding: 20px 40px;
+        gap: 16px;
+      }
+    }
+
+    /* ── HERO ── */
+    #hero {
+      background: var(--indigo);
+      padding: 100px 60px 80px;
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      border: 1px solid rgba(168,255,62,0.12);
+      top: -200px; right: 200px;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(168,255,62,0.06);
+      bottom: -100px; left: 300px;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(168,255,62,0.12);
+      border: 1px solid rgba(168,255,62,0.30);
+      border-radius: 100px;
+      padding: 6px 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    .hero-badge span {
+      font-size: 12px; font-weight: 600;
+      color: var(--lime); letter-spacing: 0.5px;
+    }
+
+    /* Hero text reveal animation */
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 62px;
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .hero h1 em { font-style: normal; color: var(--lime); }
+
+    .hero-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .hero-word.revealed { opacity: 1; transform: translateY(0); }
+
+    .hero p {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease 0.55s, transform 0.5s ease 0.55s;
+    }
+    .hero p.revealed { opacity: 1; transform: translateY(0); }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease 0.7s, transform 0.5s ease 0.7s;
+    }
+    .hero-ctas.revealed { opacity: 1; transform: translateY(0); }
+
+    .btn-primary {
+      background: var(--lime);
+      color: var(--indigo);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* CTA fill animation */
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.25);
+      transform: translateX(-101%);
+      transition: transform 0.35s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+
+    .btn-ghost {
+      color: rgba(255,255,255,0.75);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px; font-weight: 500;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 0;
+    }
+
+    .btn-ghost-arrow {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover .btn-ghost-arrow { transform: translateX(4px); background: rgba(255,255,255,0.08); }
+
+    /* ── HERO MOCKUP — animated typing ── */
+    .hero-mockup { position: relative; z-index: 1; }
+
+    .mockup-window {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .mockup-titlebar {
+      background: rgba(255,255,255,0.08);
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .dot-r { width:10px;height:10px;border-radius:50%;background:#FF5F56; }
+    .dot-y { width:10px;height:10px;border-radius:50%;background:#FFBD2E; }
+    .dot-g { width:10px;height:10px;border-radius:50%;background:#27C93F; }
+
+    .mockup-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      min-height: 340px;
+    }
+
+    .mockup-sidebar { display:flex;flex-direction:column;gap:6px; }
+    .sidebar-item { height:32px;border-radius:6px;background:rgba(255,255,255,0.07); }
+    .sidebar-item.active { background:var(--lime);opacity:0.90; }
+    .sidebar-item.active-2 { background:rgba(168,255,62,0.20); }
+
+    .mockup-main { display:flex;flex-direction:column;gap:12px; }
+
+    .task-row {
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center;
+      padding: 0 12px; gap: 10px;
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.35s, transform 0.35s;
+    }
+    .task-row.typed { opacity: 1; transform: translateX(0); }
+
+    .task-check {
+      width:16px;height:16px;border-radius:50%;
+      border:2px solid rgba(168,255,62,0.50);flex-shrink:0;
+    }
+    .task-check.done { background:var(--lime);border-color:var(--lime); }
+
+    .task-bar { flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,0.12); }
+    .task-bar.w-80 { width:80%;max-width:80%;background:rgba(255,255,255,0.18); }
+    .task-bar.w-60 { width:60%;max-width:60%; }
+    .task-bar.w-90 { width:90%;max-width:90%;background:rgba(255,255,255,0.18); }
+    .task-bar.w-50 { width:50%;max-width:50%; }
+
+    .task-tag { width:44px;height:16px;border-radius:4px;background:rgba(168,255,62,0.25);flex-shrink:0; }
+
+    .mockup-stat-row { display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px; }
+
+    .stat-card {
+      background:rgba(255,255,255,0.06);border-radius:8px;padding:12px;
+      display:flex;flex-direction:column;gap:6px;
+    }
+    .stat-num { font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--lime); }
+    .stat-label { font-size:10px;color:rgba(255,255,255,0.45);font-weight:500; }
+
+    /* Social proof */
+    .social-proof {
+      background:rgba(255,255,255,0.04);
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding:16px 60px;
+    }
+    .proof-inner { display:flex;align-items:center;gap:10px; }
+    .proof-avatars { display:flex; }
+    .avatar {
+      width:28px;height:28px;border-radius:50%;
+      border:2px solid var(--indigo);margin-left:-8px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:700;color:var(--indigo);
+    }
+    .avatar:first-child { margin-left:0; }
+    .av1{background:#FFD166;}.av2{background:#06D6A0;}.av3{background:#EF476F;}
+    .av4{background:#118AB2;}.av5{background:#A8FF3E;}
+
+    .proof-text { font-size:13px;color:rgba(255,255,255,0.55); }
+    .proof-text strong { color:rgba(255,255,255,0.90); }
+
+    /* ── FEATURES TABS ── */
+    #features {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size:11px;font-weight:700;letter-spacing:3px;
+      text-transform:uppercase;color:var(--indigo);opacity:0.45;margin-bottom:12px;
+    }
+
+    .section-heading {
+      font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;
+      letter-spacing:-1.5px;color:var(--indigo);margin-bottom:40px;
+      max-width:520px;line-height:1.1;
+    }
+
+    .feature-tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid rgba(45,27,105,0.10);
+      margin-bottom: 40px;
+    }
+
+    .ftab-btn {
+      padding: 12px 28px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: var(--slate);
+      border: none; background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .ftab-btn:hover { color: var(--indigo); }
+    .ftab-btn.active { color: var(--indigo); border-bottom-color: var(--lime); }
+
+    .ftab-panel { display: none; }
+    .ftab-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .ftab-text h3 {
+      font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;
+      color:var(--indigo);margin-bottom:16px;letter-spacing:-0.5px;
+    }
+    .ftab-text p { font-size:15px;line-height:1.7;color:var(--slate);margin-bottom:20px; }
+    .ftab-stat {
+      font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--indigo);
+    }
+    .ftab-stat span { display:block;font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:var(--slate-light);margin-top:4px; }
+
+    .ftab-visual {
+      background: var(--card);
+      border: 1px solid rgba(45,27,105,0.08);
+      border-radius: 16px;
+      padding: 36px 32px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 220px;
+    }
+
+    .ftab-icon-big { font-size: 72px; }
+
+    /* ── TESTIMONIALS CAROUSEL ── */
+    #testimonials {
+      background: var(--indigo);
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testi-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+    .testi-header .section-label { color: rgba(255,255,255,0.45); opacity: 1; }
+    .testi-header .section-heading { color: var(--white); margin-bottom: 0; }
+
+    .testi-controls {
+      display: flex; gap: 10px;
+    }
+    .testi-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .testi-btn:hover { background: rgba(255,255,255,0.15); }
+
+    .testi-track {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testi-slide {
+      display: none;
+      animation: slideIn 0.4s ease;
+    }
+    .testi-slide.active { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; }
+    @keyframes slideIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .testimonial {
+      background: var(--indigo);
+      padding: 44px 48px;
+      position: relative;
+    }
+    .testimonial + .testimonial { border-left: 1px solid rgba(255,255,255,0.10); }
+    .testimonial-quote {
+      font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;
+      color:var(--lime);line-height:1;margin-bottom:16px;opacity:0.5;
+    }
+    .testimonial p { font-size:15px;line-height:1.7;color:rgba(255,255,255,0.70);margin-bottom:24px; }
+    .testimonial-author { display:flex;align-items:center;gap:12px; }
+    .author-avatar {
+      width:36px;height:36px;border-radius:50%;
+      background:rgba(168,255,62,0.25);
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:700;color:var(--lime);
+    }
+    .author-info strong { display:block;font-size:13px;font-weight:600;color:var(--white); }
+    .author-info span { font-size:12px;color:rgba(255,255,255,0.40); }
+
+    /* Dot indicators */
+    .testi-dots {
+      display: flex; justify-content: center; gap: 8px;
+      margin-top: 32px;
+    }
+    .testi-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .testi-dot.active { background: var(--lime); }
+
+    /* ── PRICING ── */
+    #pricing {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 50px;
+    }
+    .pricing-header .section-heading { margin-bottom: 0; }
+
+    .billing-toggle {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13px; color: var(--slate); cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-track {
+      width: 42px; height: 24px;
+      background: var(--indigo);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .toggle-track.annual { background: var(--indigo-mid); }
+
+    .toggle-thumb {
+      width: 18px; height: 18px;
+      background: var(--lime);
+      border-radius: 50%;
+      position: absolute;
+      top: 3px; right: 3px;
+      transition: right 0.25s;
+    }
+    .toggle-track.annual .toggle-thumb { right: 21px; }
+
+    .billing-save {
+      background: rgba(168,255,62,0.15);
+      color: var(--indigo);
+      font-size: 11px; font-weight: 700;
+      padding: 3px 8px; border-radius: 4px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .billing-save.show { opacity: 1; }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid rgba(45,27,105,0.10);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+
+    .price-card.featured {
+      background: var(--indigo);
+      border-color: transparent;
+      transform: scale(1.04);
+      box-shadow: 0 24px 60px rgba(45,27,105,0.25);
+    }
+
+    .price-tier {
+      font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
+      letter-spacing:2px;text-transform:uppercase;color:var(--slate);margin-bottom:16px;
+    }
+    .price-card.featured .price-tier { color:var(--lime); }
+
+    .price-amount {
+      font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;
+      color:var(--indigo);letter-spacing:-2px;line-height:1;margin-bottom:4px;
+      transition: all 0.3s ease;
+    }
+    .price-card.featured .price-amount { color:var(--white); }
+
+    .price-period { font-size:13px;color:var(--slate-light);margin-bottom:28px; }
+    .price-card.featured .price-period { color:rgba(255,255,255,0.45); }
+
+    .price-features {
+      list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px;
+    }
+    .price-features li { font-size:14px;color:var(--slate);display:flex;align-items:center;gap:10px; }
+    .price-card.featured .price-features li { color:rgba(255,255,255,0.70); }
+
+    .check-icon {
+      width:18px;height:18px;border-radius:50%;
+      background:rgba(168,255,62,0.15);
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;color:var(--indigo);font-weight:700;flex-shrink:0;
+    }
+    .price-card.featured .check-icon { background:rgba(168,255,62,0.25);color:var(--lime); }
+
+    .price-btn {
+      display:block;text-align:center;padding:14px;border-radius:10px;
+      font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;
+      text-decoration:none;border:1.5px solid rgba(45,27,105,0.20);color:var(--indigo);
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .price-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(45,27,105,0.06);
+      transform: translateX(-101%);
+      transition: transform 0.3s ease;
+    }
+    .price-btn:hover::after { transform: translateX(0); }
+
+    .price-card.featured .price-btn {
+      background:var(--lime);border-color:transparent;color:var(--indigo);
+    }
+    .price-card.featured .price-btn::after { background: rgba(255,255,255,0.20); }
+
+    /* ── FAQ ACCORDION ── */
+    .faq-section {
+      padding: 0 60px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-section .section-heading { margin-bottom: 32px; }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(45,27,105,0.10);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--indigo);
+      text-align: left;
+    }
+
+    .faq-icon {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(45,27,105,0.20);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: transform 0.25s, background 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--lime); border-color: var(--lime); }
+
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    .faq-answer p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--slate);
+      padding-bottom: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--indigo);
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 14px; }
+    .footer-brand p { font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;max-width:240px; }
+    .footer-col h4 {
+      font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;
+      color:rgba(255,255,255,0.55);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;
+    }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:10px; }
+    .footer-col a { text-decoration:none;font-size:14px;color:rgba(255,255,255,0.50); }
+    .footer-col a:hover { color: rgba(255,255,255,0.85); }
+
+    .footer-bottom {
+      background:rgba(0,0,0,0.25);padding:18px 60px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .footer-bottom p { font-size:13px;color:rgba(255,255,255,0.30); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-dot"></div>
+      Taska
+    </a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" class="nav-link">Product</a></li>
+      <li><a href="#features" class="nav-link">Features</a></li>
+      <li><a href="#testimonials" class="nav-link">Teams</a></li>
+      <li><a href="#pricing" class="nav-link">Pricing</a></li>
+      <li><a href="#pricing" class="nav-cta">Start free</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Now with AI prioritization</span>
+      </div>
+      <h1 id="hero-headline">Every task, <em>exactly</em> where it belongs.</h1>
+      <p id="hero-p">Taska connects your team's work into one intelligent surface — so nothing slips, priorities stay clear, and everyone ships faster.</p>
+      <div class="hero-ctas" id="hero-ctas">
+        <a href="#pricing" class="btn-primary">Start for free</a>
+        <a href="#features" class="btn-ghost">
+          See how it works
+          <span class="btn-ghost-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Dashboard mockup with typing animation -->
+    <div class="hero-mockup">
+      <div class="mockup-window">
+        <div class="mockup-titlebar">
+          <div class="dot-r"></div>
+          <div class="dot-y"></div>
+          <div class="dot-g"></div>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-sidebar">
+            <div class="sidebar-item active"></div>
+            <div class="sidebar-item active-2"></div>
+            <div class="sidebar-item"></div>
+            <div class="sidebar-item"></div>
+            <div class="sidebar-item"></div>
+            <div class="sidebar-item"></div>
+          </div>
+          <div class="mockup-main" id="mockup-tasks">
+            <div class="task-row" id="tr1">
+              <div class="task-check done"></div>
+              <div class="task-bar w-80"></div>
+              <div class="task-tag"></div>
+            </div>
+            <div class="task-row" id="tr2">
+              <div class="task-check done"></div>
+              <div class="task-bar w-60"></div>
+              <div class="task-tag"></div>
+            </div>
+            <div class="task-row" id="tr3">
+              <div class="task-check"></div>
+              <div class="task-bar w-90"></div>
+            </div>
+            <div class="task-row" id="tr4">
+              <div class="task-check"></div>
+              <div class="task-bar w-50"></div>
+              <div class="task-tag"></div>
+            </div>
+            <div class="task-row" id="tr5">
+              <div class="task-check"></div>
+              <div class="task-bar w-80"></div>
+            </div>
+            <div class="mockup-stat-row">
+              <div class="stat-card">
+                <div class="stat-num">24</div>
+                <div class="stat-label">Completed</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">7</div>
+                <div class="stat-label">In progress</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">92%</div>
+                <div class="stat-label">On track</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social proof inside hero -->
+    <div style="grid-column:1/-1;border-top:1px solid rgba(255,255,255,0.10);padding:20px 0 0;margin-top:20px;">
+      <div class="proof-inner">
+        <div class="proof-avatars">
+          <div class="avatar av1">A</div>
+          <div class="avatar av2">R</div>
+          <div class="avatar av3">S</div>
+          <div class="avatar av4">T</div>
+          <div class="avatar av5">M</div>
+        </div>
+        <div class="proof-text"><strong>12,000+ teams</strong> already ship faster with Taska. No credit card required.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES (tabbed) -->
+  <section id="features">
+    <div class="section-label">Why Taska</div>
+    <div class="section-heading">Built for teams that<br />can't afford to miss.</div>
+
+    <div class="feature-tabs-nav">
+      <button class="ftab-btn active" data-tab="0">AI Prioritization</button>
+      <button class="ftab-btn" data-tab="1">Real-Time Sync</button>
+      <button class="ftab-btn" data-tab="2">Async Workflows</button>
+    </div>
+
+    <div class="ftab-panel active" id="ftab-0">
+      <div class="ftab-text">
+        <h3>AI-Powered Prioritization</h3>
+        <p>Taska analyzes deadlines, dependencies, and team velocity to surface what actually matters — so your team stops guessing and starts shipping.</p>
+        <div class="ftab-stat">3.2× <span>faster sprint planning vs. manual</span></div>
+      </div>
+      <div class="ftab-visual"><div class="ftab-icon-big">🤖</div></div>
+    </div>
+
+    <div class="ftab-panel" id="ftab-1">
+      <div class="ftab-text">
+        <h3>Real-Time Sync Across Tools</h3>
+        <p>Native integrations with Slack, GitHub, Notion, and Figma. Every update flows where work already happens — no copy-paste, no context switching.</p>
+        <div class="ftab-stat">40+ <span>integrations available on day one</span></div>
+      </div>
+      <div class="ftab-visual"><div class="ftab-icon-big">🔗</div></div>
+    </div>
+
+    <div class="ftab-panel" id="ftab-2">
+      <div class="ftab-text">
+        <h3>Async-First Workflows</h3>
+        <p>Structured async updates replace status meetings. Every decision is logged, searchable, and tied directly to the task that triggered it.</p>
+        <div class="ftab-stat">6 hrs <span>saved per team member, per week</span></div>
+      </div>
+      <div class="ftab-visual"><div class="ftab-icon-big">⚡</div></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS carousel -->
+  <section id="testimonials">
+    <div class="testi-header">
+      <div>
+        <div class="section-label">What teams say</div>
+        <div class="section-heading" style="color:var(--white)">Trusted by fast-moving<br />engineering teams.</div>
+      </div>
+      <div class="testi-controls">
+        <button class="testi-btn" id="testi-prev">←</button>
+        <button class="testi-btn" id="testi-next">→</button>
+      </div>
+    </div>
+
+    <div class="testi-track">
+      <!-- Slide 0 (all 3 at once) -->
+      <div class="testi-slide active" id="slide-0">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>We cut our planning overhead in half within the first sprint. Taska just understands how we work — it's the first task tool that didn't need months of configuration.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">LK</div>
+            <div class="author-info">
+              <strong>Laura Kim</strong>
+              <span>VP Engineering, Fieldline</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>The AI prioritization is genuinely useful. Not in a gimmick way — it caught a dependency conflict our whole team missed and saved us a two-day delay.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">DR</div>
+            <div class="author-info">
+              <strong>David Rowe</strong>
+              <span>Head of Product, Alterra</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>Switched from our old PM tool six months ago and our on-time delivery rate went from 61% to 88%. The async standup alone was worth the migration.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MP</div>
+            <div class="author-info">
+              <strong>Maya Patel</strong>
+              <span>Engineering Manager, Swyft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Slide 1 -->
+      <div class="testi-slide" id="slide-1">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>Taska replaced three different tools for us. The unified view of everything in flight is something our team had wanted for years. Implementation took one afternoon.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AJ</div>
+            <div class="author-info">
+              <strong>Alex Jin</strong>
+              <span>CTO, Luminary Labs</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>The GitHub integration alone saved us 3 hours a week in manual status updates. Engineers stay in flow, managers get the visibility they need.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SR</div>
+            <div class="author-info">
+              <strong>Sara Reeves</strong>
+              <span>Engineering Lead, Arclight</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p>We onboarded our 40-person team in under a day. The learning curve is basically zero — it just works the way you expect it to.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">TN</div>
+            <div class="author-info">
+              <strong>Tom Nguyen</strong>
+              <span>Delivery Director, Cascade</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-dots">
+      <div class="testi-dot active" data-slide="0"></div>
+      <div class="testi-dot" data-slide="1"></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="pricing-header">
+      <div>
+        <div class="section-label">Pricing</div>
+        <div class="section-heading">Simple pricing,<br />no surprises.</div>
+      </div>
+      <div class="billing-toggle" id="billing-toggle">
+        <span id="lbl-monthly" style="color:var(--indigo);font-weight:600;">Monthly</span>
+        <div class="toggle-track" id="toggle-track">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span id="lbl-annual" style="color:var(--slate);">Annual</span>
+        <span class="billing-save" id="billing-save">Save 20%</span>
+      </div>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="price-card">
+        <div class="price-tier">Starter</div>
+        <div class="price-amount" id="price-starter">$0</div>
+        <div class="price-period" id="period-starter">Free forever, up to 3 members</div>
+        <ul class="price-features">
+          <li><div class="check-icon">✓</div> Up to 3 team members</li>
+          <li><div class="check-icon">✓</div> 5 active projects</li>
+          <li><div class="check-icon">✓</div> Basic task views</li>
+          <li><div class="check-icon">✓</div> 5 integrations</li>
+          <li><div class="check-icon">✓</div> 90-day history</li>
+        </ul>
+        <a href="#" class="price-btn">Get started free</a>
+      </div>
+      <!-- Pro (featured) -->
+      <div class="price-card featured">
+        <div class="price-tier">Pro</div>
+        <div class="price-amount" id="price-pro">$22</div>
+        <div class="price-period" id="period-pro">per member / month, billed monthly</div>
+        <ul class="price-features">
+          <li><div class="check-icon">✓</div> Unlimited members</li>
+          <li><div class="check-icon">✓</div> Unlimited projects</li>
+          <li><div class="check-icon">✓</div> AI prioritization</li>
+          <li><div class="check-icon">✓</div> All 40+ integrations</li>
+          <li><div class="check-icon">✓</div> Advanced analytics</li>
+          <li><div class="check-icon">✓</div> Async standup tooling</li>
+        </ul>
+        <a href="#" class="price-btn">Start Pro trial</a>
+      </div>
+      <!-- Enterprise -->
+      <div class="price-card">
+        <div class="price-tier">Enterprise</div>
+        <div class="price-amount">Custom</div>
+        <div class="price-period">Volume pricing + SLA</div>
+        <ul class="price-features">
+          <li><div class="check-icon">✓</div> Everything in Pro</li>
+          <li><div class="check-icon">✓</div> SSO / SAML</li>
+          <li><div class="check-icon">✓</div> Audit logs</li>
+          <li><div class="check-icon">✓</div> Custom data retention</li>
+          <li><div class="check-icon">✓</div> Dedicated CSM</li>
+          <li><div class="check-icon">✓</div> 99.9% uptime SLA</li>
+        </ul>
+        <a href="#" class="price-btn">Talk to sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <div class="faq-section">
+    <div class="section-label">FAQ</div>
+    <div class="section-heading">Common questions</div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Can I import tasks from Jira, Asana, or Linear?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-answer"><p>Yes. Taska supports one-click import from Jira, Asana, Linear, Monday.com, and Trello. Your tasks, assignments, due dates, and labels all carry over. Most imports complete in under 5 minutes.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How does AI prioritization work?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-answer"><p>Taska's AI analyzes task dependencies, historical velocity data, deadlines, and team workload to surface the highest-impact items for each sprint. It learns from your team's patterns over time and improves with every cycle.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        Is there a free trial for Pro?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-answer"><p>Yes — all new accounts get a 14-day Pro trial with no credit card required. At the end of the trial you can choose to upgrade, downgrade to Starter, or cancel. No charges until you decide.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        How does async standup work?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-answer"><p>Team members post structured updates (yesterday / today / blockers) directly inside Taska. Updates are linked to the relevant tasks, timestamped, and searchable. Managers get a rollup view without scheduling a single call.</p></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        What security certifications does Taska hold?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-answer"><p>Taska is SOC 2 Type II certified and GDPR compliant. Enterprise accounts include custom data residency options, SSO/SAML, and a full audit log. All data is encrypted in transit and at rest.</p></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="nav-logo-dot"></div>
+        Taska
+      </div>
+      <p>Smart task management for teams that ship. Built for async-first, always-on teams.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Integrations</a></li>
+        <li><a href="#">Changelog</a></li>
+        <li><a href="#">Roadmap</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Security</a></li>
+        <li><a href="#">Status</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <p>© 2026 Taska Inc. All rights reserved.</p>
+    <p>Designed with care. Built to ship.</p>
+  </div>
+
+  <script>
+    // ── Hamburger menu ──
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+
+    // ── Hero text reveal (word-by-word stagger) ──
+    (function() {
+      const h1 = document.getElementById('hero-headline');
+      const rawHTML = h1.innerHTML;
+      // Split on spaces, preserving <em> tags
+      const parts = rawHTML.split(/(\s+)/);
+      let rebuilt = '';
+      let wIdx = 0;
+      parts.forEach(part => {
+        if (part.trim() === '') { rebuilt += part; }
+        else {
+          rebuilt += `<span class="hero-word" style="transition-delay:${wIdx * 100}ms">${part}</span>`;
+          wIdx++;
+        }
+      });
+      h1.innerHTML = rebuilt;
+
+      // Trigger after small delay
+      setTimeout(() => {
+        h1.querySelectorAll('.hero-word').forEach(w => w.classList.add('revealed'));
+        document.getElementById('hero-p').classList.add('revealed');
+        document.getElementById('hero-ctas').classList.add('revealed');
+      }, 150);
+    })();
+
+    // ── Typing mockup animation ──
+    const taskRows = ['tr1','tr2','tr3','tr4','tr5'];
+    taskRows.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add('typed'), 400 + i * 350);
+    });
+
+    // ── Feature Tabs ──
+    document.querySelectorAll('.ftab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('.ftab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.ftab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('ftab-' + tab).classList.add('active');
+      });
+    });
+
+    // ── Testimonials carousel ──
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testi-slide');
+    const dots = document.querySelectorAll('.testi-dot');
+
+    function goToSlide(idx) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (idx + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+
+    document.getElementById('testi-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+    document.getElementById('testi-next').addEventListener('click', () => goToSlide(currentSlide + 1));
+    dots.forEach(d => d.addEventListener('click', () => goToSlide(parseInt(d.dataset.slide))));
+
+    // Auto-rotate every 4 seconds
+    setInterval(() => goToSlide(currentSlide + 1), 4000);
+
+    // ── Pricing toggle ──
+    let isAnnual = false;
+    const monthlyPrices = { starter: '$0', pro: '$22' };
+    const annualPrices  = { starter: '$0', pro: '$18' };
+    const monthlyPeriods = { starter: 'Free forever, up to 3 members', pro: 'per member / month, billed monthly' };
+    const annualPeriods  = { starter: 'Free forever, up to 3 members', pro: 'per member / month, billed annually (save 20%)' };
+
+    document.getElementById('billing-toggle').addEventListener('click', () => {
+      isAnnual = !isAnnual;
+      const track = document.getElementById('toggle-track');
+      const save = document.getElementById('billing-save');
+      const lblM = document.getElementById('lbl-monthly');
+      const lblA = document.getElementById('lbl-annual');
+
+      track.classList.toggle('annual', isAnnual);
+      save.classList.toggle('show', isAnnual);
+
+      if (isAnnual) {
+        lblM.style.color = 'var(--slate)'; lblM.style.fontWeight = '400';
+        lblA.style.color = 'var(--indigo)'; lblA.style.fontWeight = '600';
+        document.getElementById('price-starter').textContent = annualPrices.starter;
+        document.getElementById('price-pro').textContent = annualPrices.pro;
+        document.getElementById('period-starter').textContent = annualPeriods.starter;
+        document.getElementById('period-pro').textContent = annualPeriods.pro;
+      } else {
+        lblM.style.color = 'var(--indigo)'; lblM.style.fontWeight = '600';
+        lblA.style.color = 'var(--slate)'; lblA.style.fontWeight = '400';
+        document.getElementById('price-starter').textContent = monthlyPrices.starter;
+        document.getElementById('price-pro').textContent = monthlyPrices.pro;
+        document.getElementById('period-starter').textContent = monthlyPeriods.starter;
+        document.getElementById('period-pro').textContent = monthlyPeriods.pro;
+      }
+    });
+
+    // ── FAQ Accordion ──
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Scroll spy for nav ──
+    const sections = ['hero','features','testimonials','pricing'];
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+      let active = 'hero';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 80) active = id;
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('nav-active', a.getAttribute('href') === '#' + active);
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+  </script>
+</body>
+</html>

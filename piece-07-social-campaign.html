@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1400">
+  <title>Bloom Skincare — The Clarity Serum Launch Campaign</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush: #F2C4CE;
+      --blush-dark: #E8A4B2;
+      --ivory: #FAF7F2;
+      --charcoal: #2B2B2B;
+      --charcoal-soft: #4A4A4A;
+      --sage: #8FAF8F;
+      --sage-dark: #6A8F6A;
+      --body-font: Helvetica Neue, Helvetica, Arial, system-ui, sans-serif;
+      --display-font: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    body {
+      background: #1e1e1e;
+      font-family: var(--body-font);
+      padding: 48px 60px;
+      min-width: 1400px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .page-header-left {}
+
+    .page-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--blush-dark);
+      margin-bottom: 8px;
+    }
+
+    .page-title {
+      font-family: var(--display-font);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--ivory);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .page-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1.5px;
+      margin-top: 6px;
+    }
+
+    .page-byline {
+      font-size: 9px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+      text-align: right;
+    }
+
+    .page-byline strong {
+      color: var(--sage);
+    }
+
+    /* ── CAMPAIGN GRID ── */
+    .campaign-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── FORMAT WRAPPER ── */
+    .format-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .format-tag {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .format-tag::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .format-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.3px;
+    }
+
+    .format-dims {
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.5px;
+    }
+
+    /* ════════════════════════════════
+       FORMAT 1: Instagram Feed 1:1
+       Display size: 280×280
+    ════════════════════════════════ */
+    .ig-feed {
+      width: 280px;
+      height: 280px;
+      background: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Abstract product circle */
+    .ig-product-circle {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blush) 0%, var(--blush-dark) 100%);
+      top: 20px;
+      right: -30px;
+    }
+
+    .ig-product-inner {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--ivory);
+      top: 60px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .ig-product-name {
+      font-family: var(--display-font);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .ig-product-vol {
+      font-size: 7px;
+      font-weight: 500;
+      color: var(--charcoal-soft);
+      opacity: 0.6;
+      letter-spacing: 1px;
+      margin-top: 3px;
+    }
+
+    .ig-brand {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .ig-headline {
+      position: absolute;
+      bottom: 54px;
+      left: 18px;
+      max-width: 145px;
+    }
+
+    .ig-hl-main {
+      font-family: var(--display-font);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.5px;
+      line-height: 1.05;
+    }
+
+    .ig-hl-italic {
+      font-style: italic;
+    }
+
+    .ig-bottom {
+      position: absolute;
+      bottom: 16px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ig-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+    }
+
+    .ig-cta {
+      background: var(--charcoal);
+      color: var(--ivory);
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+    }
+
+    /* Sage dot decorations */
+    .ig-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sage);
+    }
+
+    /* ════════════════════════════════
+       FORMAT 2: Instagram Story 9:16
+       Original: 1080×1920 → 168×300 display
+    ════════════════════════════════ */
+    .ig-story {
+      width: 168px;
+      height: 300px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Top gradient */
+    .story-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #3A2A2E 0%, var(--charcoal) 60%, #1A1A1A 100%);
+    }
+
+    /* Product blob */
+    .story-blob {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, var(--blush) 0%, var(--blush-dark) 70%);
+      top: 55px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.9;
+    }
+
+    .story-blob-inner {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(250, 247, 242, 0.85);
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .story-product-name {
+      font-family: var(--display-font);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+    }
+
+    .story-header {
+      position: absolute;
+      top: 14px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+    }
+
+    .story-brand {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .story-close {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* Progress bar */
+    .story-progress {
+      position: absolute;
+      top: 8px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      gap: 3px;
+    }
+
+    .story-prog-seg {
+      height: 2px;
+      flex: 1;
+      background: rgba(255,255,255,0.25);
+      border-radius: 1px;
+    }
+
+    .story-prog-seg.active {
+      background: rgba(255,255,255,0.85);
+    }
+
+    .story-main-text {
+      position: absolute;
+      bottom: 56px;
+      left: 14px;
+      right: 14px;
+    }
+
+    .story-new-tag {
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 5px;
+    }
+
+    .story-headline {
+      font-family: var(--display-font);
+      font-size: 22px;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--ivory);
+      letter-spacing: -0.3px;
+      line-height: 1.15;
+    }
+
+    .story-swipe {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .story-swipe-arrow {
+      font-size: 12px;
+      color: var(--blush);
+    }
+
+    /* ════════════════════════════════
+       FORMAT 3: Facebook Banner Ad
+       Original 1200×628 → 280×147 display
+    ════════════════════════════════ */
+    .fb-banner {
+      width: 280px;
+      height: 147px;
+      background: var(--ivory);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .fb-left {
+      width: 130px;
+      flex-shrink: 0;
+      background: var(--blush);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fb-product-oval {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--ivory);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fb-oval-name {
+      font-family: var(--display-font);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .fb-oval-sub {
+      font-size: 6px;
+      font-weight: 500;
+      color: var(--charcoal-soft);
+      opacity: 0.6;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* blush background circles */
+    .fb-circle-dec {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .fb-right {
+      flex: 1;
+      padding: 16px 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .fb-top-tag {
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+    }
+
+    .fb-headline {
+      font-family: var(--display-font);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+
+    .fb-sub {
+      font-size: 8px;
+      font-weight: 400;
+      color: var(--charcoal-soft);
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    .fb-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fb-price {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--charcoal);
+    }
+
+    .fb-btn {
+      background: var(--charcoal);
+      color: var(--ivory);
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+    }
+
+    /* ════════════════════════════════
+       FORMAT 4: Twitter/X Card
+       Original 1600×900 → 280×158 display
+    ════════════════════════════════ */
+    .tw-card {
+      width: 280px;
+      height: 158px;
+      background: var(--charcoal);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tw-top {
+      flex: 1;
+      padding: 18px 20px 12px;
+      position: relative;
+    }
+
+    /* Subtle sage accent line */
+    .tw-accent-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--sage);
+    }
+
+    .tw-brand {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blush-dark);
+      margin-bottom: 8px;
+    }
+
+    .tw-headline {
+      font-family: var(--display-font);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ivory);
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+      max-width: 160px;
+    }
+
+    .tw-headline em {
+      font-style: italic;
+      color: var(--blush);
+    }
+
+    /* Decorative product mark right */
+    .tw-product-mark {
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .tw-product-name {
+      font-family: var(--display-font);
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+
+    .tw-product-price {
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--charcoal);
+      margin-top: 3px;
+    }
+
+    .tw-bottom {
+      background: #1A1A1A;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tw-hashtag {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--sage);
+      letter-spacing: 0.5px;
+    }
+
+    .tw-hashtag span {
+      color: var(--blush-dark);
+      margin-left: 8px;
+    }
+
+    .tw-cta {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── CAMPAIGN LEGEND ── */
+    .campaign-legend {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .legend-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .legend-swatches {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .legend-swatch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-color {
+      width: 12px;
+      height: 12px;
+    }
+
+    .legend-name {
+      font-size: 8px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.5px;
+    }
+
+    .legend-type-pair {
+      font-size: 9px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 1px;
+    }
+
+    .legend-type-pair strong {
+      color: rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="page-label">Social Media Campaign Kit</div>
+      <div class="page-title">Bloom Skincare — The Clarity Serum</div>
+      <div class="page-sub">Product Launch · Multi-Format Campaign · 4 Placements</div>
+    </div>
+    <div class="page-byline">
+      Designed by <strong>Naomi Seay</strong><br>
+      Campaign Creative · 2025
+    </div>
+  </div>
+
+  <!-- 4-FORMAT GRID -->
+  <div class="campaign-grid">
+
+    <!-- ── FORMAT 1: Instagram Feed ── -->
+    <div class="format-wrap">
+      <div class="format-tag">01</div>
+      <div class="format-name">Instagram Feed Post</div>
+      <div class="format-dims">1080 × 1080 px · 1:1 Ratio</div>
+
+      <div class="ig-feed">
+        <!-- Background base -->
+        <!-- Product circle -->
+        <div class="ig-product-circle"></div>
+        <!-- Inner ivory circle with product name -->
+        <div class="ig-product-inner">
+          <div class="ig-product-name">The Clarity<br>Serum</div>
+          <div class="ig-product-vol">30 ml</div>
+        </div>
+        <!-- Sage decorative dots -->
+        <div class="ig-dot" style="top:22px; right:22px; background:var(--sage);"></div>
+        <div class="ig-dot" style="top:38px; right:38px; width:4px; height:4px; background:var(--sage); opacity:0.5;"></div>
+        <!-- Brand -->
+        <div class="ig-brand">Bloom</div>
+        <!-- Headline -->
+        <div class="ig-headline">
+          <div class="ig-hl-main">Your skin,<br><span class="ig-hl-italic">clarified.</span></div>
+        </div>
+        <!-- Bottom -->
+        <div class="ig-bottom">
+          <div class="ig-price">$48</div>
+          <div class="ig-cta">Shop Now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORMAT 2: Instagram Story ── -->
+    <div class="format-wrap">
+      <div class="format-tag">02</div>
+      <div class="format-name">Instagram Story</div>
+      <div class="format-dims">1080 × 1920 px · 9:16 Ratio</div>
+
+      <div class="ig-story">
+        <div class="story-gradient"></div>
+
+        <!-- Progress bar -->
+        <div class="story-progress">
+          <div class="story-prog-seg"></div>
+          <div class="story-prog-seg active"></div>
+          <div class="story-prog-seg"></div>
+          <div class="story-prog-seg"></div>
+        </div>
+
+        <!-- Story header -->
+        <div class="story-header">
+          <div class="story-brand">Bloom Skincare</div>
+          <div class="story-close">✕</div>
+        </div>
+
+        <!-- Product blob -->
+        <div class="story-blob">
+          <div class="story-blob-inner">
+            <div class="story-product-name">Clarity<br>Serum</div>
+          </div>
+        </div>
+
+        <!-- Main text -->
+        <div class="story-main-text">
+          <div class="story-new-tag">↑ New Launch</div>
+          <div class="story-headline">Meet your new skin ritual.</div>
+        </div>
+
+        <!-- Swipe up -->
+        <div class="story-swipe">
+          <div class="story-swipe-arrow">↑</div>
+          <div>Shop Now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORMAT 3: Facebook Banner Ad ── -->
+    <div class="format-wrap">
+      <div class="format-tag">03</div>
+      <div class="format-name">Facebook Banner Ad</div>
+      <div class="format-dims">1200 × 628 px · 1.91:1 Ratio</div>
+
+      <div class="fb-banner">
+        <!-- Left: product visual -->
+        <div class="fb-left">
+          <!-- Background decorative circles -->
+          <div class="fb-circle-dec" style="width:120px;height:120px;top:-30px;left:-30px;"></div>
+          <div class="fb-circle-dec" style="width:80px;height:80px;bottom:-20px;right:-20px;"></div>
+          <!-- Product oval -->
+          <div class="fb-product-oval">
+            <div class="fb-oval-name">The Clarity<br>Serum</div>
+            <div class="fb-oval-sub">30 ml</div>
+          </div>
+        </div>
+        <!-- Right: copy -->
+        <div class="fb-right">
+          <div class="fb-top-tag">New · Bloom Skincare</div>
+          <div class="fb-headline">Skin that<br>speaks first.</div>
+          <div class="fb-sub">Advanced clarity formula.<br>All skin types.</div>
+          <div class="fb-cta-row">
+            <div class="fb-price">$48</div>
+            <div class="fb-btn">Shop Now</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORMAT 4: Twitter/X Card ── -->
+    <div class="format-wrap">
+      <div class="format-tag">04</div>
+      <div class="format-name">Twitter / X Card</div>
+      <div class="format-dims">1600 × 900 px · 16:9 Ratio</div>
+
+      <div class="tw-card">
+        <div class="tw-top">
+          <div class="tw-accent-line"></div>
+          <div class="tw-brand">Bloom Skincare</div>
+          <div class="tw-headline">
+            Clarity<br>is <em>the</em><br>new glow.
+          </div>
+          <!-- Product mark -->
+          <div class="tw-product-mark">
+            <div class="tw-product-name">Clarity<br>Serum</div>
+            <div class="tw-product-price">$48</div>
+          </div>
+        </div>
+        <div class="tw-bottom">
+          <div class="tw-hashtag">#ClaritySerum <span>#BloomSkin</span></div>
+          <div class="tw-cta">Shop →</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CAMPAIGN LEGEND / SYSTEM GUIDE -->
+  <div class="campaign-legend">
+    <div class="legend-left">
+      <div class="legend-label">Color System</div>
+      <div class="legend-swatches">
+        <div class="legend-swatch">
+          <div class="legend-color" style="background:var(--blush);"></div>
+          <div class="legend-name">Blush #F2C4CE</div>
+        </div>
+        <div class="legend-swatch">
+          <div class="legend-color" style="background:var(--ivory); border:1px solid rgba(255,255,255,0.2);"></div>
+          <div class="legend-name">Ivory #FAF7F2</div>
+        </div>
+        <div class="legend-swatch">
+          <div class="legend-color" style="background:var(--charcoal);"></div>
+          <div class="legend-name">Charcoal #2B2B2B</div>
+        </div>
+        <div class="legend-swatch">
+          <div class="legend-color" style="background:var(--sage);"></div>
+          <div class="legend-name">Sage #8FAF8F</div>
+        </div>
+      </div>
+    </div>
+    <div class="legend-type-pair">
+      Typography: <strong>Cormorant Garamond</strong> (display) + <strong>Helvetica Neue</strong> (body)
+    </div>
+  </div>
+
+</body>
+</html>

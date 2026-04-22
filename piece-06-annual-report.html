@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1400">
+  <title>Horizon Youth Foundation — 2025 Annual Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --burgundy: #6B1F1F;
+      --burgundy-dark: #4A1414;
+      --burgundy-mid: #8B2A2A;
+      --warm-white: #FAFAF8;
+      --gold: #D4A853;
+      --gold-light: #E4C07A;
+      --charcoal: #2D2D2D;
+      --charcoal-light: #4A4A4A;
+      --gray: #8A8A8A;
+      --gray-light: #E8E6E2;
+      --page-shadow: rgba(0,0,0,0.18);
+    }
+
+    body {
+      background: #C8C0B8;
+      font-family: 'Lato', sans-serif;
+      /* Simulate book spread environment */
+      padding: 48px 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ── SPREAD CONTAINER ── */
+    .spread {
+      display: flex;
+      width: 1320px;
+      /* 8.5" * 2 = 17" wide at 96dpi ≈ 1632px, scaled to fit */
+    }
+
+    /* ── INDIVIDUAL PAGE ── */
+    .page {
+      width: 660px;
+      min-height: 854px; /* 8.5"×11" at 96dpi */
+      background: var(--warm-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page.left {
+      box-shadow: -4px 0 12px rgba(0,0,0,0.1), 4px 0 18px var(--page-shadow);
+    }
+
+    .page.right {
+      box-shadow: -4px 0 18px var(--page-shadow), 4px 0 12px rgba(0,0,0,0.1);
+    }
+
+    /* Spine shadow effect */
+    .page.left::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.07));
+      pointer-events: none;
+    }
+
+    .page.right::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(0,0,0,0.07), transparent);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ── PAGE HEADER (shared) ── */
+    .page-header-bar {
+      height: 5px;
+      background: var(--burgundy);
+    }
+
+    .page-folio {
+      position: absolute;
+      bottom: 22px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .page.left .page-folio {
+      left: 48px;
+    }
+
+    .page.right .page-folio {
+      right: 48px;
+    }
+
+    .page-folio-num {
+      position: absolute;
+      bottom: 22px;
+    }
+
+    .page.left .page-folio-num {
+      right: 48px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--burgundy);
+    }
+
+    .page.right .page-folio-num {
+      left: 48px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--burgundy);
+    }
+
+    /* ════════════════════════════════
+       LEFT PAGE
+    ════════════════════════════════ */
+
+    .left-inner {
+      padding: 48px 52px 60px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header label */
+    .report-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .report-title-small {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .report-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 16px;
+      opacity: 0.4;
+    }
+
+    .report-year {
+      font-family: 'Lato', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* Pull quote */
+    .pull-quote-wrap {
+      position: relative;
+      margin-bottom: 44px;
+    }
+
+    .pull-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      font-weight: 700;
+      color: var(--burgundy);
+      opacity: 0.12;
+      line-height: 0.8;
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      select: none;
+    }
+
+    .pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--charcoal);
+      line-height: 1.35;
+      letter-spacing: -0.3px;
+      position: relative;
+      z-index: 1;
+      padding-left: 16px;
+      border-left: 3px solid var(--burgundy);
+    }
+
+    .pull-quote-attr {
+      margin-top: 14px;
+      padding-left: 16px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--burgundy);
+    }
+
+    /* Photo placeholder / abstract shape */
+    .photo-placeholder {
+      width: 100%;
+      height: 210px;
+      background: var(--burgundy);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    /* Geometric pattern inside the photo block */
+    .photo-geo {
+      position: absolute;
+      inset: 0;
+    }
+
+    .photo-geo-circle1 {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 168, 83, 0.2);
+      top: -80px;
+      left: -60px;
+    }
+
+    .photo-geo-circle2 {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 168, 83, 0.15);
+      bottom: -40px;
+      right: -30px;
+    }
+
+    .photo-geo-bar1 {
+      position: absolute;
+      width: 3px;
+      height: 120%;
+      background: rgba(212, 168, 83, 0.12);
+      left: 35%;
+      top: -10%;
+      transform: rotate(15deg);
+    }
+
+    .photo-geo-bar2 {
+      position: absolute;
+      width: 2px;
+      height: 120%;
+      background: rgba(212, 168, 83, 0.08);
+      left: 55%;
+      top: -10%;
+      transform: rotate(15deg);
+    }
+
+    /* Gold accent block in photo */
+    .photo-accent-block {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.3));
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 12px;
+      left: 20px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .photo-caption {
+      font-size: 9.5px;
+      font-weight: 300;
+      color: var(--gray);
+      letter-spacing: 0.3px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* ════════════════════════════════
+       RIGHT PAGE
+    ════════════════════════════════ */
+
+    .right-inner {
+      padding: 48px 52px 60px;
+    }
+
+    /* Section header */
+    .section-eyebrow {
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--burgundy);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 18px;
+    }
+
+    /* Data callouts grid */
+    .callouts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .callout-card {
+      background: var(--warm-white);
+      border: 1px solid var(--gray-light);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .callout-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--burgundy);
+    }
+
+    .callout-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .callout-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--burgundy);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .callout-number span {
+      color: var(--gold);
+    }
+
+    .callout-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+
+    .callout-sub {
+      font-size: 9px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* CSS Bar Chart */
+    .chart-section {
+      margin-bottom: 26px;
+    }
+
+    .chart-label {
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      opacity: 0.5;
+      margin-bottom: 14px;
+    }
+
+    .chart-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-year {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gray);
+      width: 32px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .bar-track {
+      flex: 1;
+      height: 22px;
+      background: var(--gray-light);
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      background: var(--burgundy);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      position: relative;
+      transition: width 0.3s ease;
+    }
+
+    .bar-row:last-child .bar-fill {
+      background: var(--gold);
+    }
+
+    .bar-value {
+      font-size: 8px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .bar-row:last-child .bar-value {
+      color: rgba(0,0,0,0.6);
+    }
+
+    /* Body copy */
+    .body-copy {
+      font-family: 'Lato', sans-serif;
+      font-size: 11.5px;
+      font-weight: 300;
+      color: var(--charcoal-light);
+      line-height: 1.75;
+      letter-spacing: 0.2px;
+    }
+
+    .body-copy strong {
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spread">
+
+    <!-- ════════════ LEFT PAGE ════════════ -->
+    <div class="page left">
+      <div class="page-header-bar"></div>
+
+      <div class="left-inner">
+
+        <!-- Report meta -->
+        <div class="report-meta">
+          <div class="report-title-small">Horizon Youth Foundation</div>
+          <div class="report-divider"></div>
+          <div class="report-year">Annual Report 2025</div>
+        </div>
+
+        <!-- Pull quote -->
+        <div class="pull-quote-wrap">
+          <div class="pull-quote-mark">"</div>
+          <div class="pull-quote">
+            Every young person deserves a guide who believes in them before they believe in themselves.
+          </div>
+          <div class="pull-quote-attr">— Dr. Camille Torres, Executive Director</div>
+        </div>
+
+        <!-- Photo placeholder -->
+        <div class="photo-placeholder">
+          <div class="photo-geo">
+            <div class="photo-geo-circle1"></div>
+            <div class="photo-geo-circle2"></div>
+            <div class="photo-geo-bar1"></div>
+            <div class="photo-geo-bar2"></div>
+          </div>
+          <div class="photo-accent-block"></div>
+          <div class="photo-label">Community Impact · 2025</div>
+        </div>
+
+        <div class="photo-caption">
+          Scholars from the Horizon Pathways cohort at the Westlake University
+          campus visit, October 2025. This year's cohort represents 14 Riverside
+          neighborhoods across 8 partner school districts.
+        </div>
+
+        <!-- Bottom spacer fills page -->
+        <div style="flex: 1;"></div>
+
+        <!-- Decorative gold line at bottom -->
+        <div style="height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin-top: 32px; width: 120px;"></div>
+
+      </div>
+
+      <div class="page-folio">Horizon Youth Foundation</div>
+      <div class="page-folio-num">12</div>
+    </div>
+
+    <!-- ════════════ RIGHT PAGE ════════════ -->
+    <div class="page right">
+      <div class="page-header-bar"></div>
+
+      <div class="right-inner">
+
+        <div class="section-eyebrow">Program Results</div>
+        <div class="section-heading">Impact in Numbers</div>
+
+        <!-- 4 Data Callouts -->
+        <div class="callouts-grid">
+
+          <div class="callout-card">
+            <div class="callout-icon">🎓</div>
+            <div class="callout-number">1,240</div>
+            <div class="callout-label">Youth Served</div>
+            <div class="callout-sub">Students enrolled across all Horizon programs in 2025, up 18% from prior year</div>
+          </div>
+
+          <div class="callout-card">
+            <div class="callout-icon">📈</div>
+            <div class="callout-number">87<span>%</span></div>
+            <div class="callout-label">Graduation Rate</div>
+            <div class="callout-sub">4-year graduation rate among Horizon scholars vs. 64% district average</div>
+          </div>
+
+          <div class="callout-card">
+            <div class="callout-icon">💰</div>
+            <div class="callout-number">$2.4<span>M</span></div>
+            <div class="callout-label">Scholarships Awarded</div>
+            <div class="callout-sub">In merit and need-based scholarships distributed to 310 recipients</div>
+          </div>
+
+          <div class="callout-card">
+            <div class="callout-icon">🤝</div>
+            <div class="callout-number">14</div>
+            <div class="callout-label">Community Partners</div>
+            <div class="callout-sub">Corporate, university, and nonprofit partners supporting programming</div>
+          </div>
+
+        </div>
+
+        <!-- CSS Bar Chart -->
+        <div class="chart-section">
+          <div class="chart-label">Program Growth</div>
+          <div class="chart-title">Youth Served — Five-Year Trajectory (2021–2025)</div>
+
+          <div class="bar-chart">
+            <div class="bar-row">
+              <div class="bar-year">2021</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 44%;">
+                  <span class="bar-value">540</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-year">2022</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 56%;">
+                  <span class="bar-value">688</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-year">2023</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 70%;">
+                  <span class="bar-value">860</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-year">2024</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 85%;">
+                  <span class="bar-value">1,052</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-row">
+              <div class="bar-year">2025</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 100%;">
+                  <span class="bar-value">1,240 ↑</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body copy -->
+        <div class="body-copy">
+          This year's results reflect five years of community investment, partnership-building, and the unwavering commitment of our staff, volunteers, and donors. <strong>Our 2025 cohort achieved the highest graduation and post-secondary enrollment rates in Horizon's history</strong> — a direct result of earlier, more sustained intervention. As we enter 2026, our expansion into the Northside and Westfield neighborhoods will bring these outcomes to 400 additional young people.
+        </div>
+
+      </div>
+
+      <div class="page-folio">2025 Annual Report</div>
+      <div class="page-folio-num">13</div>
+    </div>
+
+  </div>
+
+</body>
+</html>

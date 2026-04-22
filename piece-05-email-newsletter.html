@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Streamline Ops — Q2 2026 Newsletter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1A2B4A;
+      --navy-dark: #111D33;
+      --navy-mid: #243558;
+      --orange: #E8622A;
+      --orange-light: #F07840;
+      --white: #FFFFFF;
+      --off-white: #F7F8FA;
+      --gray-light: #EDF0F5;
+      --gray-mid: #B0BBCC;
+      --gray-text: #5A6478;
+      --body-font: Georgia, 'Times New Roman', serif;
+    }
+
+    body {
+      background: #e8ebf0;
+      font-family: 'Montserrat', sans-serif;
+      width: 900px;
+      padding: 40px 0;
+    }
+
+    /* ── OUTER WRAPPER (simulates email client chrome) ── */
+    .email-chrome {
+      background: #d0d4dc;
+      border-radius: 8px 8px 0 0;
+      padding: 12px 16px 0;
+      margin: 0 150px;
+    }
+
+    .chrome-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .chrome-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .chrome-dot.red { background: #FC5F57; }
+    .chrome-dot.yellow { background: #FDBC2C; }
+    .chrome-dot.green { background: #33C748; }
+
+    .chrome-bar {
+      background: #c4c8d0;
+      height: 22px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .chrome-url {
+      font-size: 9px;
+      color: #666;
+      letter-spacing: 0.3px;
+      font-family: monospace;
+    }
+
+    /* ── EMAIL CONTAINER ── */
+    .email-container {
+      width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+    }
+
+    /* ── PREHEADER ── */
+    .preheader {
+      background: var(--navy-dark);
+      padding: 8px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .preheader-text {
+      font-size: 10px;
+      color: var(--gray-mid);
+      letter-spacing: 0.3px;
+    }
+
+    .preheader-view {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 1px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    /* ── HEADER ── */
+    .email-header {
+      background: var(--navy);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--orange);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .logo-sub {
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-top: 3px;
+    }
+
+    .header-meta {
+      text-align: right;
+    }
+
+    .header-issue {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 3px;
+    }
+
+    .header-date {
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--gray-mid);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── HERO ── */
+    .hero-section {
+      padding: 44px 40px 36px;
+      background: var(--white);
+      position: relative;
+      border-left: 4px solid var(--orange);
+    }
+
+    .hero-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .hero-headline {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      max-width: 380px;
+      margin-bottom: 16px;
+    }
+
+    .hero-headline em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero-intro {
+      font-family: var(--body-font);
+      font-size: 14px;
+      color: var(--gray-text);
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 24px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 24px;
+    }
+
+    .hero-cta:hover { background: var(--orange-light); }
+
+    .hero-graphic {
+      position: absolute;
+      right: 40px;
+      top: 44px;
+      width: 120px;
+      height: 120px;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-align: center;
+      line-height: 1.4;
+      padding: 16px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--navy);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-block {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-block + .stat-block {
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .stat-number span {
+      color: var(--orange);
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-top: 4px;
+    }
+
+    /* ── 3-COLUMN FEATURES ── */
+    .features-section {
+      background: var(--off-white);
+      padding: 36px 40px;
+    }
+
+    .features-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .features-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .features-line {
+      flex: 1;
+      height: 1px;
+      background: var(--gray-mid);
+      opacity: 0.4;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 20px;
+    }
+
+    .feature-card-top {
+      height: 3px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card:nth-child(1) .feature-card-top { background: var(--orange); }
+    .feature-card:nth-child(2) .feature-card-top { background: var(--navy); }
+    .feature-card:nth-child(3) .feature-card-top { background: #2A7AE8; }
+
+    .feature-icon {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.2px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .feature-text {
+      font-family: var(--body-font);
+      font-size: 11.5px;
+      color: var(--gray-text);
+      line-height: 1.65;
+    }
+
+    .feature-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .feature-card:nth-child(1) .feature-link { color: var(--orange); }
+    .feature-card:nth-child(2) .feature-link { color: var(--navy); }
+    .feature-card:nth-child(3) .feature-link { color: #2A7AE8; }
+
+    /* ── ARTICLE TEASER ── */
+    .article-section {
+      padding: 36px 40px;
+      background: var(--white);
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .article-image {
+      width: 160px;
+      height: 120px;
+      flex-shrink: 0;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-image-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+      background: linear-gradient(135deg, #243558 0%, #1A2B4A 100%);
+      position: relative;
+    }
+
+    /* Abstract grid lines decoration */
+    .article-image-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,98,42,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,98,42,0.15) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .article-image-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      position: relative;
+      z-index: 1;
+    }
+
+    .article-content {
+      flex: 1;
+    }
+
+    .article-tag {
+      display: inline-block;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--orange);
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.4px;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .article-excerpt {
+      font-family: var(--body-font);
+      font-size: 12.5px;
+      color: var(--gray-text);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .article-author {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.5px;
+    }
+
+    .article-read-time {
+      font-size: 9px;
+      color: var(--gray-mid);
+      letter-spacing: 0.3px;
+    }
+
+    .article-cta {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      text-decoration: none;
+      margin-left: auto;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--gray-light);
+      margin: 0 40px;
+    }
+
+    /* ── FOOTER ── */
+    .email-footer {
+      background: var(--navy-dark);
+      padding: 28px 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo-mark {
+      width: 22px;
+      height: 22px;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+
+    .footer-brand-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.2px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social-btn {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-bottom: 16px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-address {
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.3px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-link {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      color: var(--orange);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EMAIL CLIENT CHROME -->
+  <div class="email-chrome">
+    <div class="chrome-dots">
+      <div class="chrome-dot red"></div>
+      <div class="chrome-dot yellow"></div>
+      <div class="chrome-dot green"></div>
+    </div>
+    <div class="chrome-bar">
+      <div class="chrome-url">Streamline Ops — Q2 2026 | The Efficiency Edge | naomi.seay@twinrootsllc.com</div>
+    </div>
+  </div>
+
+  <!-- EMAIL CONTAINER -->
+  <div class="email-container">
+
+    <!-- PREHEADER -->
+    <div class="preheader">
+      <div class="preheader-text">Your quarterly digest on operations, automation, and growth.</div>
+      <a class="preheader-view" href="#">View Online</a>
+    </div>
+
+    <!-- HEADER -->
+    <div class="email-header">
+      <div class="header-logo">
+        <div class="logo-mark">SO</div>
+        <div>
+          <div class="logo-text">Streamline Ops</div>
+          <div class="logo-sub">B2B Operations Intelligence</div>
+        </div>
+      </div>
+      <div class="header-meta">
+        <div class="header-issue">Issue 14 · Q2 2026</div>
+        <div class="header-date">April 2026</div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero-section">
+      <div class="hero-label">This Issue</div>
+      <div class="hero-headline">Automate the <em>Right</em> Things First</div>
+      <div class="hero-intro">
+        Not all automation is equal. This quarter, we're breaking down the four operational patterns where AI yields the highest ROI — and the three traps that slow teams down.
+      </div>
+      <a class="hero-cta" href="#">Read Full Issue →</a>
+      <div class="hero-graphic">
+        Q2<br>2026<br>DIGEST
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-block">
+        <div class="stat-number">47<span>%</span></div>
+        <div class="stat-label">Faster Onboarding</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">2.3<span>×</span></div>
+        <div class="stat-label">Average ROI</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-number">98<span>%</span></div>
+        <div class="stat-label">Retention Rate</div>
+      </div>
+    </div>
+
+    <!-- 3-COLUMN FEATURES -->
+    <div class="features-section">
+      <div class="features-header">
+        <div class="features-label">Featured Articles</div>
+        <div class="features-line"></div>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-card-top"></div>
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">5 Automation Wins Under 2 Hours</div>
+          <div class="feature-text">Quick-start automations your team can ship this sprint without a developer.</div>
+          <a class="feature-link" href="#">Read More →</a>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-top"></div>
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">This Month in Ops: April Roundup</div>
+          <div class="feature-text">Key signals from 500+ operations leaders on hiring, tooling, and AI priorities for Q2.</div>
+          <a class="feature-link" href="#">Read More →</a>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-top"></div>
+          <div class="feature-icon">🏆</div>
+          <div class="feature-title">Case Study: 3× Throughput at Meridian</div>
+          <div class="feature-text">How a 60-person logistics company tripled order processing without adding headcount.</div>
+          <a class="feature-link" href="#">Read More →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ARTICLE TEASER -->
+    <div class="article-section">
+      <div class="article-image">
+        <div class="article-image-inner">
+          <div class="article-image-label">Featured Read</div>
+        </div>
+      </div>
+      <div class="article-content">
+        <div class="article-tag">Deep Dive</div>
+        <div class="article-title">The Operations Stack Most Mid-Market Teams Get Wrong</div>
+        <div class="article-excerpt">
+          After auditing 80+ ops setups, one pattern dominates: teams overspend on integration middleware and underspend on process documentation. Here's how to rebalance.
+        </div>
+        <div class="article-meta">
+          <div class="article-author">By Jordan Ellis</div>
+          <div class="article-read-time">· 8 min read</div>
+          <a class="article-cta" href="#">Read Article →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FOOTER -->
+    <div class="email-footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo-mark">SO</div>
+          <div class="footer-brand-name">Streamline Ops</div>
+        </div>
+        <div class="footer-social">
+          <div class="social-btn" title="LinkedIn">in</div>
+          <div class="social-btn" title="Twitter">𝕏</div>
+          <div class="social-btn" title="YouTube">▶</div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <div class="footer-address">
+          Streamline Ops, Inc. · 1400 Innovation Blvd Suite 500<br>
+          Austin, TX 78701 · United States
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="#">Manage Prefs</a>
+          <a class="footer-link" href="#">Unsubscribe</a>
+          <a class="footer-link" href="#">Privacy</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

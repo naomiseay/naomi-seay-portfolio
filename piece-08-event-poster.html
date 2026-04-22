@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riverstone Jazz Society — Summer Series 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .poster {
+      width: 700px;
+      height: 1000px;
+      background: #0A0A0A;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ── Abstract geometric background ── */
+    .bg-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Large yellow circle — top right bleed */
+    .circle-1 {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: #F5E642;
+      top: -180px;
+      right: -120px;
+      opacity: 0.12;
+    }
+
+    /* Outline circle — lower left */
+    .circle-2 {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 3px solid #F5E642;
+      bottom: 180px;
+      left: -80px;
+      opacity: 0.20;
+    }
+
+    /* Small red circle — mid area */
+    .circle-3 {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: #C23B22;
+      top: 300px;
+      right: 80px;
+      opacity: 0.70;
+    }
+
+    /* Horizontal rule accent lines */
+    .line-1 {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #F5E642;
+      top: 54px;
+      opacity: 0.30;
+    }
+
+    .line-2 {
+      position: absolute;
+      width: 60%;
+      height: 1px;
+      background: #C23B22;
+      top: 520px;
+      right: 0;
+      opacity: 0.50;
+    }
+
+    /* Diagonal accent stripe */
+    .stripe {
+      position: absolute;
+      width: 6px;
+      height: 400px;
+      background: #C23B22;
+      top: 0;
+      left: 58px;
+      transform: rotate(0deg);
+      opacity: 0.55;
+    }
+
+    /* Dotted grid texture */
+    .dot-grid {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 220px;
+      height: 220px;
+      background-image: radial-gradient(circle, #F5E642 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.10;
+    }
+
+    /* ── Content ── */
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 60px 60px 50px 84px;
+    }
+
+    /* Series label */
+    .series-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #F5E642;
+      margin-bottom: 24px;
+    }
+
+    /* Main headline area */
+    .headline {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .city-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 8px;
+      color: #ffffff;
+      opacity: 0.55;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .event-name-1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 118px;
+      line-height: 0.88;
+      color: #F5E642;
+      letter-spacing: -1px;
+    }
+
+    .event-name-2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 118px;
+      line-height: 0.88;
+      color: #ffffff;
+      letter-spacing: -1px;
+    }
+
+    .event-name-3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 118px;
+      line-height: 0.88;
+      color: #C23B22;
+      letter-spacing: -1px;
+    }
+
+    .series-subtitle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 38px;
+      letter-spacing: 5px;
+      color: #ffffff;
+      opacity: 0.80;
+      margin-top: 18px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: #F5E642;
+      margin: 36px 0;
+    }
+
+    /* Artist lineup */
+    .lineup {
+      margin-bottom: 36px;
+    }
+
+    .lineup-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: #C23B22;
+      margin-bottom: 12px;
+    }
+
+    .lineup-names {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .lineup-names span {
+      color: #F5E642;
+    }
+
+    /* Info block */
+    .info-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(245, 230, 66, 0.25);
+      padding-top: 28px;
+    }
+
+    .info-item {
+      padding-right: 20px;
+    }
+
+    .info-item + .info-item {
+      border-left: 1px solid rgba(255,255,255,0.12);
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .info-item:last-child {
+      padding-right: 0;
+    }
+
+    .info-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #F5E642;
+      margin-bottom: 6px;
+      opacity: 0.80;
+    }
+
+    .info-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.4;
+    }
+
+    .info-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+
+    /* Tickets CTA */
+    .ticket-cta {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .ticket-btn {
+      background: #F5E642;
+      color: #0A0A0A;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      display: inline-block;
+    }
+
+    .ticket-url {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.40);
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster">
+    <!-- Background shapes -->
+    <div class="bg-shapes">
+      <div class="circle-1"></div>
+      <div class="circle-2"></div>
+      <div class="circle-3"></div>
+      <div class="line-1"></div>
+      <div class="line-2"></div>
+      <div class="stripe"></div>
+      <div class="dot-grid"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="series-label">Presented by Riverside Arts Foundation</div>
+
+      <div class="headline">
+        <div class="city-name">RIVERSIDE</div>
+        <div class="event-name-1">JAZZ</div>
+        <div class="event-name-2">SOCIE</div>
+        <div class="event-name-3">TY</div>
+        <div class="series-subtitle">Summer Series 2026</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="lineup">
+        <div class="lineup-label">Featuring</div>
+        <div class="lineup-names">
+          <span>Marcus Bell</span> &amp; The River Quartet<br />
+          Diane Osei / <span>Trio Sidereal</span><br />
+          Late Night Sessions with <span>Lee Fontaine</span>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-item">
+          <div class="info-label">Dates</div>
+          <div class="info-value">June 5–28</div>
+          <div class="info-sub">Every Friday &amp; Saturday</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Venue</div>
+          <div class="info-value">Riverside Park Pavilion</div>
+          <div class="info-sub">Riverfront District, Riverside OH</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Tickets</div>
+          <div class="info-value">$22 — $65</div>
+          <div class="info-sub">Doors open at 7:00 PM</div>
+        </div>
+      </div>
+
+      <div class="ticket-cta">
+        <div class="ticket-btn">Get Tickets</div>
+        <div class="ticket-url">riverstonejazzsociety.com</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

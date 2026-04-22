@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1100">
+  <title>Streamline Ops — Icon Set & Style Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1A2B4A;
+      --navy-mid: #243660;
+      --navy-light: #2E4480;
+      --orange: #E8622A;
+      --orange-light: #F07A44;
+      --light-gray: #F5F5F5;
+      --mid-gray: #E0E0E0;
+      --text-gray: #666;
+      --white: #FFFFFF;
+    }
+
+    body {
+      background: var(--light-gray);
+      font-family: 'Inter', sans-serif;
+      padding: 48px 44px 64px;
+      min-width: 1100px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      background: var(--navy);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark svg { width: 24px; height: 24px; }
+
+    .brand-text h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .brand-text p {
+      font-size: 13px;
+      color: var(--text-gray);
+      font-weight: 400;
+      margin-top: 3px;
+    }
+
+    .category-tag {
+      background: var(--orange);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--mid-gray);
+    }
+
+    /* ── ICON GRID ── */
+    .icon-grid-section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+
+    .icon-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 12px;
+      border-right: 1px solid var(--light-gray);
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .icon-cell:nth-child(5n) { border-right: none; }
+    .icon-cell:nth-last-child(-n+5) { border-bottom: none; }
+
+    .icon-sizes {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-wrap-16 { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; }
+    .icon-wrap-24 { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+    .icon-wrap-32 { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+
+    .icon-name {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-gray);
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+
+    /* Icon SVG defaults */
+    .icon-cell svg path,
+    .icon-cell svg rect,
+    .icon-cell svg circle,
+    .icon-cell svg polyline,
+    .icon-cell svg line,
+    .icon-cell svg polygon {
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Filled versions */
+    .icon-filled svg path,
+    .icon-filled svg rect,
+    .icon-filled svg circle {
+      fill: var(--navy);
+      stroke: none;
+    }
+
+    /* ── COLOR VARIANTS ── */
+    .variants-section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .variants-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .variant-card {
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .variant-card.navy-bg { background: var(--navy); }
+    .variant-card.white-bg { background: var(--white); border: 1px solid var(--mid-gray); }
+    .variant-card.gray-bg { background: var(--light-gray); border: 1px solid var(--mid-gray); }
+
+    .variant-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .variant-card.navy-bg .variant-label { color: rgba(255,255,255,0.5); }
+    .variant-card.white-bg .variant-label { color: var(--text-gray); }
+    .variant-card.gray-bg .variant-label { color: #999; }
+
+    .variant-icons-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .v-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+
+    /* Navy variant: orange icons */
+    .variant-card.navy-bg svg path,
+    .variant-card.navy-bg svg rect,
+    .variant-card.navy-bg svg circle,
+    .variant-card.navy-bg svg line,
+    .variant-card.navy-bg svg polyline {
+      stroke: #FFFFFF;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* White variant: navy icons */
+    .variant-card.white-bg svg path,
+    .variant-card.white-bg svg rect,
+    .variant-card.white-bg svg circle,
+    .variant-card.white-bg svg line,
+    .variant-card.white-bg svg polyline {
+      stroke: var(--navy);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Gray variant: disabled state */
+    .variant-card.gray-bg svg path,
+    .variant-card.gray-bg svg rect,
+    .variant-card.gray-bg svg circle,
+    .variant-card.gray-bg svg line,
+    .variant-card.gray-bg svg polyline {
+      stroke: #BBBBBB;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .variant-desc {
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .variant-card.navy-bg .variant-desc { color: rgba(255,255,255,0.55); }
+    .variant-card.white-bg .variant-desc { color: var(--text-gray); }
+    .variant-card.gray-bg .variant-desc { color: #999; }
+
+    /* ── GUIDELINES ── */
+    .guidelines-section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .guidelines-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .guideline-group { }
+
+    .guideline-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .rule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .rule-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .rule-dot.ok { background: rgba(46,160,100,0.12); color: #2EA064; }
+    .rule-dot.no { background: rgba(232,98,42,0.12); color: var(--orange); }
+
+    /* Minimum size visual */
+    .size-demo {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+      margin-top: 16px;
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .size-label {
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--text-gray);
+      letter-spacing: 1px;
+    }
+
+    .size-item.too-small svg path,
+    .size-item.too-small svg rect,
+    .size-item.too-small svg circle {
+      stroke: #CCC;
+    }
+
+    /* ── DO / DON'T ── */
+    .do-dont-section {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+    }
+
+    .do-dont-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .dd-card {
+      border-radius: 10px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .dd-card.do { background: rgba(46,160,100,0.06); border: 1px solid rgba(46,160,100,0.2); }
+    .dd-card.dont { background: rgba(232,98,42,0.06); border: 1px solid rgba(232,98,42,0.2); }
+
+    .dd-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .dd-card.do .dd-label { color: #2EA064; }
+    .dd-card.dont .dd-label { color: var(--orange); }
+
+    .dd-examples {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .dd-example {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dd-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dd-desc {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-gray);
+      text-align: center;
+      max-width: 80px;
+    }
+
+    /* DO: correct usage — navy */
+    .dd-card.do .dd-icon-wrap { background: var(--navy); }
+    .dd-card.do .dd-icon-wrap svg path,
+    .dd-card.do .dd-icon-wrap svg rect,
+    .dd-card.do .dd-icon-wrap svg circle,
+    .dd-card.do .dd-icon-wrap svg line,
+    .dd-card.do .dd-icon-wrap svg polyline { stroke: white; fill: none; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* DON'T: wrong usage */
+    .dd-card.dont .dd-icon-wrap { background: #FFE8E0; }
+    .dd-card.dont .dd-icon-wrap.wrong-color svg path,
+    .dd-card.dont .dd-icon-wrap.wrong-color svg rect,
+    .dd-card.dont .dd-icon-wrap.wrong-color svg circle { stroke: #FF4444; fill: none; }
+
+    .dd-card.dont .dd-icon-wrap.wrong-bg { background: #FFE8E0; border: 2px dashed rgba(232,98,42,0.4); }
+    .dd-card.dont .dd-icon-wrap.wrong-bg svg path { stroke: #BBB; fill: none; }
+
+    .clear-space-demo {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .clear-space-box {
+      position: absolute;
+      inset: -6px;
+      border: 1.5px dashed rgba(46,160,100,0.4);
+      border-radius: 14px;
+    }
+
+    .clear-space-demo svg path,
+    .clear-space-demo svg rect,
+    .clear-space-demo svg circle { stroke: var(--navy); fill: none; stroke-linecap:round; stroke-linejoin:round; }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="brand-lockup">
+      <div class="brand-mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="6" r="2" fill="#E8622A"/>
+          <circle cx="20" cy="12" r="2" fill="#E8622A"/>
+          <circle cx="20" cy="18" r="2" fill="#E8622A"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>Streamline Ops</h1>
+        <p>Icon Set & Usage Style Guide — v2.0</p>
+      </div>
+    </div>
+    <span class="category-tag">Brand</span>
+  </div>
+
+  <!-- ICON GRID -->
+  <div class="icon-grid-section">
+    <div class="section-header">
+      <span class="section-title">20 Icons — 3 Sizes (16 / 24 / 32px)</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="icon-grid">
+
+      <!-- 1: Dashboard -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        </div>
+        <div class="icon-name">Dashboard</div>
+      </div>
+
+      <!-- 2: Analytics -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </div>
+        <div class="icon-name">Analytics</div>
+      </div>
+
+      <!-- 3: Automation -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 01 0 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg></div>
+        </div>
+        <div class="icon-name">Automation</div>
+      </div>
+
+      <!-- 4: Users -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        </div>
+        <div class="icon-name">Users</div>
+      </div>
+
+      <!-- 5: Calendar -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        </div>
+        <div class="icon-name">Calendar</div>
+      </div>
+
+      <!-- 6: File -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        </div>
+        <div class="icon-name">File</div>
+      </div>
+
+      <!-- 7: Notification -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+        </div>
+        <div class="icon-name">Notification</div>
+      </div>
+
+      <!-- 8: Settings -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+        </div>
+        <div class="icon-name">Settings</div>
+      </div>
+
+      <!-- 9: Search -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        </div>
+        <div class="icon-name">Search</div>
+      </div>
+
+      <!-- 10: Filter -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></div>
+        </div>
+        <div class="icon-name">Filter</div>
+      </div>
+
+      <!-- 11: Export -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        </div>
+        <div class="icon-name">Export</div>
+      </div>
+
+      <!-- 12: Import -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+        </div>
+        <div class="icon-name">Import</div>
+      </div>
+
+      <!-- 13: Lock -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        </div>
+        <div class="icon-name">Lock</div>
+      </div>
+
+      <!-- 14: Check -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        </div>
+        <div class="icon-name">Check</div>
+      </div>
+
+      <!-- 15: Warning -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        </div>
+        <div class="icon-name">Warning</div>
+      </div>
+
+      <!-- 16: Email -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div>
+        </div>
+        <div class="icon-name">Email</div>
+      </div>
+
+      <!-- 17: Phone -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        </div>
+        <div class="icon-name">Phone</div>
+      </div>
+
+      <!-- 18: Location -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        </div>
+        <div class="icon-name">Location</div>
+      </div>
+
+      <!-- 19: Time -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        </div>
+        <div class="icon-name">Time</div>
+      </div>
+
+      <!-- 20: Chart Bar -->
+      <div class="icon-cell">
+        <div class="icon-sizes">
+          <div class="icon-wrap-16"><svg width="16" height="16" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
+          <div class="icon-wrap-24"><svg width="24" height="24" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
+          <div class="icon-wrap-32"><svg width="32" height="32" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
+        </div>
+        <div class="icon-name">Chart Bar</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COLOR VARIANTS -->
+  <div class="variants-section">
+    <div class="section-header">
+      <span class="section-title">Color Variants</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="variants-grid">
+      <div class="variant-card navy-bg">
+        <div class="variant-label">Navy (Primary)</div>
+        <div class="variant-icons-row">
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </div>
+        <div class="variant-desc">Use on navy backgrounds — white stroke icons for maximum contrast</div>
+      </div>
+      <div class="variant-card white-bg">
+        <div class="variant-label">White (Default UI)</div>
+        <div class="variant-icons-row">
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </div>
+        <div class="variant-desc">Navy stroke on white — default for light-mode UI surfaces</div>
+      </div>
+      <div class="variant-card gray-bg">
+        <div class="variant-label">Gray (Disabled)</div>
+        <div class="variant-icons-row">
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <div class="v-icon"><svg width="28" height="28" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        </div>
+        <div class="variant-desc">#BBBBBB stroke — for disabled or inactive states only</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GUIDELINES + DO/DON'T -->
+  <div class="guidelines-section">
+    <div class="section-header">
+      <span class="section-title">Usage Guidelines</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="guidelines-grid">
+      <div class="guideline-group">
+        <div class="guideline-title">Rules</div>
+        <div class="rule-list">
+          <div class="rule-item"><div class="rule-dot ok">✓</div> Always use at 16px minimum size</div>
+          <div class="rule-item"><div class="rule-dot ok">✓</div> Maintain 8px clear space on all sides at 32px</div>
+          <div class="rule-item"><div class="rule-dot ok">✓</div> Use stroke-width: 1.5px at all sizes</div>
+          <div class="rule-item"><div class="rule-dot ok">✓</div> Use navy, white, or gray — no other colors</div>
+          <div class="rule-item"><div class="rule-dot no">✗</div> Do not render below 12px</div>
+          <div class="rule-item"><div class="rule-dot no">✗</div> Do not scale with non-uniform aspect ratio</div>
+          <div class="rule-item"><div class="rule-dot no">✗</div> Do not add drop shadows to icons</div>
+          <div class="rule-item"><div class="rule-dot no">✗</div> Do not use on busy photo backgrounds</div>
+        </div>
+      </div>
+      <div class="guideline-group">
+        <div class="guideline-title">Minimum Size</div>
+        <div class="size-demo">
+          <div class="size-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#BBBBBB" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="size-label" style="color:#E8622A;">12px ✗</div>
+          </div>
+          <div class="size-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A2B4A" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="size-label">16px ✓</div>
+          </div>
+          <div class="size-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A2B4A" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="size-label">24px ✓</div>
+          </div>
+          <div class="size-item">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A2B4A" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <div class="size-label">32px ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DO / DON'T -->
+  <div class="do-dont-section">
+    <div class="section-header">
+      <span class="section-title">Do / Don't</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="do-dont-grid">
+      <div class="dd-card do">
+        <div class="dd-label">✓ Do</div>
+        <div class="dd-examples">
+          <div class="dd-example">
+            <div class="dd-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="dd-desc">Navy bg, white icon, proper contrast</div>
+          </div>
+          <div class="dd-example">
+            <div class="clear-space-demo">
+              <div class="clear-space-box"></div>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A2B4A" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="dd-desc">Maintain 8px clear space</div>
+          </div>
+        </div>
+      </div>
+      <div class="dd-card dont">
+        <div class="dd-label">✗ Don't</div>
+        <div class="dd-examples">
+          <div class="dd-example">
+            <div class="dd-icon-wrap wrong-color">
+              <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="dd-desc">Red icon — off-brand color</div>
+          </div>
+          <div class="dd-example">
+            <div class="dd-icon-wrap wrong-bg">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#CCC" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="dd-desc">12px — below minimum size</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

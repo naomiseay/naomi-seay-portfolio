@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800">
+  <title>Lumina Nail Studio — Spring Promo Flyer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 800px;
+      min-height: 1000px;
+      background: #f9f3ef;
+      font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .flyer {
+      width: 800px;
+      min-height: 1000px;
+      background: #f9f3ef;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Decorative top band */
+    .top-band {
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #c9a99a, #e8c8be, #d4b0a5, #c9a99a);
+    }
+
+    /* Header */
+    .header {
+      background: #2e2320;
+      padding: 40px 60px 36px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 16px solid #2e2320;
+    }
+
+    .logo-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #c9a99a;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 46px;
+      font-weight: 300;
+      color: #f9f3ef;
+      letter-spacing: 6px;
+      line-height: 1;
+    }
+
+    .logo-tagline {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: #c9a99a;
+      text-transform: uppercase;
+      margin-top: 10px;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 52px 60px 36px;
+      text-align: center;
+      background: #f9f3ef;
+    }
+
+    .season-badge {
+      display: inline-block;
+      background: #c9a99a;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 52px;
+      font-weight: 300;
+      color: #2e2320;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: #a07060;
+    }
+
+    .hero-subhead {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #8a6e66;
+      text-transform: uppercase;
+      margin-top: 10px;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: #c9a99a;
+      margin: 0 auto 28px;
+    }
+
+    /* Offer highlight */
+    .offer-box {
+      background: #2e2320;
+      margin: 0 60px;
+      padding: 28px 40px;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .offer-text {
+      flex: 1;
+    }
+
+    .offer-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #c9a99a;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .offer-headline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #f9f3ef;
+      line-height: 1.2;
+    }
+
+    .offer-fine {
+      font-size: 10px;
+      color: #9a8280;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .offer-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .offer-price .was {
+      font-size: 14px;
+      color: #7a6260;
+      text-decoration: line-through;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .offer-price .now {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: #e8c8be;
+      line-height: 1;
+    }
+
+    .offer-price .off {
+      font-size: 10px;
+      color: #c9a99a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Services grid */
+    .services-section {
+      padding: 48px 60px 36px;
+    }
+
+    .section-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #a07060;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: #2e2320;
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      background: #fff;
+      border: 1px solid #e8ddd8;
+      border-radius: 3px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .service-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: #2e2320;
+      margin-bottom: 6px;
+    }
+
+    .service-desc {
+      font-size: 10px;
+      color: #8a7a76;
+      line-height: 1.5;
+      letter-spacing: 0.3px;
+    }
+
+    .service-price {
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a07060;
+      letter-spacing: 0.5px;
+    }
+
+    /* Add-on strip */
+    .addon-strip {
+      background: #f0e8e3;
+      border-top: 1px solid #e0d0c8;
+      border-bottom: 1px solid #e0d0c8;
+      padding: 16px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .addon-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #a07060;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .addon-items {
+      display: flex;
+      gap: 24px;
+    }
+
+    .addon-item {
+      font-size: 11px;
+      color: #5a4a44;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .addon-item::before {
+      content: '◆';
+      font-size: 6px;
+      color: #c9a99a;
+    }
+
+    /* Loyalty section */
+    .loyalty {
+      padding: 36px 60px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .loyalty-badge {
+      width: 90px;
+      height: 90px;
+      background: #2e2320;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .loyalty-badge .star {
+      font-size: 20px;
+      color: #c9a99a;
+    }
+
+    .loyalty-badge .points {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #f9f3ef;
+      line-height: 1;
+    }
+
+    .loyalty-badge .pts-label {
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #9a8280;
+      text-transform: uppercase;
+    }
+
+    .loyalty-text h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #2e2320;
+      margin-bottom: 6px;
+    }
+
+    .loyalty-text p {
+      font-size: 11px;
+      color: #6a5a56;
+      line-height: 1.6;
+      letter-spacing: 0.3px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: auto;
+      background: #2e2320;
+      padding: 24px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-cta {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: #f9f3ef;
+      letter-spacing: 1px;
+    }
+
+    .footer-info {
+      text-align: right;
+    }
+
+    .footer-phone {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8c8be;
+      letter-spacing: 1px;
+    }
+
+    .footer-address {
+      font-size: 10px;
+      color: #9a8280;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-social {
+      font-size: 10px;
+      color: #c9a99a;
+      margin-top: 3px;
+      letter-spacing: 1px;
+    }
+
+    /* Bottom band */
+    .bottom-band {
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, #c9a99a, #e8c8be, #d4b0a5, #c9a99a);
+    }
+  </style>
+</head>
+<body>
+  <div class="flyer">
+    <div class="top-band"></div>
+
+    <div class="header">
+      <div class="logo-eyebrow">Est. 2018 · Riverside, Ohio</div>
+      <div class="logo-name">LUMINA</div>
+      <div class="logo-tagline">Nail Studio &amp; Beauty Lounge</div>
+    </div>
+
+    <div class="hero">
+      <div class="season-badge">Spring Renewal 2025</div>
+      <div class="hero-headline">Treat Yourself to<br><em>Luxury</em> This Season</div>
+      <div class="hero-subhead">Handcrafted nail care · Premium gel formulas · Relaxing atmosphere</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="offer-box">
+      <div class="offer-text">
+        <div class="offer-label">Limited Time Offer</div>
+        <div class="offer-headline">Full Set Gel + Pedicure<br>Combo Package</div>
+        <div class="offer-fine">Valid April 1–30 · New &amp; returning clients · Appointment required</div>
+      </div>
+      <div class="offer-price">
+        <span class="was">$110</span>
+        <span class="now">$79</span>
+        <span class="off">Save $31</span>
+      </div>
+    </div>
+
+    <div class="services-section">
+      <div class="section-label">Our Services</div>
+      <div class="section-title">Signature Menu</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">💅</span>
+          <div class="service-name">Gel Manicure</div>
+          <div class="service-desc">Long-lasting formula, chip-free finish. 200+ colors available.</div>
+          <div class="service-price">From $38</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">✨</span>
+          <div class="service-name">Spa Pedicure</div>
+          <div class="service-desc">Exfoliating scrub, hot stone massage, paraffin dip.</div>
+          <div class="service-price">From $52</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">💎</span>
+          <div class="service-name">Nail Art</div>
+          <div class="service-desc">Custom designs, chrome powder, ombré, florals &amp; more.</div>
+          <div class="service-price">From $15</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🌸</span>
+          <div class="service-name">Acrylics</div>
+          <div class="service-desc">Full set, fills, and sculpted extensions. Natural or stiletto.</div>
+          <div class="service-price">From $55</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🤲</span>
+          <div class="service-name">Hand Therapy</div>
+          <div class="service-desc">Collagen treatment, cuticle repair, deep moisture mask.</div>
+          <div class="service-price">From $28</div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🎁</span>
+          <div class="service-name">Gift Cards</div>
+          <div class="service-desc">Any amount, any occasion. In-spa or digital delivery.</div>
+          <div class="service-price">Any amount</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="addon-strip">
+      <div class="addon-label">Add-ons</div>
+      <div class="addon-items">
+        <div class="addon-item">Paraffin Wax +$12</div>
+        <div class="addon-item">Chrome Powder +$10</div>
+        <div class="addon-item">Nail Repair +$5/nail</div>
+        <div class="addon-item">French Tips +$8</div>
+      </div>
+    </div>
+
+    <div class="loyalty">
+      <div class="loyalty-badge">
+        <span class="star">★</span>
+        <span class="points">5×</span>
+        <span class="pts-label">Points</span>
+      </div>
+      <div class="loyalty-text">
+        <h3>Lumina Rewards Program</h3>
+        <p>Earn 1 point per dollar spent. Redeem 100 points for $10 off any service.<br>
+        Spring bonus: earn 5× points on all combo packages through April 30.</p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-cta">Book Your Appointment Today</div>
+      <div class="footer-info">
+        <div class="footer-phone">(513) 555-0182</div>
+        <div class="footer-address">4210 Lakeview Ave, Suite 104 · Riverside, OH 45236</div>
+        <div class="footer-social">@luminanailstudio · luminanailstudio.com</div>
+      </div>
+    </div>
+
+    <div class="bottom-band"></div>
+  </div>
+</body>
+</html>

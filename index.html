@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naomi Seay — Designer · Data Analyst · Operations Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:       #0F0F0F;
+      --warm-white: #F9F6F1;
+      --teal:       #0D9488;
+      --teal-light: #14B8AA;
+      --teal-dim:   rgba(13,148,136,0.12);
+      --amber:      #F59E0B;
+      --amber-dim:  rgba(245,158,11,0.12);
+      --white:      #FFFFFF;
+      --muted:      #6B7280;
+      --muted-light:#9CA3AF;
+      --border:     rgba(15,15,15,0.10);
+      --card-bg:    #FFFFFF;
+      /* category colors */
+      --cat-graphic: #0D9488;
+      --cat-data:    #F59E0B;
+      --cat-ops:     #4F46E5;
+      --cat-admin:   #E11D48;
+      --cat-ui:      #7C3AED;
+      --cat-social:  #EA580C;
+      --cat-print:   #475569;
+      --cat-brand:   #059669;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── STICKY NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 300;
+      background: rgba(249,246,241,0.85);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(249,246,241,0.70);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 24px rgba(15,15,15,0.08);
+    }
+
+    .nav-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 48px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* Monogram */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .monogram {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 14px;
+      color: white;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+    }
+
+    /* Filter pills — center */
+    .nav-filters {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      color: var(--dark);
+      border-color: var(--border);
+      background: rgba(15,15,15,0.04);
+    }
+
+    .filter-btn.active {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    /* Nav right */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .avail-badge-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--teal-dim);
+      border: 1px solid rgba(13,148,136,0.22);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+
+    .nav-contact-btn {
+      background: var(--dark);
+      color: white;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .nav-contact-btn:hover { background: #2a2a2a; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-left {
+      padding: 80px 60px 80px 0;
+    }
+
+    .hero-overline {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 96px;
+      line-height: 0.95;
+      letter-spacing: -3px;
+      color: var(--dark);
+      margin-bottom: 28px;
+    }
+
+    .hero-subhead {
+      font-size: 20px;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 26px;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta-primary:hover {
+      background: var(--teal-light);
+      transform: translateY(-1px);
+    }
+
+    .cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 26px;
+      border-radius: 10px;
+      border: 1.5px solid rgba(15,15,15,0.18);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .cta-ghost:hover {
+      border-color: var(--dark);
+      transform: translateY(-1px);
+    }
+
+    .hero-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .social-link:hover { color: var(--teal); }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .social-link:hover .social-icon {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px var(--teal-dim);
+    }
+
+    /* Hero right — abstract CSS composition */
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 80px 0 80px 40px;
+    }
+
+    .hero-art {
+      position: relative;
+      width: 340px;
+      height: 400px;
+    }
+
+    .art-circle-1 {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      border: 1.5px solid rgba(13,148,136,0.20);
+    }
+
+    .art-circle-2 {
+      position: absolute;
+      top: 80px;
+      left: 10px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: var(--amber-dim);
+      border: 1.5px solid rgba(245,158,11,0.20);
+    }
+
+    .art-circle-3 {
+      position: absolute;
+      bottom: 40px;
+      right: 50px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(15,15,15,0.12);
+      background: none;
+    }
+
+    .art-grid {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      width: 120px;
+      height: 120px;
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      grid-template-rows: repeat(5,1fr);
+      gap: 8px;
+    }
+
+    .art-grid-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(13,148,136,0.30);
+      align-self: center;
+      justify-self: center;
+    }
+
+    .art-line-h {
+      position: absolute;
+      top: 200px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(13,148,136,0.30), transparent);
+    }
+
+    .art-line-v {
+      position: absolute;
+      top: 80px;
+      bottom: 80px;
+      left: 170px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(15,15,15,0.10), transparent);
+    }
+
+    .art-rect {
+      position: absolute;
+      top: 130px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      background: var(--dark);
+      opacity: 0.06;
+    }
+
+    .art-rect-2 {
+      position: absolute;
+      top: 60px;
+      left: 60px;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--amber);
+      opacity: 0.18;
+    }
+
+    /* ── SKILLS STRIP ── */
+    .skills-strip {
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .skills-scroll {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 22px 48px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .skills-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+
+    .skill-chip {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .skill-chip:hover {
+      background: rgba(13,148,136,0.20);
+      color: var(--teal-light);
+      border-color: rgba(13,148,136,0.30);
+    }
+
+    /* ── PORTFOLIO SECTION ── */
+    .portfolio-section {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      letter-spacing: -1px;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .count-badge {
+      background: var(--dark);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+    }
+
+    .section-context {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 32px;
+      margin-top: -12px;
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .portfolio-card {
+      background: var(--card-bg);
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.30s ease, box-shadow 0.30s ease;
+      cursor: pointer;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(15,15,15,0.12);
+    }
+
+    .portfolio-card[data-hidden="true"] {
+      display: none;
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: #F1F5F9;
+      position: relative;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .portfolio-card:hover .card-thumb img {
+      transform: scale(1.04);
+    }
+
+    /* Placeholder for cards without screenshots yet */
+    .thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .card-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-category-chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: white;
+    }
+
+    .chip-graphic   { background: var(--cat-graphic); }
+    .chip-data      { background: var(--cat-data); }
+    .chip-ops       { background: var(--cat-ops); }
+    .chip-admin     { background: var(--cat-admin); }
+    .chip-ui        { background: var(--cat-ui); }
+    .chip-social    { background: var(--cat-social); }
+    .chip-print     { background: var(--cat-print); }
+    .chip-brand     { background: var(--cat-brand); }
+
+    .card-num {
+      font-size: 11px;
+      color: var(--muted-light);
+      font-weight: 400;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: var(--dark);
+      letter-spacing: -0.2px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .card-skills {
+      font-size: 11px;
+      color: var(--muted-light);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .card-view-btn {
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid #E5E7EB;
+      border-radius: 7px;
+      padding: 8px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+      width: fit-content;
+    }
+
+    .card-view-btn:hover {
+      background: var(--dark);
+      color: white;
+      border-color: var(--dark);
+    }
+
+    /* ── ABOUT SECTION ── */
+    .about-section {
+      background: var(--dark);
+      padding: 80px 0;
+    }
+
+    .about-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+
+    .about-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 52px;
+      letter-spacing: -1.5px;
+      color: white;
+      line-height: 1.0;
+      margin-bottom: 32px;
+    }
+
+    .about-body p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 18px;
+    }
+
+    .about-body p:last-child { margin-bottom: 0; }
+
+    /* About right — CSS geometric art */
+    .about-art {
+      position: relative;
+      height: 320px;
+      flex-shrink: 0;
+    }
+
+    .aa-rect-1 {
+      position: absolute;
+      top: 0; left: 0;
+      width: 180px; height: 180px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(13,148,136,0.30);
+      background: rgba(13,148,136,0.06);
+    }
+
+    .aa-rect-2 {
+      position: absolute;
+      top: 40px; left: 40px;
+      width: 180px; height: 180px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(245,158,11,0.25);
+      background: rgba(245,158,11,0.05);
+    }
+
+    .aa-rect-3 {
+      position: absolute;
+      top: 80px; left: 80px;
+      width: 180px; height: 180px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .aa-grid {
+      position: absolute;
+      bottom: 20px;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: repeat(4,1fr);
+      gap: 10px;
+    }
+
+    .aa-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(13,148,136,0.40);
+      align-self: center;
+      justify-self: center;
+    }
+
+    .aa-line {
+      position: absolute;
+      bottom: 60px;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(13,148,136,0.30), transparent);
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-section {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 80px 48px;
+      text-align: center;
+    }
+
+    .cta-headline {
+      font-family: 'DM Serif Display', serif;
+      font-size: 64px;
+      letter-spacing: -2px;
+      color: white;
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    .cta-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 36px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .cta-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 12px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta-email-btn:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+    }
+
+    .cta-linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .cta-linkedin-btn:hover { background: rgba(255,255,255,0.12); }
+
+    .cta-open-to {
+      font-size: 13px;
+      color: rgba(255,255,255,0.30);
+      letter-spacing: 0.3px;
+    }
+
+    .cta-open-to span {
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080808;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 48px;
+    }
+
+    .footer-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      color: rgba(255,255,255,0.70);
+    }
+
+    .footer-center {
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-right a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--teal-light); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,10,0.95);
+      z-index: 1000;
+      flex-direction: column;
+    }
+
+    .lightbox-overlay.open { display: flex; }
+
+    .lightbox-top-bar {
+      background: #111;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .lb-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lb-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .lb-cat-chip {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 4px;
+      color: white;
+    }
+
+    .lb-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lb-btn {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 7px;
+      color: rgba(255,255,255,0.70);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .lb-btn:hover { background: rgba(255,255,255,0.13); }
+    .lb-btn:disabled { opacity: 0.3; cursor: default; }
+
+    .lb-close {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 7px;
+      color: rgba(255,255,255,0.70);
+      font-size: 18px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-left: 8px;
+      transition: background 0.15s;
+    }
+
+    .lb-close:hover { background: rgba(239,68,68,0.25); color: #ff6b6b; }
+
+    .lightbox-frame-wrap {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+    }
+
+    #lightbox-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fff;
+    }
+
+    .lightbox-bottom-bar {
+      background: #111;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .lb-counter {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { display: none; }
+      .hero-left { padding: 80px 0; }
+      .hero-name { font-size: 72px; }
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-art { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; gap: 8px; height: auto; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+      .nav-filters { flex: none; width: 100%; overflow-x: auto; gap: 4px; justify-content: flex-start; padding-bottom: 4px; scrollbar-width: none; }
+      .nav-filters::-webkit-scrollbar { display: none; }
+      .filter-btn { padding: 5px 12px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+      .avail-badge-nav, .nav-name { display: none; }
+      .nav-right { margin-left: auto; }
+      .hero { padding: 0 20px; overflow-x: hidden; }
+      .hero-left { padding: 60px 0; max-width: 100%; }
+      .hero-name { font-size: 52px; }
+      .hero-subhead { font-size: 15px; max-width: 100%; }
+      .hero-social { flex-direction: column; gap: 10px; }
+      .portfolio-section { padding: 48px 20px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .section-context { font-size: 13px; }
+      .about-inner { padding: 0 20px; }
+      .cta-section { padding: 60px 24px; }
+      .cta-headline { font-size: 40px; }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      footer { padding: 24px 20px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+
+    @media (max-width: 420px) {
+      .hero-name { font-size: 44px; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .section-title { font-size: 32px; }
+      .about-heading { font-size: 38px; }
+      .cta-headline { font-size: 32px; }
+      .nav-contact-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ══ -->
+  <nav id="main-nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="monogram">NS</div>
+        <span class="nav-name">Naomi Seay</span>
+      </a>
+
+      <div class="nav-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+        <button class="filter-btn" data-filter="data">Data &amp; Analytics</button>
+        <button class="filter-btn" data-filter="operations">Operations</button>
+        <button class="filter-btn" data-filter="administrative">Administrative</button>
+        <button class="filter-btn" data-filter="ui">UI/Web</button>
+      </div>
+
+      <div class="nav-right">
+        <div class="avail-badge-nav">
+          <div class="pulse-dot"></div>
+          Available for Work
+        </div>
+        <a href="mailto:naomi.seay@twinrootsllc.com" class="nav-contact-btn">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <div class="hero-overline">Graphic Designer &middot; Data Analyst &middot; Operations &amp; Admin Pro</div>
+      <h1 class="hero-name">Naomi<br>Seay</h1>
+      <p class="hero-subhead">I turn complexity into clarity — through design, data, and systems thinking. 5+ years spanning creative production, data coordination, and operational leadership. Top 5% performer. Available immediately for remote work.</p>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="cta-primary">
+          View Work
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3l5 5-5 5M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:naomi.seay@twinrootsllc.com" class="cta-ghost">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="3" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M1 5l6.5 4.5L14 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Get in Touch
+        </a>
+      </div>
+      <div class="hero-social">
+        <a href="https://linkedin.com/in/naomiseay" target="_blank" rel="noopener" class="social-link">
+          <div class="social-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="#0A66C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="2"/></svg>
+          </div>
+          linkedin.com/in/naomiseay
+        </a>
+        <a href="mailto:naomi.seay@twinrootsllc.com" class="social-link">
+          <div class="social-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#6B7280" stroke-width="2"/><path d="M2 7l10 7 10-7" stroke="#6B7280" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          naomi.seay@twinrootsllc.com
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-art">
+        <div class="art-circle-1"></div>
+        <div class="art-circle-2"></div>
+        <div class="art-circle-3"></div>
+        <div class="art-rect"></div>
+        <div class="art-rect-2"></div>
+        <div class="art-line-h"></div>
+        <div class="art-line-v"></div>
+        <div class="art-grid">
+          <div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div>
+          <div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div>
+          <div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div>
+          <div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div>
+          <div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div><div class="art-grid-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS STRIP ══ -->
+  <div class="skills-strip">
+    <div class="skills-scroll">
+      <span class="skills-label">Skills</span>
+      <span class="skill-chip">Graphic Design</span>
+      <span class="skill-chip">Brand Identity</span>
+      <span class="skill-chip">UI/UX</span>
+      <span class="skill-chip">Data Analysis</span>
+      <span class="skill-chip">Excel &amp; Google Sheets</span>
+      <span class="skill-chip">Process Optimization</span>
+      <span class="skill-chip">Administrative Operations</span>
+      <span class="skill-chip">Record Management</span>
+      <span class="skill-chip">Google Workspace</span>
+      <span class="skill-chip">SQL</span>
+      <span class="skill-chip">Canva</span>
+      <span class="skill-chip">Adobe Suite</span>
+      <span class="skill-chip">Remote Operations</span>
+      <span class="skill-chip">SOP Documentation</span>
+    </div>
+  </div>
+
+  <!-- ══ PORTFOLIO ══ -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="section-header">
+      <h2 class="section-title">Selected Work</h2>
+      <span class="count-badge" id="count-badge">20 pieces</span>
+    </div>
+    <p class="section-context">This portfolio spans four disciplines: graphic &amp; brand design, data &amp; analytics, operations, and administrative work. Use the filters above to browse by role type. Pieces 16–20 are professional work samples and case studies demonstrating real-world operational and analytical capability.</p>
+
+    <div class="portfolio-grid" id="portfolio-grid">
+
+      <!-- 01 -->
+      <div class="portfolio-card" data-category="graphic" data-index="0">
+        <div class="card-thumb"><img src="piece-01.png" alt="Nail Spa Promo" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-social">Social Media</span>
+            <span class="card-num">01</span>
+          </div>
+          <div class="card-title">Nail Spa Promo</div>
+          <div class="card-desc">Social media promotional graphic for a beauty and wellness brand — bold, eye-catching, optimized for Instagram feed.</div>
+          <div class="card-skills">Demonstrates: social graphic design, visual hierarchy, brand-consistent layout</div>
+          <button class="card-view-btn" data-src="piece-01-nail-spa-promo.html" data-title="01 — Nail Spa Promo" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="portfolio-card" data-category="graphic" data-index="1">
+        <div class="card-thumb"><img src="piece-02.png" alt="Social Media Post" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-social">Social Media</span>
+            <span class="card-num">02</span>
+          </div>
+          <div class="card-title">Social Media Post</div>
+          <div class="card-desc">Carousel-style social content design with clean typography, brand consistency, and high-engagement layout.</div>
+          <div class="card-skills">Demonstrates: carousel layout, typography pairing, engagement-driven design</div>
+          <button class="card-view-btn" data-src="piece-02-social-media-post.html" data-title="02 — Social Media Post" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="portfolio-card" data-category="data" data-index="2">
+        <div class="card-thumb"><img src="piece-03.png" alt="Data Infographic" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-data">Data &amp; Analytics</span>
+            <span class="card-num">03</span>
+          </div>
+          <div class="card-title">Data Infographic</div>
+          <div class="card-desc">Visual translation of complex data into a clear, digestible infographic — balancing information density with readability.</div>
+          <div class="card-skills">Demonstrates: data visualization, information design, storytelling with data</div>
+          <button class="card-view-btn" data-src="piece-03-data-infographic.html" data-title="03 — Data Infographic" data-cat="data">View →</button>
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="portfolio-card" data-category="graphic" data-index="3">
+        <div class="card-thumb"><img src="piece-04.png" alt="Brand Identity" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-brand">Brand Design</span>
+            <span class="card-num">04</span>
+          </div>
+          <div class="card-title">Brand Identity System</div>
+          <div class="card-desc">Full brand identity exploration — logo, color system, typography, and application guidelines for a cohesive visual language.</div>
+          <div class="card-skills">Demonstrates: brand strategy, logo design, typography systems, style guide creation</div>
+          <button class="card-view-btn" data-src="piece-04-brand-identity.html" data-title="04 — Brand Identity" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="portfolio-card" data-category="graphic" data-index="4">
+        <div class="card-thumb"><img src="piece-05.png" alt="Email Newsletter" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-graphic">Graphic Design</span>
+            <span class="card-num">05</span>
+          </div>
+          <div class="card-title">Email Newsletter</div>
+          <div class="card-desc">HTML email design with structured content hierarchy, responsive layout, and clear CTA flow — optimized for deliverability and click-through.</div>
+          <div class="card-skills">Demonstrates: email design, layout hierarchy, responsive HTML, CTA optimization</div>
+          <button class="card-view-btn" data-src="piece-05-email-newsletter.html" data-title="05 — Email Newsletter" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 06 -->
+      <div class="portfolio-card" data-category="graphic" data-index="5">
+        <div class="card-thumb"><img src="piece-06.png" alt="Annual Report" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-print">Print Design</span>
+            <span class="card-num">06</span>
+          </div>
+          <div class="card-title">Annual Report</div>
+          <div class="card-desc">Corporate annual report layout — structured data presentation, editorial typography, and a professional print-ready design system.</div>
+          <div class="card-skills">Demonstrates: print layout, editorial design, data presentation, corporate communications</div>
+          <button class="card-view-btn" data-src="piece-06-annual-report.html" data-title="06 — Annual Report" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 07 -->
+      <div class="portfolio-card" data-category="graphic" data-index="6">
+        <div class="card-thumb"><img src="piece-07.png" alt="Social Campaign" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-social">Social Media</span>
+            <span class="card-num">07</span>
+          </div>
+          <div class="card-title">Social Campaign</div>
+          <div class="card-desc">Multi-post campaign design with consistent visual language across formats — built for storytelling across a campaign arc.</div>
+          <div class="card-skills">Demonstrates: campaign design, visual consistency, multi-format content systems</div>
+          <button class="card-view-btn" data-src="piece-07-social-campaign.html" data-title="07 — Social Campaign" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 08 -->
+      <div class="portfolio-card" data-category="graphic" data-index="7">
+        <div class="card-thumb"><img src="piece-08.png" alt="Event Poster" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-print">Print Design</span>
+            <span class="card-num">08</span>
+          </div>
+          <div class="card-title">Event Poster — Jazz Concert</div>
+          <div class="card-desc">Concert poster for the Riverstone Jazz Society Summer Series — bold typographic hierarchy, geometric abstractions, high-contrast print design.</div>
+          <div class="card-skills">Demonstrates: poster design, typographic hierarchy, geometric composition, print production</div>
+          <button class="card-view-btn" data-src="piece-08-event-poster.html" data-title="08 — Event Poster" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 09 -->
+      <div class="portfolio-card" data-category="ui" data-index="8">
+        <div class="card-thumb"><img src="piece-09.png" alt="SaaS Landing Page" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-ui">UI/Web</span>
+            <span class="card-num">09</span>
+          </div>
+          <div class="card-title">SaaS Landing Page — Taska</div>
+          <div class="card-desc">Full desktop landing page mockup for a task management SaaS — hero, features, testimonials, pricing, footer. Shows UI/web design thinking end-to-end.</div>
+          <div class="card-skills">Demonstrates: web UI design, landing page layout, pricing UX, conversion-focused design</div>
+          <button class="card-view-btn" data-src="piece-09-ui-landing-page.html" data-title="09 — UI Landing Page" data-cat="ui">View →</button>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="portfolio-card" data-category="administrative" data-index="9">
+        <div class="card-thumb"><img src="piece-10.png" alt="Presentation Deck" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-admin">Administrative</span>
+            <span class="card-num">10</span>
+          </div>
+          <div class="card-title">Presentation Deck — Q2 Ops Review</div>
+          <div class="card-desc">5-slide corporate presentation template with data visualizations, process diagrams, and exec summary — clean, professional, print-ready.</div>
+          <div class="card-skills">Demonstrates: executive reporting, business communications, data presentation, slide design</div>
+          <button class="card-view-btn" data-src="piece-10-presentation-deck.html" data-title="10 — Presentation Deck" data-cat="administrative">View →</button>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="portfolio-card" data-category="ui" data-index="10">
+        <div class="card-thumb"><img src="piece-11.png" alt="Mobile App UI" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-ui">UI/Web</span>
+            <span class="card-num">11</span>
+          </div>
+          <div class="card-title">Mobile App UI — Habify</div>
+          <div class="card-desc">3-screen habit tracker app with dashboard, form, and stats views — minimal, focused, well-structured UI design.</div>
+          <div class="card-skills">Demonstrates: mobile UI design, app UX flows, component design, interactive prototyping</div>
+          <button class="card-view-btn" data-src="piece-11-mobile-app.html" data-title="11 — Mobile App UI — Habify" data-cat="ui">View →</button>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="portfolio-card" data-category="graphic" data-index="11">
+        <div class="card-thumb"><img src="piece-12.png" alt="Product Packaging" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-brand">Brand Design</span>
+            <span class="card-num">12</span>
+          </div>
+          <div class="card-title">Product Packaging — Botanica Cold Brew</div>
+          <div class="card-desc">3-variant label design + 6-pack carrier mockup for organic cold brew brand — earthy, premium, retail-ready.</div>
+          <div class="card-skills">Demonstrates: packaging design, brand extension, print production, retail-ready mockups</div>
+          <button class="card-view-btn" data-src="piece-12-product-packaging.html" data-title="12 — Product Packaging" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="portfolio-card" data-category="graphic" data-index="12">
+        <div class="card-thumb"><img src="piece-13.png" alt="Magazine Editorial Spread" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-print">Print Design</span>
+            <span class="card-num">13</span>
+          </div>
+          <div class="card-title">Magazine Editorial Spread — Meridian</div>
+          <div class="card-desc">Two-page feature spread with full-bleed design, drop cap, and editorial typography — print-quality layout design.</div>
+          <div class="card-skills">Demonstrates: editorial layout, advanced typography, full-bleed design, print production</div>
+          <button class="card-view-btn" data-src="piece-13-magazine-spread.html" data-title="13 — Magazine Editorial Spread" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="portfolio-card" data-category="graphic" data-index="13">
+        <div class="card-thumb"><img src="piece-14.png" alt="Icon Set & Style Guide" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-brand">Brand Design</span>
+            <span class="card-num">14</span>
+          </div>
+          <div class="card-title">Icon Set &amp; Style Guide — Streamline Ops</div>
+          <div class="card-desc">20-icon SVG system with size variants, usage guidelines, and do/don't rules — comprehensive brand asset documentation.</div>
+          <div class="card-skills">Demonstrates: icon design, SVG systems, brand documentation, design standards</div>
+          <button class="card-view-btn" data-src="piece-14-icon-style-guide.html" data-title="14 — Icon Set &amp; Style Guide" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="portfolio-card" data-category="graphic" data-index="14">
+        <div class="card-thumb"><img src="piece-15.png" alt="Display Ad Campaign" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-graphic">Graphic Design</span>
+            <span class="card-num">15</span>
+          </div>
+          <div class="card-title">Display Ad Campaign — Bloom Skincare</div>
+          <div class="card-desc">6-format digital display campaign across all standard ad sizes — cohesive visual system, high-CTR design principles.</div>
+          <div class="card-skills">Demonstrates: digital advertising, multi-format design, campaign systems, CTR-focused layout</div>
+          <button class="card-view-btn" data-src="piece-15-digital-ad-campaign.html" data-title="15 — Display Ad Campaign" data-cat="graphic">View →</button>
+        </div>
+      </div>
+
+      <!-- 16 — Operations Case Study -->
+      <div class="portfolio-card" data-category="operations" data-index="15">
+        <div class="card-thumb"><img src="piece-16.png" alt="Operations Process Case Study" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-ops">Operations</span>
+            <span class="card-num">16</span>
+          </div>
+          <div class="card-title">Process Optimization Case Study</div>
+          <div class="card-desc">Consultant-style case study: 20% productivity increase through systematic workflow redesign at a large-scale fulfillment operation.</div>
+          <div class="card-skills">Demonstrates: process analysis, workflow redesign, SOP development, measurable impact documentation</div>
+          <button class="card-view-btn" data-src="piece-16-ops-case-study.html" data-title="16 — Process Optimization Case Study" data-cat="operations">View →</button>
+        </div>
+      </div>
+
+      <!-- 17 — Data Dashboard -->
+      <div class="portfolio-card" data-category="data" data-index="16">
+        <div class="card-thumb"><img src="piece-17.png" alt="Sales Operations Dashboard" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-data">Data &amp; Analytics</span>
+            <span class="card-num">17</span>
+          </div>
+          <div class="card-title">Sales Operations Dashboard — Q1 2026</div>
+          <div class="card-desc">Dark-theme BI dashboard mockup: KPI cards, bar charts, regional donut, heatmap, and product breakdown — Tableau/Power BI aesthetic.</div>
+          <div class="card-skills">Demonstrates: BI dashboard design, KPI reporting, data visualization, Power BI / Tableau thinking</div>
+          <button class="card-view-btn" data-src="piece-17-data-dashboard.html" data-title="17 — Data Analytics Dashboard" data-cat="data">View →</button>
+        </div>
+      </div>
+
+      <!-- 18 — Admin SOP -->
+      <div class="portfolio-card" data-category="administrative" data-index="17">
+        <div class="card-thumb"><img src="piece-18.png" alt="Administrative SOP Document" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-admin">Administrative</span>
+            <span class="card-num">18</span>
+          </div>
+          <div class="card-title">Administrative SOP — New Client Onboarding</div>
+          <div class="card-desc">Professional Standard Operating Procedure document: 8-step process, roles table, interactive checklist, revision history, and approval block.</div>
+          <div class="card-skills">Demonstrates: SOP writing, process documentation, records management, compliance-ready formatting</div>
+          <button class="card-view-btn" data-src="piece-18-admin-sop.html" data-title="18 — Administrative SOP Document" data-cat="administrative">View →</button>
+        </div>
+      </div>
+
+      <!-- 19 — Data Quality Report -->
+      <div class="portfolio-card" data-category="data" data-index="18">
+        <div class="card-thumb"><img src="piece-19.png" alt="Data Quality Audit Report" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-data">Data &amp; Analytics</span>
+            <span class="card-num">19</span>
+          </div>
+          <div class="card-title">Data Quality Audit Report — Q4 2025</div>
+          <div class="card-desc">99.2% accuracy across 4,820 records — formal data quality audit with findings table, error analysis, root cause breakdown, and recommendations.</div>
+          <div class="card-skills">Demonstrates: data quality analysis, audit reporting, root cause analysis, Excel / SQL thinking</div>
+          <button class="card-view-btn" data-src="piece-19-data-quality-report.html" data-title="19 — Data Quality Audit Report" data-cat="data">View →</button>
+        </div>
+      </div>
+
+      <!-- 20 — Ops Workflow -->
+      <div class="portfolio-card" data-category="operations" data-index="19">
+        <div class="card-thumb"><img src="piece-20.png" alt="Operations Workflow Diagram" loading="lazy" /></div>
+        <div class="card-body">
+          <div class="card-top-row">
+            <span class="card-category-chip chip-ops">Operations</span>
+            <span class="card-num">20</span>
+          </div>
+          <div class="card-title">Order Fulfillment Workflow Diagram</div>
+          <div class="card-desc">4-lane swimlane process diagram: Customer → Sales Ops → Fulfillment → Finance, with decision points, metrics strip, and process improvement annotations.</div>
+          <div class="card-skills">Demonstrates: process mapping, swimlane diagrams, cross-functional workflows, operational analysis</div>
+          <button class="card-view-btn" data-src="piece-20-ops-workflow.html" data-title="20 — Operations Workflow Diagram" data-cat="operations">View →</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ ABOUT ══ -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="about-label">About</div>
+        <h2 class="about-heading">About Naomi</h2>
+        <div class="about-body">
+          <p>Versatile professional with 5+ years combining operational excellence with creative and analytical capabilities — spanning graphic design, data coordination, and operations leadership. I bring a cross-disciplinary edge that most specialists don't: I can build the brand assets, analyze the performance data, and optimize the workflow, all in the same week.</p>
+          <p>My operations background includes process guide work at a large-scale fulfillment center where I ranked in the Top 5% of performance, drove a 20% productivity increase, and reduced processing errors by 12% through systematic workflow redesign and SOP documentation. On the design and data side, I hold certifications in graphic design and data analytics, and I've built everything from brand identity systems to BI dashboards.</p>
+          <p>Available for remote roles in graphic design, data coordination, administrative operations, or operations coordination. I work independently, communicate clearly, and deliver clean — no hand-holding required.</p>
+        </div>
+      </div>
+
+      <div class="about-art">
+        <div class="aa-rect-1"></div>
+        <div class="aa-rect-2"></div>
+        <div class="aa-rect-3"></div>
+        <div class="aa-line"></div>
+        <div class="aa-grid">
+          <div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div>
+          <div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div>
+          <div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div>
+          <div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div><div class="aa-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="cta-section" id="contact">
+    <h2 class="cta-headline">Let's work<br>together.</h2>
+    <p class="cta-sub">Available immediately · Remote only · Serious inquiries welcome</p>
+    <div class="cta-buttons">
+      <a href="mailto:naomi.seay@twinrootsllc.com" class="cta-email-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Send an Email
+      </a>
+      <a href="https://linkedin.com/in/naomiseay" target="_blank" rel="noopener" class="cta-linkedin-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2"/></svg>
+        Connect on LinkedIn
+      </a>
+    </div>
+    <div class="cta-open-to">
+      Seeking remote roles in: <span>Graphic Design</span> · <span>Data Coordination</span> · <span>Operations</span> · <span>Administrative Support</span> · <span>UI/Web Design</span>
+    </div>
+    <div class="cta-open-to" style="margin-top:10px;">
+      Based in <span>Cincinnati, OH</span> · Open to all US time zones · No relocation
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-name">Naomi Seay</div>
+      <div class="footer-center">Built with intention &copy; 2026</div>
+      <div class="footer-right">
+        <a href="https://linkedin.com/in/naomiseay" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:naomi.seay@twinrootsllc.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ LIGHTBOX ══ -->
+  <div class="lightbox-overlay" id="lightbox" role="dialog" aria-modal="true" aria-label="Portfolio piece viewer">
+    <div class="lightbox-top-bar">
+      <div class="lb-left">
+        <span class="lightbox-title" id="lightbox-title">Portfolio Piece</span>
+        <span class="lb-cat-chip" id="lb-cat-chip"></span>
+      </div>
+      <div class="lb-controls">
+        <button class="lb-btn" id="lb-prev">&#8592; Prev</button>
+        <button class="lb-btn" id="lb-next">Next &#8594;</button>
+        <button class="lb-close" id="lb-close" aria-label="Close lightbox">&#215;</button>
+      </div>
+    </div>
+    <div class="lightbox-frame-wrap">
+      <iframe id="lightbox-iframe" title="Portfolio piece" src="about:blank"></iframe>
+    </div>
+    <div class="lightbox-bottom-bar">
+      <span class="lb-counter" id="lb-counter">1 of 20</span>
+    </div>
+  </div>
+
+  <script>
+    // ── Scroll: add glass effect to nav ──
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Filter logic ──
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.portfolio-card');
+    const countBadge = document.getElementById('count-badge');
+
+    function applyFilter(filter) {
+      let visible = 0;
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.dataset.hidden = match ? 'false' : 'true';
+        if (match) visible++;
+      });
+      countBadge.textContent = visible + ' piece' + (visible !== 1 ? 's' : '');
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    // ── Category chip colors ──
+    const catChipColors = {
+      social: '#EA580C',
+      graphic: '#0D9488',
+      data: '#F59E0B',
+      operations: '#4F46E5',
+      administrative: '#E11D48',
+      ui: '#7C3AED',
+      print: '#475569',
+      brand: '#059669'
+    };
+
+    const catLabels = {
+      social: 'Social',
+      graphic: 'Graphic Design',
+      data: 'Data & Analytics',
+      operations: 'Operations',
+      administrative: 'Administrative',
+      ui: 'UI/Web',
+      print: 'Print',
+      brand: 'Brand'
+    };
+
+    // ── Lightbox logic ──
+    const overlay  = document.getElementById('lightbox');
+    const iframe   = document.getElementById('lightbox-iframe');
+    const lbTitle  = document.getElementById('lightbox-title');
+    const lbCat    = document.getElementById('lb-cat-chip');
+    const lbCount  = document.getElementById('lb-counter');
+    const closeBtn = document.getElementById('lb-close');
+    const prevBtn  = document.getElementById('lb-prev');
+    const nextBtn  = document.getElementById('lb-next');
+
+    const pieces = Array.from(document.querySelectorAll('.card-view-btn')).map(btn => ({
+      src: btn.dataset.src,
+      title: btn.dataset.title,
+      cat: btn.dataset.cat
+    }));
+
+    let currentIndex = 0;
+
+    function getVisiblePieces() {
+      // Return all pieces whose card is visible
+      return pieces.filter((_, i) => {
+        const card = document.querySelector(`.portfolio-card[data-index="${i}"]`);
+        return card && card.dataset.hidden !== 'true';
+      });
+    }
+
+    function openLightbox(globalIndex) {
+      currentIndex = globalIndex;
+      const piece = pieces[globalIndex];
+      iframe.src = piece.src;
+      lbTitle.textContent = piece.title;
+      // Category chip
+      const catColor = catChipColors[piece.cat] || '#0D9488';
+      lbCat.textContent = catLabels[piece.cat] || piece.cat;
+      lbCat.style.background = catColor;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      updateLightboxNav();
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('open');
+      iframe.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+
+    function updateLightboxNav() {
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === pieces.length - 1;
+      lbCount.textContent = (currentIndex + 1) + ' of ' + pieces.length;
+    }
+
+    // Attach view buttons
+    document.querySelectorAll('.card-view-btn').forEach((btn, i) => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        openLightbox(i);
+      });
+    });
+
+    // Open on card click
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => openLightbox(i));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) openLightbox(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < pieces.length - 1) openLightbox(currentIndex + 1);
+    });
+
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!overlay.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft' && currentIndex > 0) openLightbox(currentIndex - 1);
+      if (e.key === 'ArrowRight' && currentIndex < pieces.length - 1) openLightbox(currentIndex + 1);
+    });
+  </script>
+
+</body>
+</html>

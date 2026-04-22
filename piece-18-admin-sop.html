@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote Administrative Operations — New Client Onboarding SOP v2.1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #1A1A2E;
+      --teal: #0D9488;
+      --teal-light: #CCFBF1;
+      --teal-mid: rgba(13,148,136,0.15);
+      --border: #D1D5DB;
+      --border-light: #E5E7EB;
+      --bg: #FFFFFF;
+      --muted: #6B7280;
+      --light-bg: #F9FAFB;
+    }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0;
+    }
+    /* Document header */
+    .doc-header {
+      background: var(--dark);
+      color: white;
+      padding: 0;
+    }
+    .doc-header-top {
+      background: var(--teal);
+      padding: 12px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .org-name {
+      font-family: 'Source Serif 4', serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: white;
+    }
+    .doc-status {
+      background: rgba(255,255,255,0.25);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .doc-header-main {
+      padding: 40px 48px 36px;
+    }
+    .doc-type-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      margin-bottom: 12px;
+    }
+    .doc-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: white;
+      margin-bottom: 24px;
+      letter-spacing: -0.3px;
+    }
+    .doc-meta-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .doc-meta-item {}
+    .doc-meta-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 4px;
+    }
+    .doc-meta-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+    }
+    /* Content area */
+    .doc-content {
+      padding: 40px 48px 60px;
+    }
+    /* TOC */
+    .toc {
+      background: var(--light-bg);
+      border: 1px solid var(--border-light);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .toc-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+      letter-spacing: -0.2px;
+    }
+    .toc-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+    .toc-list li a {
+      text-decoration: none;
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toc-list li a:hover { text-decoration: underline; }
+    .toc-num {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 400;
+      min-width: 20px;
+    }
+    /* Sections */
+    .section { margin-bottom: 40px; }
+    .section-heading {
+      font-family: 'Source Serif 4', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--teal);
+      border-bottom: 2px solid var(--teal);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .section-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    p.body-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+    /* Roles table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    .data-table th {
+      background: var(--dark);
+      color: white;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .data-table th:first-child { border-radius: 6px 0 0 0; }
+    .data-table th:last-child { border-radius: 0 6px 0 0; }
+    .data-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+      color: #374151;
+    }
+    .data-table tr:nth-child(even) td { background: var(--light-bg); }
+    .data-table tr:last-child td { border-bottom: none; }
+    /* Procedure steps */
+    .procedure-steps { display: flex; flex-direction: column; gap: 0; }
+    .proc-step {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .proc-step:last-child { border-bottom: none; }
+    .proc-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: 'Source Serif 4', serif;
+    }
+    .proc-step-content { flex: 1; }
+    .proc-step-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .proc-step-desc {
+      font-size: 14px;
+      color: #4B5563;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .proc-sub-steps {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .proc-sub-steps li {
+      font-size: 13px;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .proc-sub-steps li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+    }
+    /* Checklist */
+    .checklist { display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 14px;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      background: var(--light-bg);
+      font-size: 14px;
+      color: #374151;
+    }
+    .check-box {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .check-box.checked {
+      background: var(--teal);
+      border-color: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 11px;
+    }
+    /* Revision history */
+    .rev-table td:first-child { font-weight: 600; color: var(--teal); }
+    /* Approval block */
+    .approval-block {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 4px;
+    }
+    .approval-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .approval-role {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .approval-name {
+      font-family: 'Source Serif 4', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .approval-sig-line {
+      border-bottom: 1.5px solid var(--dark);
+      height: 32px;
+      margin-bottom: 6px;
+    }
+    .approval-date-line {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    /* Related docs */
+    .related-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .related-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--teal);
+    }
+    .related-list li::before { content: "📄"; font-size: 14px; }
+  </style>
+</head>
+<body>
+
+  <!-- DOCUMENT HEADER -->
+  <div class="doc-header">
+    <div class="doc-header-top">
+      <div class="org-name">Operations Team — Internal Documentation</div>
+      <div class="doc-status">Active</div>
+    </div>
+    <div class="doc-header-main">
+      <div class="doc-type-label">Standard Operating Procedure</div>
+      <div class="doc-title">Remote Administrative Operations<br>New Client Onboarding SOP</div>
+      <div class="doc-meta-row">
+        <div class="doc-meta-item">
+          <div class="doc-meta-label">Version</div>
+          <div class="doc-meta-value">v2.1</div>
+        </div>
+        <div class="doc-meta-item">
+          <div class="doc-meta-label">Effective Date</div>
+          <div class="doc-meta-value">2026-04-01</div>
+        </div>
+        <div class="doc-meta-item">
+          <div class="doc-meta-label">Author</div>
+          <div class="doc-meta-value">Operations Team</div>
+        </div>
+        <div class="doc-meta-item">
+          <div class="doc-meta-label">Review Cycle</div>
+          <div class="doc-meta-value">Quarterly</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENT CONTENT -->
+  <div class="doc-content">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <div class="toc-title">Table of Contents</div>
+      <ul class="toc-list">
+        <li><a href="#purpose"><span class="toc-num">1.</span> Purpose &amp; Scope</a></li>
+        <li><a href="#roles"><span class="toc-num">2.</span> Roles &amp; Responsibilities</a></li>
+        <li><a href="#procedure"><span class="toc-num">3.</span> Step-by-Step Procedure</a></li>
+        <li><a href="#checklist"><span class="toc-num">4.</span> Onboarding Checklist</a></li>
+        <li><a href="#related"><span class="toc-num">5.</span> Related Documents &amp; Templates</a></li>
+        <li><a href="#revision"><span class="toc-num">6.</span> Revision History</a></li>
+        <li><a href="#approval"><span class="toc-num">7.</span> Approval Signatures</a></li>
+      </ul>
+    </div>
+
+    <!-- 1. PURPOSE -->
+    <div class="section" id="purpose">
+      <h2 class="section-heading"><span class="section-num">1.</span> Purpose &amp; Scope</h2>
+      <p class="body-text">This Standard Operating Procedure defines the end-to-end process for onboarding new clients to the remote administrative operations framework. It establishes consistent, repeatable steps to ensure a professional client experience, accurate record creation, and proper system provisioning across all onboarding scenarios.</p>
+      <p class="body-text">This SOP applies to all administrative staff and operations coordinators responsible for client intake, account setup, and welcome communications. It covers the full onboarding lifecycle from signed agreement through system access confirmation.</p>
+    </div>
+
+    <!-- 2. ROLES -->
+    <div class="section" id="roles">
+      <h2 class="section-heading"><span class="section-num">2.</span> Roles &amp; Responsibilities</h2>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Responsibility</th>
+            <th>Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Admin Coordinator</strong></td>
+            <td>Primary contact for client during onboarding. Manages intake forms, CRM entry, and system provisioning.</td>
+            <td>Administrative Team</td>
+          </tr>
+          <tr>
+            <td><strong>Operations Lead</strong></td>
+            <td>Reviews and approves all onboarding records. Handles escalations and exceptions to standard process.</td>
+            <td>Operations Management</td>
+          </tr>
+          <tr>
+            <td><strong>IT / Systems Admin</strong></td>
+            <td>Provisions system access, creates client accounts, and confirms credential delivery.</td>
+            <td>IT Department</td>
+          </tr>
+          <tr>
+            <td><strong>Billing Coordinator</strong></td>
+            <td>Creates client billing profile, confirms payment method on file, and issues initial invoice.</td>
+            <td>Finance Team</td>
+          </tr>
+          <tr>
+            <td><strong>Account Manager</strong></td>
+            <td>Conducts welcome call, sets expectations for ongoing service delivery, and closes onboarding process.</td>
+            <td>Client Success Team</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. PROCEDURE -->
+    <div class="section" id="procedure">
+      <h2 class="section-heading"><span class="section-num">3.</span> Step-by-Step Procedure</h2>
+      <div class="procedure-steps">
+        <div class="proc-step">
+          <div class="proc-step-num">1</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Receive Signed Agreement</div>
+            <div class="proc-step-desc">Confirm receipt of executed client agreement via DocuSign or equivalent. Verify all required signature fields are complete.</div>
+            <ul class="proc-sub-steps">
+              <li>Download executed PDF to designated client folder in shared drive</li>
+              <li>Log agreement receipt timestamp in CRM with case number</li>
+              <li>Send auto-acknowledgment email to client using Template OB-01</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">2</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Create Client Record in CRM</div>
+            <div class="proc-step-desc">Establish the master client record as the single source of truth for all subsequent onboarding tasks.</div>
+            <ul class="proc-sub-steps">
+              <li>Complete all required fields: company name, primary contact, billing contact, service tier, contract start date</li>
+              <li>Assign unique Client ID using format CLI-YYYY-XXXX</li>
+              <li>Tag account with relevant service categories and account manager assignment</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">3</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Initiate Systems Provisioning Request</div>
+            <div class="proc-step-desc">Submit IT provisioning ticket within 4 business hours of CRM record creation.</div>
+            <ul class="proc-sub-steps">
+              <li>Complete System Access Request Form (IT-REQ-003) in ticketing system</li>
+              <li>Specify access tier per contract: Standard / Advanced / Enterprise</li>
+              <li>Include primary contact email and phone for credential delivery confirmation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">4</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Set Up Billing Profile</div>
+            <div class="proc-step-desc">Coordinate with Finance to create billing profile before system access goes live.</div>
+            <ul class="proc-sub-steps">
+              <li>Forward signed agreement to billing@company.com with subject: NEW CLIENT — [Client Name] — [Contract Date]</li>
+              <li>Confirm payment terms: Net 30 / Net 15 / Prepaid as specified in agreement</li>
+              <li>Verify invoice delivery address matches contract</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">5</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Send Welcome Package</div>
+            <div class="proc-step-desc">Deliver welcome communications within 1 business day of CRM record completion.</div>
+            <ul class="proc-sub-steps">
+              <li>Send welcome email using Template OB-02 (includes service overview, key contacts, escalation path)</li>
+              <li>Share Getting Started Guide PDF and applicable user documentation links</li>
+              <li>Schedule welcome call — 30 minutes with Account Manager within 5 business days</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">6</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Confirm System Access Delivery</div>
+            <div class="proc-step-desc">Verify that client has received and successfully accessed all provisioned systems.</div>
+            <ul class="proc-sub-steps">
+              <li>Follow up with IT after 24 hours if credential delivery not confirmed</li>
+              <li>Send access confirmation check-in to client using Template OB-03</li>
+              <li>Document any access issues in CRM case log with resolution status</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">7</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Conduct Welcome Call</div>
+            <div class="proc-step-desc">Account Manager completes introductory call, sets service expectations, and answers initial questions.</div>
+            <ul class="proc-sub-steps">
+              <li>Review service scope, SLA commitments, and escalation contacts with client</li>
+              <li>Confirm primary day-to-day contacts on client side</li>
+              <li>Document call notes in CRM and share meeting summary within 24 hours</li>
+            </ul>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="proc-step-num">8</div>
+          <div class="proc-step-content">
+            <div class="proc-step-title">Close Onboarding Case</div>
+            <div class="proc-step-desc">Confirm all onboarding tasks are complete and formally transition account to ongoing service delivery mode.</div>
+            <ul class="proc-sub-steps">
+              <li>Verify all checklist items (Section 4) are marked complete</li>
+              <li>Update CRM account status from "Onboarding" to "Active"</li>
+              <li>Send onboarding completion confirmation to client and internal team</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. CHECKLIST -->
+    <div class="section" id="checklist">
+      <h2 class="section-heading"><span class="section-num">4.</span> Onboarding Checklist</h2>
+      <div class="checklist">
+        <div class="check-item"><div class="check-box checked">✓</div> Signed agreement received and filed</div>
+        <div class="check-item"><div class="check-box checked">✓</div> CRM client record created with all required fields</div>
+        <div class="check-item"><div class="check-box checked">✓</div> IT provisioning ticket submitted</div>
+        <div class="check-item"><div class="check-box checked">✓</div> Billing profile created and payment terms confirmed</div>
+        <div class="check-item"><div class="check-box checked">✓</div> Welcome package sent (email + documentation)</div>
+        <div class="check-item"><div class="check-box"></div> System access confirmed by client</div>
+        <div class="check-item"><div class="check-box"></div> Welcome call completed and notes documented</div>
+        <div class="check-item"><div class="check-box"></div> Account status updated to Active in CRM</div>
+        <div class="check-item"><div class="check-box"></div> Onboarding case closed and archived</div>
+      </div>
+    </div>
+
+    <!-- 5. RELATED DOCS -->
+    <div class="section" id="related">
+      <h2 class="section-heading"><span class="section-num">5.</span> Related Documents &amp; Templates</h2>
+      <ul class="related-list">
+        <li>Template OB-01 — Agreement Receipt Auto-Acknowledgment Email</li>
+        <li>Template OB-02 — Client Welcome Email</li>
+        <li>Template OB-03 — System Access Confirmation Check-In</li>
+        <li>Form IT-REQ-003 — System Access Request Form</li>
+        <li>Client Service Agreement Template (Legal)</li>
+        <li>Getting Started Guide PDF (Client-Facing)</li>
+        <li>SLA Documentation — Standard Service Commitments</li>
+      </ul>
+    </div>
+
+    <!-- 6. REVISION HISTORY -->
+    <div class="section" id="revision">
+      <h2 class="section-heading"><span class="section-num">6.</span> Revision History</h2>
+      <table class="data-table rev-table">
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Date</th>
+            <th>Author</th>
+            <th>Changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>v2.1</td>
+            <td>2026-04-01</td>
+            <td>Operations Team</td>
+            <td>Added Step 6 (Access Confirmation). Updated Template references OB-01 through OB-03.</td>
+          </tr>
+          <tr>
+            <td>v2.0</td>
+            <td>2025-10-15</td>
+            <td>Operations Team</td>
+            <td>Major revision — expanded procedure steps from 5 to 8, added Roles &amp; Responsibilities table, restructured checklist.</td>
+          </tr>
+          <tr>
+            <td>v1.2</td>
+            <td>2025-06-01</td>
+            <td>Admin Coordinator</td>
+            <td>Minor updates to CRM field requirements and billing notification process.</td>
+          </tr>
+          <tr>
+            <td>v1.0</td>
+            <td>2025-01-15</td>
+            <td>Operations Lead</td>
+            <td>Initial release.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. APPROVAL -->
+    <div class="section" id="approval">
+      <h2 class="section-heading"><span class="section-num">7.</span> Approval Signatures</h2>
+      <div class="approval-block">
+        <div class="approval-card">
+          <div class="approval-role">Prepared By</div>
+          <div class="approval-name">N. Seay</div>
+          <div class="approval-sig-line"></div>
+          <div class="approval-date-line">Date: ____________</div>
+        </div>
+        <div class="approval-card">
+          <div class="approval-role">Reviewed By</div>
+          <div class="approval-name">Operations Lead</div>
+          <div class="approval-sig-line"></div>
+          <div class="approval-date-line">Date: ____________</div>
+        </div>
+        <div class="approval-card">
+          <div class="approval-role">Approved By</div>
+          <div class="approval-name">Department Director</div>
+          <div class="approval-sig-line"></div>
+          <div class="approval-date-line">Date: ____________</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

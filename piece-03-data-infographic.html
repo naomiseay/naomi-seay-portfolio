@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800">
+  <title>5 Ways Data Drives Better Customer Experiences</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 800px;
+      min-height: 1000px;
+      background: #f7f8fa;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .infographic {
+      width: 800px;
+      min-height: 1000px;
+      background: #f7f8fa;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .ig-header {
+      background: #1a2540;
+      padding: 44px 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ig-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .ig-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #4f8ef7, #7eb8f5, #4fc8c8, #4f8ef7);
+    }
+
+    .header-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: #4f8ef7;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .header-number {
+      font-size: 100px;
+      font-weight: 800;
+      color: rgba(79,142,247,0.12);
+      position: absolute;
+      right: 60px;
+      top: 28px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .header-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      max-width: 560px;
+      position: relative;
+    }
+
+    .header-title .highlight { color: #7eb8f5; }
+
+    .header-subtitle {
+      font-size: 13px;
+      font-weight: 300;
+      color: #8a9bb5;
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+
+    .header-byline {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+    }
+
+    .byline-dot {
+      width: 8px;
+      height: 8px;
+      background: #4fc8c8;
+      border-radius: 50%;
+    }
+
+    .byline-text {
+      font-size: 10px;
+      color: #6a7a8a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Cards section */
+    .cards-section {
+      padding: 36px 48px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* --- Scroll-triggered card animation --- */
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      border-left: 4px solid transparent;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      /* Initial hidden state for scroll-reveal */
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease,
+                  box-shadow 0.25s ease;
+    }
+
+    .card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hover: lift + brighten */
+    .card:hover {
+      box-shadow: 0 6px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
+      transform: translateY(-3px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 100%;
+      opacity: 0.04;
+      border-radius: 50% 0 0 50%;
+      transition: opacity 0.25s;
+    }
+
+    .card:hover::before { opacity: 0.09; }
+
+    .card:nth-child(1) { border-left-color: #4f8ef7; }
+    .card:nth-child(1)::before { background: #4f8ef7; }
+    .card:nth-child(2) { border-left-color: #4fc8a0; }
+    .card:nth-child(2)::before { background: #4fc8a0; }
+    .card:nth-child(3) { border-left-color: #f79f4f; }
+    .card:nth-child(3)::before { background: #f79f4f; }
+    .card:nth-child(4) { border-left-color: #c84fa0; }
+    .card:nth-child(4)::before { background: #c84fa0; }
+    .card:nth-child(5) { border-left-color: #7f4fc8; }
+    .card:nth-child(5)::before { background: #7f4fc8; }
+    .card:nth-child(6) { border-left-color: #2bba6e; }
+    .card:nth-child(6)::before { background: #2bba6e; }
+
+    .card-number {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .card:nth-child(1) .card-number { background: #4f8ef7; }
+    .card:nth-child(2) .card-number { background: #4fc8a0; }
+    .card:nth-child(3) .card-number { background: #f79f4f; }
+    .card:nth-child(4) .card-number { background: #c84fa0; }
+    .card:nth-child(5) .card-number { background: #7f4fc8; }
+    .card:nth-child(6) .card-number { background: #2bba6e; }
+
+    /* Icon scales 110% on card hover */
+    .card-icon {
+      flex-shrink: 0;
+      font-size: 32px;
+      line-height: 1;
+      margin-top: 4px;
+      transition: transform 0.25s ease;
+    }
+    .card:hover .card-icon { transform: scale(1.10); }
+
+    .card-body { flex: 1; }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a2540;
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: #5a6880;
+      line-height: 1.65;
+      letter-spacing: 0.2px;
+    }
+
+    .card-stat {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .card:nth-child(1) .card-stat { background: rgba(79,142,247,0.10); color: #3a78e0; }
+    .card:nth-child(2) .card-stat { background: rgba(79,200,160,0.10); color: #2aa882; }
+    .card:nth-child(3) .card-stat { background: rgba(247,159,79,0.10); color: #d07a30; }
+    .card:nth-child(4) .card-stat { background: rgba(200,79,160,0.10); color: #b03890; }
+    .card:nth-child(5) .card-stat { background: rgba(127,79,200,0.10); color: #6030b0; }
+    .card:nth-child(6) .card-stat { background: rgba(43,186,110,0.10); color: #1a8a50; }
+
+    /* Stat bar – animated on reveal */
+    .stat-bar-container {
+      flex-shrink: 0;
+      width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding-top: 4px;
+    }
+
+    .stat-bar-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #8a9ab0;
+      text-transform: uppercase;
+    }
+
+    .stat-bar-track {
+      width: 12px;
+      height: 60px;
+      background: #eef1f6;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-bar-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 6px;
+      height: 0; /* starts at 0, animated by JS */
+      transition: height 0.9s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* accent brightness on hover */
+    .card:nth-child(1):hover .stat-bar-fill { filter: brightness(1.15); }
+    .card:nth-child(2):hover .stat-bar-fill { filter: brightness(1.15); }
+    .card:nth-child(3):hover .stat-bar-fill { filter: brightness(1.15); }
+    .card:nth-child(4):hover .stat-bar-fill { filter: brightness(1.15); }
+    .card:nth-child(5):hover .stat-bar-fill { filter: brightness(1.15); }
+    .card:nth-child(6):hover .stat-bar-fill { filter: brightness(1.15); }
+
+    .card:nth-child(1) .stat-bar-fill { background: #4f8ef7; }
+    .card:nth-child(2) .stat-bar-fill { background: #4fc8a0; }
+    .card:nth-child(3) .stat-bar-fill { background: #f79f4f; }
+    .card:nth-child(4) .stat-bar-fill { background: #c84fa0; }
+    .card:nth-child(5) .stat-bar-fill { background: #7f4fc8; }
+    .card:nth-child(6) .stat-bar-fill { background: #2bba6e; }
+
+    .stat-bar-pct {
+      font-size: 11px;
+      font-weight: 700;
+      color: #3a4a60;
+    }
+
+    /* Count-up numbers */
+    .count-num { display: inline; }
+
+    /* Takeaway */
+    .takeaway {
+      background: #1a2540;
+      margin: 0 48px;
+      border-radius: 8px;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .takeaway-icon { font-size: 28px; flex-shrink: 0; }
+
+    .takeaway-text { flex: 1; }
+
+    .takeaway-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #4f8ef7;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .takeaway-quote {
+      font-size: 14px;
+      font-weight: 400;
+      color: #e0e8f0;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+    }
+
+    /* Footer */
+    .ig-footer {
+      padding: 22px 48px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: linear-gradient(135deg, #4f8ef7, #4fc8c8);
+      border-radius: 2px;
+    }
+
+    .brand-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #2a3a54;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-meta {
+      font-size: 10px;
+      color: #9aaabf;
+      letter-spacing: 0.5px;
+      text-align: right;
+    }
+
+    /* ── SHARE / DOWNLOAD STICKY BUTTON ── */
+    .sticky-share {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 200;
+    }
+
+    .share-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #1a2540;
+      border: 1.5px solid rgba(79,142,247,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.20);
+      transition: background 0.2s, transform 0.2s;
+      user-select: none;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .share-btn:hover {
+      background: #4f8ef7;
+      transform: scale(1.10);
+    }
+
+    .share-tooltip {
+      position: absolute;
+      right: 52px;
+      background: #1a2540;
+      color: #e0e8f0;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .share-btn:hover .share-tooltip { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY SHARE/DOWNLOAD BUTTONS (visual only) -->
+  <div class="sticky-share">
+    <div class="share-btn" title="Share">
+      <span class="share-tooltip">Share</span>
+      🔗
+    </div>
+    <div class="share-btn" title="Download">
+      <span class="share-tooltip">Download</span>
+      ⬇️
+    </div>
+  </div>
+
+  <div class="infographic">
+    <div class="ig-header">
+      <div class="header-number">6</div>
+      <div class="header-eyebrow">Data Analytics · Customer Experience</div>
+      <div class="header-title">
+        5 Ways Data Drives<br><span class="highlight">Better Customer Experiences</span>
+      </div>
+      <div class="header-subtitle">
+        How businesses use analytics to build loyalty, reduce friction, and grow revenue
+      </div>
+      <div class="header-byline">
+        <div class="byline-dot"></div>
+        <div class="byline-text">Designed by Naomi Seay · Analytics Certification</div>
+      </div>
+    </div>
+
+    <div class="cards-section">
+
+      <!-- Card 1 -->
+      <div class="card" data-pct="82" data-count-target="35" data-count-suffix="%" data-count-prefix="📈 ">
+        <div class="card-number">1</div>
+        <div class="card-icon">🎯</div>
+        <div class="card-body">
+          <div class="card-title">Personalization at Scale</div>
+          <div class="card-desc">
+            Analyzing purchase history, browsing behavior, and preferences lets businesses recommend
+            the right product at the right moment — turning one-time buyers into loyal regulars.
+          </div>
+          <div class="card-stat">📈 <span class="count-num">35</span>% lift in repeat purchases with recommendation engines</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">82%</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" data-pct="74" data-count-target="40" data-count-suffix="%" data-count-prefix="⏱️ ">
+        <div class="card-number">2</div>
+        <div class="card-icon">⚡</div>
+        <div class="card-body">
+          <div class="card-title">Faster Issue Resolution</div>
+          <div class="card-desc">
+            Support ticket data reveals recurring pain points before they escalate. Proactive outreach
+            based on behavioral signals cuts average resolution time and boosts satisfaction scores.
+          </div>
+          <div class="card-stat">⏱️ <span class="count-num">40</span>% reduction in resolution time with data-driven support</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">74%</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card" data-pct="91">
+        <div class="card-number">3</div>
+        <div class="card-icon">🔮</div>
+        <div class="card-body">
+          <div class="card-title">Predictive Retention</div>
+          <div class="card-desc">
+            Churn prediction models flag at-risk customers weeks before they leave. A timely offer,
+            personalized check-in, or service upgrade retains customers who would otherwise quietly disengage.
+          </div>
+          <div class="card-stat">💡 <span class="count-num">91</span>% of churned customers showed detectable warning signals</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">91%</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card" data-pct="68">
+        <div class="card-number">4</div>
+        <div class="card-icon">🗺️</div>
+        <div class="card-body">
+          <div class="card-title">Journey Mapping with Real Data</div>
+          <div class="card-desc">
+            Tracking where customers drop off — in a funnel, app flow, or service sequence — pinpoints
+            friction. Fixing high-drop steps improves completion rates without changing what's working.
+          </div>
+          <div class="card-stat">🛒 <span class="count-num">68</span>% of carts abandoned — data reveals exactly where and why</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">68%</div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card" data-pct="79">
+        <div class="card-number">5</div>
+        <div class="card-icon">📊</div>
+        <div class="card-body">
+          <div class="card-title">Smarter Loyalty Programs</div>
+          <div class="card-desc">
+            Transaction data shows which rewards actually change behavior vs. which go unnoticed. Optimizing
+            tier thresholds, point structures, and redemption incentives maximizes program ROI and engagement.
+          </div>
+          <div class="card-stat">⭐ <span class="count-num">3</span>× higher LTV for loyalty members with data-optimized rewards</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">79%</div>
+        </div>
+      </div>
+
+      <!-- Card 6 (NEW) -->
+      <div class="card" data-pct="23">
+        <div class="card-number">6</div>
+        <div class="card-icon">🏆</div>
+        <div class="card-body">
+          <div class="card-title">Data-Driven Teams Outperform by 23%</div>
+          <div class="card-desc">
+            Organizations that embed data literacy across their customer-facing teams consistently outpace
+            competitors on satisfaction scores and revenue growth. Access to real-time insights enables
+            faster decisions, more accurate prioritization, and measurably better customer outcomes.
+          </div>
+          <div class="card-stat">📉 <span class="count-num">23</span>% average revenue uplift for data-mature organizations</div>
+        </div>
+        <div class="stat-bar-container">
+          <div class="stat-bar-label">Impact</div>
+          <div class="stat-bar-track"><div class="stat-bar-fill"></div></div>
+          <div class="stat-bar-pct">23%</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon">💡</div>
+      <div class="takeaway-text">
+        <div class="takeaway-label">Key Takeaway</div>
+        <div class="takeaway-quote">
+          The businesses winning on customer experience aren't guessing — they're listening to what the data already knows. Every transaction, click, and complaint is a signal waiting to be turned into action.
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-footer">
+      <div class="footer-brand">
+        <div class="brand-dot"></div>
+        <div class="brand-name">Naomi Seay · Data + Design</div>
+      </div>
+      <div class="footer-meta">
+        Analytics Certification · 2025<br>
+        naomi.seay@twinrootsllc.com
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Scroll-triggered card reveal + bar animation ──
+    const cards = document.querySelectorAll('.card');
+    const barTargets = [82, 74, 91, 68, 79, 23]; // % heights
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function animateCountUp(el, target, duration) {
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+        el.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function revealCard(card, index) {
+      if (card.classList.contains('revealed')) return;
+      card.classList.add('revealed');
+
+      // Animate the stat bar fill
+      const fill = card.querySelector('.stat-bar-fill');
+      const pct = barTargets[index];
+      if (fill) {
+        setTimeout(() => {
+          fill.style.height = pct + '%';
+        }, 120);
+      }
+
+      // Animate count-up for the inline number in card-stat
+      const countEl = card.querySelector('.count-num');
+      if (countEl) {
+        const finalVal = parseInt(countEl.textContent, 10);
+        if (!isNaN(finalVal)) animateCountUp(countEl, finalVal, 1500);
+      }
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Array.from(cards).indexOf(entry.target);
+          // Stagger by index
+          setTimeout(() => revealCard(entry.target, idx), idx * 80);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach(card => observer.observe(card));
+
+    // On load: immediately trigger cards that are already in view
+    window.addEventListener('load', () => {
+      cards.forEach((card, idx) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+          setTimeout(() => revealCard(card, idx), idx * 120);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

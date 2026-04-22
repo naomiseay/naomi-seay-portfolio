@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Records Accuracy Audit — Q4 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #111827;
+      --teal: #0D9488;
+      --teal-light: #CCFBF1;
+      --teal-dim: rgba(13,148,136,0.10);
+      --amber: #F59E0B;
+      --amber-dim: rgba(245,158,11,0.10);
+      --red: #EF4444;
+      --red-dim: rgba(239,68,68,0.10);
+      --green: #22C55E;
+      --green-dim: rgba(34,197,94,0.10);
+      --border: #E5E7EB;
+      --bg: #FFFFFF;
+      --light-bg: #F9FAFB;
+      --muted: #6B7280;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* ── PROGRESS TRACKER ── */
+    .progress-tracker {
+      background: var(--light-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: nowrap;
+    }
+
+    .phase-step {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .phase-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .phase-label.complete {
+      background: var(--teal-dim);
+      color: var(--teal);
+    }
+
+    .phase-connector {
+      width: 32px;
+      height: 2px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .phase-connector.complete { background: var(--teal); }
+
+    /* ── TABLE OF CONTENTS ── */
+    .toc {
+      background: var(--light-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+    }
+    .toc-list a {
+      font-size: 13px;
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .toc-list a:hover { text-decoration: underline; }
+    .toc-num { font-size: 11px; opacity: 0.6; }
+
+    /* Report header */
+    .report-header { background:var(--dark);padding:40px 48px;color:white; }
+    .report-label { font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:12px; }
+    .report-title { font-size:32px;font-weight:700;letter-spacing:-0.5px;color:white;line-height:1.2;margin-bottom:24px; }
+    .report-meta { display:flex;gap:32px;flex-wrap:wrap; }
+    .meta-item {}
+    .meta-label { font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.40);margin-bottom:4px; }
+    .meta-value { font-size:13px;font-weight:600;color:rgba(255,255,255,0.85); }
+
+    /* Byline */
+    .report-byline {
+      background:var(--teal);padding:10px 48px;font-size:13px;color:white;font-weight:500;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .overall-accuracy { font-size:14px;font-weight:700;display:flex;align-items:center;gap:8px; }
+    .accuracy-badge { background:rgba(255,255,255,0.25);padding:4px 12px;border-radius:100px;font-size:13px;font-weight:700;letter-spacing:0.3px; }
+
+    /* Print button */
+    .print-btn {
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(255,255,255,0.30);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.30); }
+
+    /* Content */
+    .report-content { padding:36px 48px 60px; }
+
+    /* Exec summary */
+    .exec-summary {
+      background:var(--teal-dim);border:1px solid rgba(13,148,136,0.20);
+      border-left:4px solid var(--teal);border-radius:0 8px 8px 0;padding:22px 24px;margin-bottom:36px;
+    }
+    .exec-summary-title { font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:14px; }
+    .exec-finding { display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;font-size:14px;color:#1F2937;line-height:1.5; }
+    .exec-finding:last-child { margin-bottom:0; }
+    .exec-finding-num {
+      background:var(--teal);color:white;width:20px;height:20px;border-radius:50%;
+      font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+    }
+
+    /* Section */
+    h2.section-heading {
+      font-size:17px;font-weight:700;color:var(--teal);border-bottom:1.5px solid var(--border);
+      padding-bottom:10px;margin-bottom:18px;margin-top:36px;letter-spacing:-0.2px;scroll-margin-top:80px;
+    }
+    h2.section-heading:first-child { margin-top:0; }
+    p.body-text { font-size:14px;line-height:1.7;color:#374151;margin-bottom:12px; }
+
+    /* Methodology */
+    .method-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:4px; }
+    .method-card { background:var(--light-bg);border:1px solid var(--border);border-radius:8px;padding:16px; }
+    .method-card-label { font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px; }
+    .method-card-value { font-size:14px;font-weight:600;color:var(--dark); }
+
+    /* ── Table filter ── */
+    .table-filter-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .tfilter-btn {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tfilter-btn.all { background:var(--dark);color:white;border-color:var(--dark); }
+    .tfilter-btn.pass { background:var(--green-dim);color:#15803D;border-color:#86EFAC; }
+    .tfilter-btn.review { background:var(--amber-dim);color:#92400E;border-color:#FCD34D; }
+    .tfilter-btn.fail { background:var(--red-dim);color:#B91C1C;border-color:#FCA5A5; }
+    .tfilter-btn:not(.all):not(.active-filter) { opacity:0.55; }
+    .tfilter-btn.active-filter { opacity:1; border-width: 2px; }
+
+    /* Findings table */
+    .findings-table { width:100%;border-collapse:collapse;font-size:13px; }
+    .findings-table th {
+      background:var(--dark);color:white;padding:10px 14px;text-align:left;
+      font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      cursor:pointer;user-select:none;
+    }
+    .findings-table th:hover { background:#1f2937; }
+    .findings-table th.sort-asc::after { content:' ↑'; }
+    .findings-table th.sort-desc::after { content:' ↓'; }
+    .findings-table td { padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:middle; }
+    .findings-table tr:last-child td { border-bottom:none; }
+    .findings-table tr:nth-child(even) td { background:var(--light-bg); }
+    .findings-table tr.hidden-row { display:none; }
+
+    .accuracy-bar-wrap { display:flex;align-items:center;gap:10px; }
+    .accuracy-bar-track { height:6px;background:#E5E7EB;border-radius:3px;width:80px;overflow:hidden; }
+    .accuracy-bar-fill {
+      height:100%;border-radius:3px;
+      transform:scaleX(0);transform-origin:left;
+      transition:transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .accuracy-bar-fill.animated { transform:scaleX(1); }
+    .accuracy-pct { font-weight:700;font-family:'Inter',sans-serif;font-size:13px; }
+
+    .status-badge { display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700; }
+    .status-pass { background:var(--green-dim);color:#15803D; }
+    .status-review { background:var(--amber-dim);color:#92400E; }
+    .status-fail { background:var(--red-dim);color:#B91C1C; }
+
+    /* Error chart */
+    .error-chart { margin-top:4px;display:flex;flex-direction:column;gap:12px; }
+    .error-bar-row { display:flex;align-items:center;gap:14px; }
+    .error-type { width:180px;font-size:13px;color:#374151;flex-shrink:0; }
+    .error-track { flex:1;height:22px;background:var(--light-bg);border-radius:4px;overflow:hidden; }
+    .error-fill {
+      height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;
+      transform:scaleX(0);transform-origin:left;
+      transition:transform 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .error-fill.animated { transform:scaleX(1); }
+    .error-fill span { font-size:11px;font-weight:700;color:white; }
+    .error-count { width:50px;text-align:right;font-size:13px;font-weight:600;color:var(--dark); }
+
+    /* Root cause */
+    .rca-list { display:flex;flex-direction:column;gap:16px;margin-top:4px; }
+    .rca-item {
+      background:var(--light-bg);border:1px solid var(--border);border-radius:8px;padding:18px 20px;
+      display:grid;grid-template-columns:auto 1fr;gap:16px;
+    }
+    .rca-icon { font-size:22px; }
+    .rca-issue { font-weight:700;font-size:14px;color:var(--dark);margin-bottom:5px; }
+    .rca-action { font-size:13px;color:var(--muted);line-height:1.5; }
+    .rca-arrow { color:var(--teal);margin:0 4px; }
+
+    /* Recommendations accordion */
+    .rec-list { display:flex;flex-direction:column;gap:10px;margin-top:4px; }
+    .rec-accordion {
+      border:1px solid var(--border);border-radius:8px;overflow:hidden;
+    }
+    .rec-header {
+      display:flex;align-items:flex-start;gap:14px;padding:14px 16px;cursor:pointer;
+      background:var(--bg);transition:background 0.15s;
+    }
+    .rec-header:hover { background:var(--light-bg); }
+    .rec-num {
+      background:var(--teal);color:white;min-width:28px;height:28px;border-radius:6px;
+      font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    }
+    .rec-summary { font-size:14px;font-weight:600;color:var(--dark);line-height:1.5;flex:1; }
+    .rec-toggle {
+      font-size:18px;color:var(--muted);flex-shrink:0;
+      transition:transform 0.25s;margin-top:2px;line-height:1;
+    }
+    .rec-accordion.open .rec-toggle { transform:rotate(45deg);color:var(--teal); }
+    .rec-body {
+      overflow:hidden;max-height:0;
+      transition:max-height 0.35s ease;
+      background:var(--light-bg);
+    }
+    .rec-accordion.open .rec-body { max-height:200px; }
+    .rec-detail { padding:0 16px 14px 58px;font-size:13px;line-height:1.7;color:#374151; }
+
+    /* Appendix */
+    .appendix-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px; }
+    .app-check {
+      display:flex;align-items:center;gap:10px;font-size:13px;color:#374151;
+      background:var(--light-bg);border:1px solid var(--border);border-radius:6px;padding:9px 12px;
+    }
+    .check-icon { color:var(--teal);font-size:14px;flex-shrink:0; }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      .progress-tracker, .toc, .print-btn, .table-filter-bar { display:none; }
+      body { max-width: 100%; }
+      .report-header, .report-byline { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .findings-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      h2.section-heading { page-break-after: avoid; }
+      .rca-item, .rec-accordion { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PROGRESS TRACKER -->
+  <div class="progress-tracker">
+    <div class="phase-step">
+      <div class="phase-label complete">✓ Planning</div>
+    </div>
+    <div class="phase-connector complete"></div>
+    <div class="phase-step">
+      <div class="phase-label complete">✓ Data Collection</div>
+    </div>
+    <div class="phase-connector complete"></div>
+    <div class="phase-step">
+      <div class="phase-label complete">✓ Analysis</div>
+    </div>
+    <div class="phase-connector complete"></div>
+    <div class="phase-step">
+      <div class="phase-label complete">✓ Review</div>
+    </div>
+    <div class="phase-connector complete"></div>
+    <div class="phase-step">
+      <div class="phase-label complete">✓ Published</div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="report-label">Data Quality Audit Report</div>
+    <div class="report-title">Client Records Accuracy Audit<br>Q4 2025</div>
+    <div class="report-meta">
+      <div class="meta-item">
+        <div class="meta-label">Report Date</div>
+        <div class="meta-value">January 10, 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Audit Period</div>
+        <div class="meta-value">Oct 1 – Dec 31, 2025</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Records Reviewed</div>
+        <div class="meta-value">4,820</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Prepared By</div>
+        <div class="meta-value">N. Seay, Data Operations</div>
+      </div>
+    </div>
+  </div>
+  <div class="report-byline">
+    <span>Data Operations — Internal Quality Assurance Report — CONFIDENTIAL</span>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="overall-accuracy">
+        Overall Accuracy: <span class="accuracy-badge">99.2%</span>
+      </div>
+      <button class="print-btn" onclick="window.print()">🖨 Print Report</button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="report-content">
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ul class="toc-list">
+        <li><a href="#exec"><span class="toc-num">01</span> Executive Summary</a></li>
+        <li><a href="#methodology"><span class="toc-num">02</span> Audit Methodology</a></li>
+        <li><a href="#findings"><span class="toc-num">03</span> Findings by Category</a></li>
+        <li><a href="#errors"><span class="toc-num">04</span> Error Analysis</a></li>
+        <li><a href="#rca"><span class="toc-num">05</span> Root Cause Analysis</a></li>
+        <li><a href="#recommendations"><span class="toc-num">06</span> Recommendations</a></li>
+        <li><a href="#appendix"><span class="toc-num">07</span> Appendix</a></li>
+      </ul>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div id="exec">
+      <div class="exec-summary">
+        <div class="exec-summary-title">Executive Summary — Key Findings</div>
+        <div class="exec-finding"><span class="exec-finding-num">1</span><span><strong>Overall accuracy rate of 99.2%</strong> across 4,820 records reviewed — exceeds the 98.5% organizational target and represents a 0.4pp improvement over Q3 2025.</span></div>
+        <div class="exec-finding"><span class="exec-finding-num">2</span><span><strong>Two data categories require targeted review:</strong> Contact Information (97.8% accuracy, below threshold) and Custom Field Entries (97.1%, flagged for corrective action due to inconsistent formatting protocols).</span></div>
+        <div class="exec-finding"><span class="exec-finding-num">3</span><span><strong>Root cause analysis identifies three primary error drivers:</strong> manual transcription without validation rules, inconsistent field formatting standards, and insufficient pre-save quality checks in legacy data entry workflows.</span></div>
+      </div>
+    </div>
+
+    <!-- METHODOLOGY -->
+    <h2 id="methodology" class="section-heading">Audit Methodology</h2>
+    <p class="body-text">A stratified random sample of 4,820 records was drawn from the master client database, covering the full Q4 2025 period. Each record was evaluated against documented data entry standards across six defined quality dimensions.</p>
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-card-label">Sampling Method</div>
+        <div class="method-card-value">Stratified Random (12% of total Q4 records)</div>
+      </div>
+      <div class="method-card">
+        <div class="method-card-label">Accuracy Threshold</div>
+        <div class="method-card-value">≥ 98.5% per category (org standard)</div>
+      </div>
+      <div class="method-card">
+        <div class="method-card-label">Audit Method</div>
+        <div class="method-card-value">Field-by-field comparison vs. source documents</div>
+      </div>
+    </div>
+
+    <!-- FINDINGS TABLE -->
+    <h2 id="findings" class="section-heading">Findings by Data Category</h2>
+
+    <div class="table-filter-bar">
+      <button class="tfilter-btn all active-filter" data-filter="all">Show All</button>
+      <button class="tfilter-btn pass" data-filter="pass">✅ Pass Only</button>
+      <button class="tfilter-btn review" data-filter="review">⚠️ Needs Review</button>
+      <button class="tfilter-btn fail" data-filter="fail">❌ Failed</button>
+    </div>
+
+    <table class="findings-table" id="findings-table">
+      <thead>
+        <tr>
+          <th onclick="sortFindings(0)">Category</th>
+          <th onclick="sortFindings(1)">Records Reviewed</th>
+          <th onclick="sortFindings(2)">Errors Found</th>
+          <th onclick="sortFindings(3)">Accuracy Rate</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="findings-tbody">
+        <!-- injected by JS -->
+      </tbody>
+    </table>
+
+    <!-- ERROR ANALYSIS -->
+    <h2 id="errors" class="section-heading">Error Analysis — Error Types by Frequency</h2>
+    <div class="error-chart" id="error-chart">
+      <div class="error-bar-row">
+        <div class="error-type">Formatting mismatch</div>
+        <div class="error-track"><div class="error-fill" style="width:78%;background:var(--teal);"><span>78 errors</span></div></div>
+        <div class="error-count">78</div>
+      </div>
+      <div class="error-bar-row">
+        <div class="error-type">Transcription error</div>
+        <div class="error-track"><div class="error-fill" style="width:52%;background:#4F46E5;"><span>52 errors</span></div></div>
+        <div class="error-count">52</div>
+      </div>
+      <div class="error-bar-row">
+        <div class="error-type">Missing required field</div>
+        <div class="error-track"><div class="error-fill" style="width:38%;background:var(--amber);"><span>38 errors</span></div></div>
+        <div class="error-count">38</div>
+      </div>
+      <div class="error-bar-row">
+        <div class="error-type">Duplicate entry</div>
+        <div class="error-track"><div class="error-fill" style="width:23%;background:#EA580C;"><span>23 errors</span></div></div>
+        <div class="error-count">23</div>
+      </div>
+      <div class="error-bar-row">
+        <div class="error-type">Invalid format</div>
+        <div class="error-track"><div class="error-fill" style="width:13%;background:var(--red);"><span>13 errors</span></div></div>
+        <div class="error-count">13</div>
+      </div>
+    </div>
+
+    <!-- ROOT CAUSE -->
+    <h2 id="rca" class="section-heading">Root Cause Analysis</h2>
+    <div class="rca-list">
+      <div class="rca-item">
+        <div class="rca-icon">📋</div>
+        <div>
+          <div class="rca-issue">Inconsistent formatting standards for custom fields</div>
+          <div class="rca-action">No enforced input validation on 4 legacy custom fields <span class="rca-arrow">→</span> Corrective action: Implement dropdown picklists and input masks on all unvalidated custom fields. Target completion: Q1 2026.</div>
+        </div>
+      </div>
+      <div class="rca-item">
+        <div class="rca-icon">⚡</div>
+        <div>
+          <div class="rca-issue">Manual transcription without pre-save validation</div>
+          <div class="rca-action">Contact information fields lack real-time format verification <span class="rca-arrow">→</span> Corrective action: Add inline validation rules (email format, phone pattern) to contact fields. Testing scheduled for Week 2, Q1 2026.</div>
+        </div>
+      </div>
+      <div class="rca-item">
+        <div class="rca-icon">🔄</div>
+        <div>
+          <div class="rca-issue">Insufficient onboarding training for new data entry staff</div>
+          <div class="rca-action">Error rate among staff with less than 90 days tenure was 3.2x higher than tenured staff average <span class="rca-arrow">→</span> Corrective action: Expand onboarding training from 4 to 8 hours with structured accuracy exercises. Implement 30-day supervised entry period.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATIONS (accordion) -->
+    <h2 id="recommendations" class="section-heading">Recommendations</h2>
+    <div class="rec-list">
+      <div class="rec-accordion">
+        <div class="rec-header" onclick="toggleRec(this)">
+          <span class="rec-num">1</span>
+          <span class="rec-summary">Implement field-level validation rules on all custom data entry fields by end of Q1 2026</span>
+          <span class="rec-toggle">+</span>
+        </div>
+        <div class="rec-body">
+          <div class="rec-detail">Prioritize the two categories below accuracy threshold: Contact Information and Custom Field Entries. Coordinate with IT to deploy picklist controls and input masks on the four legacy unvalidated fields. Validate with a 200-record spot check post-deployment.</div>
+        </div>
+      </div>
+      <div class="rec-accordion">
+        <div class="rec-header" onclick="toggleRec(this)">
+          <span class="rec-num">2</span>
+          <span class="rec-summary">Establish a weekly data quality spot-check process (50 random records per week)</span>
+          <span class="rec-toggle">+</span>
+        </div>
+        <div class="rec-body">
+          <div class="rec-detail">Enable early detection of accuracy degradation between quarterly audits. Assign ownership to the Data Operations lead. Results logged in a running tracker and reviewed monthly by the QA team. Any category falling below 98% triggers an immediate root cause review.</div>
+        </div>
+      </div>
+      <div class="rec-accordion">
+        <div class="rec-header" onclick="toggleRec(this)">
+          <span class="rec-num">3</span>
+          <span class="rec-summary">Expand data entry staff onboarding training to 8 hours with a 30-day supervised period</span>
+          <span class="rec-toggle">+</span>
+        </div>
+        <div class="rec-body">
+          <div class="rec-detail">Implement structured accuracy exercises during onboarding and require supervisor sign-off before full data entry autonomy is granted. New hires with error rates above 2% at the 30-day mark receive additional coaching before clearance.</div>
+        </div>
+      </div>
+      <div class="rec-accordion">
+        <div class="rec-header" onclick="toggleRec(this)">
+          <span class="rec-num">4</span>
+          <span class="rec-summary">Create a one-page Data Entry Standards Quick Reference Card for all staff</span>
+          <span class="rec-toggle">+</span>
+        </div>
+        <div class="rec-body">
+          <div class="rec-detail">Cover formatting rules, required fields, and common error types. Distribute in print and digital formats. Review at monthly team meetings. Update whenever field standards change. Initial version to be completed by Feb 1, 2026.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPENDIX -->
+    <h2 id="appendix" class="section-heading">Appendix — Data Entry Standards Checklist</h2>
+    <div class="appendix-grid">
+      <div class="app-check"><span class="check-icon">✓</span> All required fields completed before save</div>
+      <div class="app-check"><span class="check-icon">✓</span> Email addresses in lowercase format</div>
+      <div class="app-check"><span class="check-icon">✓</span> Phone numbers: (XXX) XXX-XXXX format</div>
+      <div class="app-check"><span class="check-icon">✓</span> Company names match legal entity name exactly</div>
+      <div class="app-check"><span class="check-icon">✓</span> Addresses include ZIP+4 when available</div>
+      <div class="app-check"><span class="check-icon">✓</span> Duplicate check run before new record creation</div>
+      <div class="app-check"><span class="check-icon">✓</span> Custom fields follow dropdown selection where available</div>
+      <div class="app-check"><span class="check-icon">✓</span> All entries cross-referenced against source document</div>
+      <div class="app-check"><span class="check-icon">✓</span> Date fields in YYYY-MM-DD ISO format</div>
+      <div class="app-check"><span class="check-icon">✓</span> Financial figures entered without currency symbols</div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── Findings table data ──
+    const findingsData = [
+      { category:'Account Identifiers', records:4820, errors:3, rate:99.9, barColor:'#22C55E', textColor:'#15803D', status:'pass', statusLabel:'✅ Pass' },
+      { category:'Name & Title Fields', records:4820, errors:14, rate:99.7, barColor:'#22C55E', textColor:'#15803D', status:'pass', statusLabel:'✅ Pass' },
+      { category:'Address & Location', records:4820, errors:24, rate:99.5, barColor:'#22C55E', textColor:'#15803D', status:'pass', statusLabel:'✅ Pass' },
+      { category:'Contact Information', records:4820, errors:106, rate:97.8, barColor:'#F59E0B', textColor:'#92400E', status:'review', statusLabel:'⚠️ Review' },
+      { category:'Financial Data', records:4820, errors:7, rate:99.9, barColor:'#22C55E', textColor:'#15803D', status:'pass', statusLabel:'✅ Pass' },
+      { category:'Custom Field Entries', records:4820, errors:139, rate:97.1, barColor:'#EF4444', textColor:'#B91C1C', status:'fail', statusLabel:'❌ Fail' },
+    ];
+
+    let sortedData = [...findingsData];
+    let sortCol = -1, sortAsc = true;
+
+    function renderFindings(data) {
+      const tbody = document.getElementById('findings-tbody');
+      tbody.innerHTML = '';
+      data.forEach((row, i) => {
+        const tr = document.createElement('tr');
+        tr.dataset.status = row.status;
+        tr.innerHTML = `
+          <td><strong>${row.category}</strong></td>
+          <td>${row.records.toLocaleString()}</td>
+          <td>${row.errors}</td>
+          <td>
+            <div class="accuracy-bar-wrap">
+              <div class="accuracy-bar-track">
+                <div class="accuracy-bar-fill" style="background:${row.barColor};"></div>
+              </div>
+              <span class="accuracy-pct" style="color:${row.textColor};">${row.rate}%</span>
+            </div>
+          </td>
+          <td><span class="status-badge status-${row.status}">${row.statusLabel}</span></td>
+        `;
+        tbody.appendChild(tr);
+        // Animate bar
+        setTimeout(() => {
+          const fill = tr.querySelector('.accuracy-bar-fill');
+          if (fill) fill.classList.add('animated');
+        }, 80 + i * 100);
+      });
+      applyFilter(currentFilter);
+    }
+
+    function sortFindings(col) {
+      const ths = document.querySelectorAll('.findings-table thead th');
+      if (sortCol === col) sortAsc = !sortAsc;
+      else { sortCol = col; sortAsc = true; }
+      ths.forEach(h => h.classList.remove('sort-asc','sort-desc'));
+      ths[col].classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+
+      sortedData.sort((a,b) => {
+        let va, vb;
+        if (col === 0) { va=a.category; vb=b.category; }
+        else if (col === 1) { va=a.records; vb=b.records; }
+        else if (col === 2) { va=a.errors; vb=b.errors; }
+        else if (col === 3) { va=a.rate; vb=b.rate; }
+        if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+        return sortAsc ? va - vb : vb - va;
+      });
+      renderFindings(sortedData);
+    }
+
+    // ── Table filter ──
+    let currentFilter = 'all';
+    function applyFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('#findings-tbody tr').forEach(tr => {
+        if (filter === 'all' || tr.dataset.status === filter) {
+          tr.classList.remove('hidden-row');
+        } else {
+          tr.classList.add('hidden-row');
+        }
+      });
+    }
+
+    document.querySelectorAll('.tfilter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tfilter-btn').forEach(b => b.classList.remove('active-filter'));
+        btn.classList.add('active-filter');
+        applyFilter(btn.dataset.filter);
+      });
+    });
+
+    // ── Scroll-triggered error chart bars (IntersectionObserver) ──
+    const errorObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.error-fill').forEach((fill, i) => {
+            setTimeout(() => fill.classList.add('animated'), i * 100);
+          });
+          errorObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const errorChart = document.getElementById('error-chart');
+    if (errorChart) errorObserver.observe(errorChart);
+
+    // ── Recommendations accordion ──
+    function toggleRec(header) {
+      const acc = header.closest('.rec-accordion');
+      const wasOpen = acc.classList.contains('open');
+      document.querySelectorAll('.rec-accordion').forEach(a => a.classList.remove('open'));
+      if (!wasOpen) acc.classList.add('open');
+    }
+
+    // ── IntersectionObserver for accuracy bars ──
+    const tableObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.accuracy-bar-fill').forEach((fill, i) => {
+            setTimeout(() => fill.classList.add('animated'), i * 100);
+          });
+          tableObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    // ── Init ──
+    renderFindings(sortedData);
+    // Observe the table after render
+    setTimeout(() => {
+      const tbl = document.getElementById('findings-table');
+      if (tbl) tableObserver.observe(tbl);
+    }, 100);
+  </script>
+</body>
+</html>

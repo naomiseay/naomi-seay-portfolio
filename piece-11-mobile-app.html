@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=900">
+  <title>Habify — Daily Habit Tracker App UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FAFAF7;
+      --plum: #3D1A5E;
+      --plum-mid: #5A2D82;
+      --plum-light: #7B4FA6;
+      --plum-dim: rgba(61,26,94,0.08);
+      --coral: #FF6B6B;
+      --coral-light: #FF8E8E;
+      --mint: #4ECDC4;
+      --mint-light: #7EDBD4;
+      --white: #FFFFFF;
+      --off-white: #F0EFEB;
+      --gray: #9B9B9B;
+      --gray-light: #E8E8E4;
+      --text: #1A1A2E;
+    }
+
+    body {
+      background: var(--off-white);
+      font-family: 'Nunito', sans-serif;
+      padding: 48px 40px 60px;
+      min-width: 900px;
+    }
+
+    /* ── HEADER ── */
+    .page-header { text-align: center; margin-bottom: 52px; }
+
+    .brand-lockup {
+      display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+
+    .brand-icon {
+      width:40px;height:40px;background:var(--plum);border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .brand-icon svg { width:22px;height:22px; }
+    .brand-name { font-size:32px;font-weight:800;color:var(--plum);letter-spacing:-0.5px; }
+    .brand-tagline { font-size:15px;color:var(--gray);font-weight:400;letter-spacing:0.2px; }
+    .category-tag {
+      display:inline-block;background:var(--plum-dim);color:var(--plum);
+      font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+      padding:5px 12px;border-radius:4px;margin-top:8px;
+    }
+
+    /* ── SCREENS LAYOUT ── */
+    .screens-row {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      align-items: flex-start;
+    }
+
+    .screen-wrap { display:flex;flex-direction:column;align-items:center;gap:16px; }
+    .screen-label { font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray); }
+
+    /* ── PHONE FRAME ── */
+    .phone-frame {
+      width: 260px;
+      height: 563px;
+      background: #0A0A0A;
+      border-radius: 44px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 24px 64px rgba(0,0,0,0.35),
+        0 4px 12px rgba(0,0,0,0.20);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* Dynamic island */
+    .phone-frame::before {
+      content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);
+      width:80px;height:20px;background:#0A0A0A;border-radius:12px;z-index:10;
+    }
+
+    .phone-screen {
+      width:100%;height:100%;background:var(--cream);border-radius:33px;
+      overflow:hidden;position:relative;display:flex;flex-direction:column;
+    }
+
+    /* Status bar */
+    .status-bar {
+      height:44px;padding:12px 20px 0;
+      display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+    }
+    .status-time { font-size:11px;font-weight:700;color:var(--text); }
+    .status-icons { display:flex;gap:4px;align-items:center; }
+    .status-icons span { font-size:9px;color:var(--text); }
+
+    /* ── SCREEN 1: DASHBOARD ── */
+    .s1-header { padding:8px 18px 12px;flex-shrink:0; }
+    .s1-greeting { font-size:11px;color:var(--gray);font-weight:600;letter-spacing:0.3px;margin-bottom:2px; }
+    .s1-name { font-size:18px;font-weight:800;color:var(--plum);letter-spacing:-0.3px; }
+    .s1-date { font-size:10px;color:var(--gray);font-weight:400;margin-top:1px; }
+
+    /* Progress ring */
+    .ring-section {
+      display:flex;justify-content:center;align-items:center;padding:8px 0 12px;flex-shrink:0;
+    }
+    .ring-wrap { position:relative;width:90px;height:90px; }
+
+    .progress-ring {
+      width:90px;height:90px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      transition: background 0.6s ease;
+    }
+
+    .ring-inner {
+      width:64px;height:64px;background:var(--cream);border-radius:50%;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .ring-pct { font-size:16px;font-weight:800;color:var(--plum);line-height:1; }
+    .ring-sub { font-size:8px;color:var(--gray);font-weight:600;letter-spacing:0.5px; }
+
+    /* Habit list */
+    .habits-section { flex:1;padding:0 14px;overflow:hidden; }
+    .habits-title { font-size:11px;font-weight:700;color:var(--plum);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px; }
+
+    .habit-item {
+      display:flex;align-items:center;gap:10px;padding:8px 10px;
+      background:var(--white);border-radius:10px;margin-bottom:6px;
+      cursor:pointer;transition:background 0.15s;
+      user-select:none;
+    }
+    .habit-item:hover { background: #f0f9f8; }
+
+    .habit-check {
+      width:18px;height:18px;border-radius:50%;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .habit-check.done { background:var(--mint); }
+    .habit-check.done::after { content:'✓';font-size:9px;color:white;font-weight:800; }
+    .habit-check.undone { border:2px solid var(--gray-light); }
+
+    .habit-info { flex:1;min-width:0; }
+    .habit-name { font-size:11px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .habit-name.done-text { text-decoration:line-through;color:var(--gray); }
+    .habit-streak { font-size:9px;color:var(--coral);font-weight:600; }
+
+    /* Streak bar */
+    .streak-bar {
+      margin:8px 14px 14px;background:var(--plum);border-radius:12px;
+      padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+    }
+    .streak-label { font-size:10px;color:rgba(255,255,255,0.65);font-weight:600; }
+    .streak-num { font-size:20px;font-weight:800;color:var(--coral);line-height:1;transition:all 0.3s; }
+    .streak-days { font-size:9px;color:rgba(255,255,255,0.5);font-weight:600; }
+    .streak-flame { font-size:20px; }
+
+    /* Add button pulse */
+    @keyframes pulse-coral {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(255,107,107,0); }
+    }
+
+    .add-habit-btn {
+      margin: 4px 14px 0;
+      background: var(--coral);
+      border-radius: 12px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: 0.2px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+    .add-habit-btn:hover { transform: scale(1.02); }
+    .add-habit-btn.pulse { animation: pulse-coral 0.6s ease; }
+
+    /* ── SCREEN 2: ADD HABIT ── */
+    .s2-header {
+      padding:8px 18px 10px;display:flex;align-items:center;gap:8px;flex-shrink:0;
+    }
+    .back-btn {
+      width:24px;height:24px;background:var(--off-white);border-radius:7px;
+      display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--plum);
+      cursor:pointer;
+    }
+    .s2-title { font-size:16px;font-weight:800;color:var(--plum);letter-spacing:-0.3px; }
+
+    .form-body { flex:1;padding:0 14px;overflow:hidden; }
+    .form-field { margin-bottom:10px; }
+    .field-label {
+      font-size:10px;font-weight:700;color:var(--gray);letter-spacing:1px;
+      text-transform:uppercase;margin-bottom:4px;
+    }
+    .field-input {
+      width:100%;height:32px;background:var(--white);
+      border:1.5px solid var(--gray-light);border-radius:8px;padding:0 10px;
+      font-family:'Nunito',sans-serif;font-size:11px;color:var(--text);
+      display:flex;align-items:center;
+    }
+    .field-input.focus-state { border-color:var(--plum); }
+    .field-input.placeholder { color:var(--gray); }
+
+    .pills-row { display:flex;gap:5px;flex-wrap:wrap; }
+
+    .pill {
+      padding:4px 10px;border-radius:100px;font-size:10px;font-weight:700;
+      letter-spacing:0.3px;cursor:pointer;border:1.5px solid transparent;
+      transition: opacity 0.15s, transform 0.15s, background 0.2s;
+      user-select:none;
+    }
+    .pill:hover { transform: scale(1.05); }
+    .pill-health { background:rgba(78,205,196,0.12);color:var(--mint);border-color:var(--mint); }
+    .pill-focus { background:rgba(61,26,94,0.08);color:var(--plum);border-color:var(--plum); }
+    .pill-mind { background:rgba(255,107,107,0.10);color:var(--coral);border-color:var(--coral); }
+    .pill-social { background:rgba(248,186,84,0.12);color:#C47D00;border-color:#F8BA54; }
+
+    /* Selected state: full opacity; unselected: dimmed */
+    .pill.pill-selected { opacity: 1; }
+    .pill.pill-unselected { opacity: 0.4; }
+
+    .color-row { display:flex;gap:7px;align-items:center; }
+
+    .color-dot {
+      width:22px;height:22px;border-radius:50%;cursor:pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .color-dot:hover { transform: scale(1.15); }
+    .color-dot.selected { box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--plum); }
+
+    .freq-selector { display:flex;gap:4px; }
+    .freq-btn {
+      flex:1;height:28px;border-radius:7px;font-size:10px;font-weight:700;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+      transition:background 0.2s, color 0.2s;user-select:none;
+    }
+    .freq-btn.active { background:var(--plum);color:white; }
+    .freq-btn.inactive { background:var(--off-white);color:var(--gray); }
+
+    .add-btn {
+      margin:10px 14px 14px;background:var(--coral);border-radius:12px;height:38px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:800;color:white;letter-spacing:0.2px;flex-shrink:0;
+      cursor:pointer;transition:transform 0.15s;
+    }
+    .add-btn:hover { transform: scale(1.02); }
+
+    /* ── SCREEN 3: STATS ── */
+    .s3-header { padding:8px 18px 12px;flex-shrink:0; }
+    .s3-title { font-size:18px;font-weight:800;color:var(--plum);letter-spacing:-0.3px; }
+    .s3-sub { font-size:10px;color:var(--gray);font-weight:600;margin-top:1px; }
+
+    .stats-body { flex:1;padding:0 14px;overflow:hidden; }
+
+    /* Bar chart */
+    .chart-section { margin-bottom:10px; }
+    .chart-label {
+      font-size:10px;font-weight:700;color:var(--gray);letter-spacing:1px;
+      text-transform:uppercase;margin-bottom:8px;
+    }
+    .bar-chart { display:flex;align-items:flex-end;gap:5px;height:60px; }
+    .bar-col { flex:1;display:flex;flex-direction:column;align-items:center;gap:3px; }
+
+    .bar {
+      width:100%;border-radius:4px 4px 0 0;
+      transform-origin: bottom;
+      transform: scaleY(0);
+      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    .bar.animated { transform: scaleY(1); }
+
+    .bar-day { font-size:8px;font-weight:700;color:var(--gray); }
+
+    /* Stat cards */
+    .stat-row { display:flex;gap:8px;margin-bottom:10px; }
+    .stat-card { flex:1;background:var(--white);border-radius:10px;padding:8px 10px; }
+    .stat-val { font-size:20px;font-weight:800;color:var(--plum);line-height:1;letter-spacing:-0.5px; }
+    .stat-desc { font-size:9px;color:var(--gray);font-weight:600;margin-top:3px;letter-spacing:0.3px; }
+
+    /* Comparison */
+    .compare-section { background:var(--white);border-radius:10px;padding:10px; }
+    .compare-title { font-size:10px;font-weight:700;color:var(--plum);margin-bottom:8px; }
+    .compare-bars { display:flex;flex-direction:column;gap:6px; }
+    .compare-row { display:flex;align-items:center;gap:8px; }
+    .compare-lbl { font-size:9px;font-weight:600;color:var(--gray);width:24px;flex-shrink:0; }
+    .compare-track { flex:1;height:8px;background:var(--off-white);border-radius:4px;overflow:hidden; }
+    .compare-fill { height:100%;border-radius:4px; }
+    .compare-pct { font-size:9px;font-weight:700;color:var(--plum);width:26px;text-align:right;flex-shrink:0; }
+
+    /* ── BOTTOM NAV (all screens) ── */
+    .bottom-nav {
+      height:52px;display:flex;align-items:center;justify-content:space-around;
+      padding:0 8px;background:var(--white);border-top:1px solid var(--gray-light);flex-shrink:0;
+    }
+    .nav-item {
+      display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 10px;
+      cursor:pointer;transition:opacity 0.15s;
+    }
+    .nav-item:hover { opacity: 0.8; }
+    .nav-icon { width:20px;height:20px;border-radius:6px;display:flex;align-items:center;justify-content:center; }
+    .nav-icon svg { width:14px;height:14px; }
+    .nav-item.active .nav-icon { background:var(--plum-dim); }
+    .nav-item.active .nav-icon svg path,
+    .nav-item.active .nav-icon svg rect,
+    .nav-item.active .nav-icon svg circle { fill:var(--plum); }
+    .nav-item:not(.active) .nav-icon svg path,
+    .nav-item:not(.active) .nav-icon svg rect,
+    .nav-item:not(.active) .nav-icon svg circle { fill:var(--gray); }
+    .nav-lbl { font-size:8px;font-weight:700;letter-spacing:0.5px; }
+    .nav-item.active .nav-lbl { color:var(--plum); }
+    .nav-item:not(.active) .nav-lbl { color:var(--gray); }
+
+    /* ── PALETTE STRIP ── */
+    .palette-strip {
+      display:flex;justify-content:center;align-items:center;gap:24px;margin-top:40px;
+    }
+    .palette-item { display:flex;align-items:center;gap:8px; }
+    .palette-swatch { width:24px;height:24px;border-radius:6px;border:1px solid rgba(0,0,0,0.08); }
+    .palette-name { font-size:11px;color:var(--gray);font-weight:600; }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="brand-lockup">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/>
+          <path d="M8 12l3 3 5-5" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-name">Habify</div>
+    </div>
+    <div class="brand-tagline">Daily Habit Tracker — Mobile App UI Design</div>
+    <br>
+    <span class="category-tag">Interactive Prototype</span>
+  </div>
+
+  <!-- THREE SCREENS -->
+  <div class="screens-row">
+
+    <!-- SCREEN 1: DASHBOARD -->
+    <div class="screen-wrap">
+      <div class="screen-label">01 — Dashboard</div>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons"><span>▲▲▲</span><span>⬛</span></div>
+          </div>
+          <div class="s1-header">
+            <div class="s1-greeting">Good morning,</div>
+            <div class="s1-name">Naomi 👋</div>
+            <div class="s1-date">Monday, April 21</div>
+          </div>
+          <div class="ring-section">
+            <div class="ring-wrap">
+              <div class="progress-ring" id="ring1">
+                <div class="ring-inner">
+                  <div class="ring-pct" id="ring-pct">70%</div>
+                  <div class="ring-sub">DONE</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="habits-section">
+            <div class="habits-title">Today</div>
+            <div class="habit-item" data-done="true" data-streak="14" onclick="toggleHabit(this)">
+              <div class="habit-check done"></div>
+              <div class="habit-info">
+                <div class="habit-name done-text">Morning run</div>
+                <div class="habit-streak">🔥 <span class="streak-val">14</span> day streak</div>
+              </div>
+            </div>
+            <div class="habit-item" data-done="true" data-streak="7" onclick="toggleHabit(this)">
+              <div class="habit-check done"></div>
+              <div class="habit-info">
+                <div class="habit-name done-text">Drink 8 glasses</div>
+                <div class="habit-streak">🔥 <span class="streak-val">7</span> day streak</div>
+              </div>
+            </div>
+            <div class="habit-item" data-done="true" data-streak="21" onclick="toggleHabit(this)">
+              <div class="habit-check done"></div>
+              <div class="habit-info">
+                <div class="habit-name done-text">Meditate 10 min</div>
+                <div class="habit-streak">🔥 <span class="streak-val">21</span> day streak</div>
+              </div>
+            </div>
+            <div class="habit-item" data-done="false" data-streak="0" onclick="toggleHabit(this)">
+              <div class="habit-check undone"></div>
+              <div class="habit-info">
+                <div class="habit-name">Read 20 pages</div>
+                <div class="habit-streak" style="color:var(--gray);">0 day streak</div>
+              </div>
+            </div>
+          </div>
+          <div class="add-habit-btn" id="add-habit-btn" onclick="pulseAdd()">+ Add Habit</div>
+          <div class="streak-bar">
+            <div>
+              <div class="streak-label">Current Streak</div>
+              <div style="display:flex;align-items:baseline;gap:3px;">
+                <div class="streak-num" id="streak-counter">21</div>
+                <div class="streak-days">days</div>
+              </div>
+            </div>
+            <div class="streak-flame">🔥</div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item active" onclick="switchScreen(1)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="2" y="9" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="9" width="5" height="5" rx="1.5" fill=""/></svg>
+              </div>
+              <span class="nav-lbl">Today</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen(3)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v6l4 2" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="8" r="6" stroke-width="1.5"/></svg>
+              </div>
+              <span class="nav-lbl">Stats</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen(2)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke-width="1.5"/><path d="M8 5v3M8 11v.5" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="nav-lbl">More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: ADD HABIT -->
+    <div class="screen-wrap">
+      <div class="screen-label">02 — Add Habit</div>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons"><span>▲▲▲</span><span>⬛</span></div>
+          </div>
+          <div class="s2-header">
+            <div class="back-btn">←</div>
+            <div class="s2-title">New Habit</div>
+          </div>
+          <div class="form-body">
+            <div class="form-field">
+              <div class="field-label">Habit Name</div>
+              <div class="field-input focus-state">Evening stretch</div>
+            </div>
+            <div class="form-field">
+              <div class="field-label">Category</div>
+              <div class="pills-row" id="pills-row">
+                <div class="pill pill-health pill-selected" onclick="selectPill(this)">Health</div>
+                <div class="pill pill-focus" onclick="selectPill(this)">Focus</div>
+                <div class="pill pill-mind" onclick="selectPill(this)">Mindfulness</div>
+                <div class="pill pill-social" onclick="selectPill(this)">Social</div>
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="field-label">Color</div>
+              <div class="color-row" id="color-row">
+                <div class="color-dot selected" style="background:#4ECDC4;" onclick="selectColor(this)"></div>
+                <div class="color-dot" style="background:#FF6B6B;" onclick="selectColor(this)"></div>
+                <div class="color-dot" style="background:#3D1A5E;" onclick="selectColor(this)"></div>
+                <div class="color-dot" style="background:#F8BA54;" onclick="selectColor(this)"></div>
+                <div class="color-dot" style="background:#74B9FF;" onclick="selectColor(this)"></div>
+                <div class="color-dot" style="background:#A29BFE;" onclick="selectColor(this)"></div>
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="field-label">Frequency</div>
+              <div class="freq-selector" id="freq-row">
+                <div class="freq-btn active" onclick="selectFreq(this)">Daily</div>
+                <div class="freq-btn inactive" onclick="selectFreq(this)">Weekdays</div>
+                <div class="freq-btn inactive" onclick="selectFreq(this)">Weekly</div>
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="field-label">Reminder</div>
+              <div class="field-input placeholder">Set reminder time...</div>
+            </div>
+            <div class="form-field">
+              <div class="field-label">Goal Duration</div>
+              <div class="field-input">30 days</div>
+            </div>
+          </div>
+          <div class="add-btn">+ Add Habit</div>
+          <div class="bottom-nav">
+            <div class="nav-item" onclick="switchScreen(1)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="2" y="9" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="9" width="5" height="5" rx="1.5" fill=""/></svg>
+              </div>
+              <span class="nav-lbl">Today</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen(3)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v6l4 2" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="8" r="6" stroke-width="1.5"/></svg>
+              </div>
+              <span class="nav-lbl">Stats</span>
+            </div>
+            <div class="nav-item active" onclick="switchScreen(2)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke-width="1.5"/><path d="M8 5v3M8 11v.5" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="nav-lbl">More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: STATS -->
+    <div class="screen-wrap">
+      <div class="screen-label">03 — Stats</div>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons"><span>▲▲▲</span><span>⬛</span></div>
+          </div>
+          <div class="s3-header">
+            <div class="s3-title">Your Stats</div>
+            <div class="s3-sub">April 2026</div>
+          </div>
+          <div class="stats-body">
+            <div class="chart-section">
+              <div class="chart-label">This Week</div>
+              <div class="bar-chart">
+                <div class="bar-col">
+                  <div class="bar" style="height:42px;background:var(--mint);"></div>
+                  <div class="bar-day">M</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:50px;background:var(--mint);"></div>
+                  <div class="bar-day">T</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:34px;background:var(--mint);"></div>
+                  <div class="bar-day">W</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:58px;background:var(--mint);"></div>
+                  <div class="bar-day">T</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:50px;background:var(--coral);"></div>
+                  <div class="bar-day">F</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:28px;background:var(--gray-light);"></div>
+                  <div class="bar-day">S</div>
+                </div>
+                <div class="bar-col">
+                  <div class="bar" style="height:18px;background:var(--gray-light);"></div>
+                  <div class="bar-day">S</div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-card">
+                <div class="stat-val" style="color:var(--mint);">84%</div>
+                <div class="stat-desc">Completion this month</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-val" style="color:var(--coral);">21</div>
+                <div class="stat-desc">Longest streak</div>
+              </div>
+            </div>
+            <div class="compare-section">
+              <div class="compare-title">This week vs. last week</div>
+              <div class="compare-bars">
+                <div class="compare-row">
+                  <div class="compare-lbl">This</div>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width:78%;background:var(--mint);"></div>
+                  </div>
+                  <div class="compare-pct">78%</div>
+                </div>
+                <div class="compare-row">
+                  <div class="compare-lbl">Last</div>
+                  <div class="compare-track">
+                    <div class="compare-fill" style="width:65%;background:var(--gray);"></div>
+                  </div>
+                  <div class="compare-pct">65%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom-nav">
+            <div class="nav-item" onclick="switchScreen(1)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="2" width="5" height="5" rx="1.5" fill=""/><rect x="2" y="9" width="5" height="5" rx="1.5" fill=""/><rect x="9" y="9" width="5" height="5" rx="1.5" fill=""/></svg>
+              </div>
+              <span class="nav-lbl">Today</span>
+            </div>
+            <div class="nav-item active" onclick="switchScreen(3)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 2v6l4 2" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="8" r="6" stroke-width="1.5"/></svg>
+              </div>
+              <span class="nav-lbl">Stats</span>
+            </div>
+            <div class="nav-item" onclick="switchScreen(2)">
+              <div class="nav-icon">
+                <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke-width="1.5"/><path d="M8 5v3M8 11v.5" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </div>
+              <span class="nav-lbl">More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PALETTE -->
+  <div class="palette-strip">
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#FAFAF7;"></div>
+      <div class="palette-name">#FAFAF7 Cream</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#3D1A5E;"></div>
+      <div class="palette-name">#3D1A5E Deep Plum</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#FF6B6B;"></div>
+      <div class="palette-name">#FF6B6B Coral</div>
+    </div>
+    <div class="palette-item">
+      <div class="palette-swatch" style="background:#4ECDC4;"></div>
+      <div class="palette-name">#4ECDC4 Mint</div>
+    </div>
+  </div>
+
+  <script>
+    // ── Screen 1 habit state ──
+    const TOTAL_HABITS = 4;
+
+    function updateRing() {
+      const habits = document.querySelectorAll('#ring1').length > 0
+        ? document.querySelectorAll('.habits-section .habit-item')
+        : [];
+      let doneCount = 0;
+      habits.forEach(h => { if (h.dataset.done === 'true') doneCount++; });
+      const pct = Math.round((doneCount / TOTAL_HABITS) * 100);
+      const deg = Math.round((pct / 100) * 360);
+      const ring = document.getElementById('ring1');
+      if (ring) {
+        ring.style.background = `conic-gradient(#4ECDC4 0deg, #4ECDC4 ${deg}deg, #E8E8E4 ${deg}deg, #E8E8E4 360deg)`;
+      }
+      const pctEl = document.getElementById('ring-pct');
+      if (pctEl) pctEl.textContent = pct + '%';
+    }
+
+    function toggleHabit(item) {
+      const isDone = item.dataset.done === 'true';
+      const check = item.querySelector('.habit-check');
+      const name = item.querySelector('.habit-name');
+      const streakEl = item.querySelector('.streak-val');
+      const streakWrap = item.querySelector('.habit-streak');
+
+      if (isDone) {
+        item.dataset.done = 'false';
+        check.className = 'habit-check undone';
+        name.classList.remove('done-text');
+        streakWrap.style.color = 'var(--gray)';
+      } else {
+        item.dataset.done = 'true';
+        check.className = 'habit-check done';
+        name.classList.add('done-text');
+        streakWrap.style.color = 'var(--coral)';
+        // Increment streak
+        const cur = parseInt(streakEl.textContent, 10) || 0;
+        streakEl.textContent = cur + 1;
+        // Also bump the main streak counter
+        const mainStreak = document.getElementById('streak-counter');
+        if (mainStreak) {
+          const ms = parseInt(mainStreak.textContent, 10) || 21;
+          mainStreak.textContent = ms + 1;
+        }
+      }
+      updateRing();
+    }
+
+    // Initialize ring
+    updateRing();
+
+    // ── Add habit pulse ──
+    function pulseAdd() {
+      const btn = document.getElementById('add-habit-btn');
+      btn.classList.remove('pulse');
+      void btn.offsetWidth; // reflow
+      btn.classList.add('pulse');
+    }
+
+    // ── Category pills ──
+    function selectPill(pill) {
+      const pills = document.querySelectorAll('#pills-row .pill');
+      pills.forEach(p => {
+        p.classList.remove('pill-selected', 'pill-unselected');
+        p.classList.add('pill-unselected');
+      });
+      pill.classList.remove('pill-unselected');
+      pill.classList.add('pill-selected');
+    }
+    // Init: first pill selected, rest unselected
+    document.querySelectorAll('#pills-row .pill').forEach((p, i) => {
+      if (i === 0) p.classList.add('pill-selected');
+      else p.classList.add('pill-unselected');
+    });
+
+    // ── Color picker ──
+    function selectColor(dot) {
+      document.querySelectorAll('#color-row .color-dot').forEach(d => d.classList.remove('selected'));
+      dot.classList.add('selected');
+    }
+
+    // ── Frequency buttons ──
+    function selectFreq(btn) {
+      document.querySelectorAll('#freq-row .freq-btn').forEach(b => {
+        b.classList.remove('active');
+        b.classList.add('inactive');
+      });
+      btn.classList.remove('inactive');
+      btn.classList.add('active');
+    }
+
+    // ── Stats bar chart animate on load ──
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.bar').forEach((bar, i) => {
+          setTimeout(() => bar.classList.add('animated'), i * 80);
+        });
+      }, 300);
+    });
+
+    // ── Bottom nav switching (visual highlight only) ──
+    // Each phone has its own nav — we highlight nav items within the same phone frame
+    function switchScreen(screenNum) {
+      // This is a prototype with 3 separate phones side by side.
+      // Clicking nav in any phone visually highlights that tab across all phones
+      // and scrolls the page to the indicated screen wrap.
+      const labels = ['Today', 'More', 'Stats'];
+      const targetLabel = labels[screenNum - 1];
+
+      document.querySelectorAll('.nav-item').forEach(item => {
+        const lbl = item.querySelector('.nav-lbl');
+        if (lbl && lbl.textContent === targetLabel) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Scroll to the target phone
+      const screenWraps = document.querySelectorAll('.screen-wrap');
+      if (screenWraps[screenNum - 1]) {
+        screenWraps[screenNum - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  </script>
+</body>
+</html>

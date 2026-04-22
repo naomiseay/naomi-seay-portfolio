@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Verdana Wellness Co. — Brand Identity Package</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #1B4332;
+      --cream: #F5F0E8;
+      --gold: #C9A84C;
+      --slate: #4A5568;
+      --white: #FFFFFF;
+      --green-light: #2D6A4F;
+      --cream-dark: #E8E0CF;
+    }
+
+    body {
+      width: 1200px;
+      background: var(--cream);
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--green);
+    }
+
+    /* ── HEADER ── */
+    .doc-header {
+      background: var(--green);
+      padding: 40px 64px 36px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .doc-header-left {}
+
+    .doc-label {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .doc-subtitle {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .doc-header-right {
+      text-align: right;
+    }
+
+    .doc-meta {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .doc-meta strong {
+      color: rgba(255,255,255,0.75);
+      font-weight: 600;
+    }
+
+    /* ── MAIN GRID ── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .grid-col {
+      padding: 52px 64px;
+    }
+
+    .grid-col.left {
+      border-right: 1px solid var(--cream-dark);
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--cream-dark);
+      line-height: 1.2;
+    }
+
+    /* ── LOGO SECTION ── */
+    .logo-container {
+      background: var(--white);
+      padding: 44px 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    /* Leaf made from CSS shapes */
+    .logo-icon svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .logo-name span {
+      color: var(--gold);
+    }
+
+    .logo-tagline {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-top: 5px;
+    }
+
+    /* Reversed logo */
+    .logo-container.dark {
+      background: var(--green);
+      margin-bottom: 0;
+    }
+
+    .logo-container.dark .logo-name {
+      color: var(--white);
+    }
+
+    .logo-container.dark .logo-tagline {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .logo-variants-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--slate);
+      text-transform: uppercase;
+      margin-top: 14px;
+      padding: 8px 0;
+      opacity: 0.7;
+    }
+
+    /* ── COLOR PALETTE ── */
+    .palette-grid {
+      display: flex;
+      gap: 0;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+
+    .swatch {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8px 10px;
+      position: relative;
+    }
+
+    .swatch:first-child { border-radius: 4px 0 0 4px; }
+    .swatch:last-child { border-radius: 0 4px 4px 0; }
+
+    .swatch-hex {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-family: 'Source Sans 3', monospace;
+    }
+
+    .swatch-name {
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .swatch.primary { background: var(--green); }
+    .swatch.primary .swatch-hex,
+    .swatch.primary .swatch-name { color: rgba(255,255,255,0.85); }
+
+    .swatch.secondary { background: var(--green-light); }
+    .swatch.secondary .swatch-hex,
+    .swatch.secondary .swatch-name { color: rgba(255,255,255,0.85); }
+
+    .swatch.accent { background: var(--gold); }
+    .swatch.accent .swatch-hex,
+    .swatch.accent .swatch-name { color: rgba(0,0,0,0.65); }
+
+    .swatch.neutral { background: var(--slate); }
+    .swatch.neutral .swatch-hex,
+    .swatch.neutral .swatch-name { color: rgba(255,255,255,0.85); }
+
+    .swatch.white-swatch { background: var(--white); border: 1px solid #ddd; }
+    .swatch.white-swatch .swatch-hex,
+    .swatch.white-swatch .swatch-name { color: var(--slate); }
+
+    .palette-usage {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+
+    .usage-item {
+      text-align: center;
+    }
+
+    .usage-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 auto 4px;
+    }
+
+    .usage-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.7;
+    }
+
+    /* ── TYPOGRAPHY SYSTEM ── */
+    .type-samples {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta {
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .type-style-name {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .type-specs {
+      font-size: 8px;
+      font-weight: 400;
+      color: var(--slate);
+      opacity: 0.7;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+    }
+
+    .type-sample-h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .type-sample-h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: -0.3px;
+      line-height: 1.1;
+    }
+
+    .type-sample-h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--green);
+      line-height: 1.2;
+    }
+
+    .type-sample-body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--slate);
+      line-height: 1.6;
+      max-width: 360px;
+    }
+
+    .type-sample-caption {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--slate);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ── BUSINESS CARD ── */
+    .biz-cards-wrap {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .biz-card {
+      width: 252px; /* 3.5" at 72dpi */
+      height: 144px; /* 2" at 72dpi */
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .biz-card.front {
+      background: var(--green);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .biz-card-front-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .biz-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.2px;
+    }
+
+    .biz-card-name span { color: var(--gold); }
+
+    .biz-card-tagline {
+      font-size: 6.5px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    .biz-card-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .biz-card-contact-line {
+      font-size: 7px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.3px;
+    }
+
+    .biz-card-accent-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    /* Decorative leaf on front card */
+    .biz-card-leaf {
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      opacity: 0.06;
+    }
+
+    .biz-card.back {
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .biz-card-back-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -0.2px;
+      margin-bottom: 2px;
+    }
+
+    .biz-card-back-name span { color: var(--gold); }
+
+    .biz-card-back-role {
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 12px;
+    }
+
+    .biz-card-back-person {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--green);
+      margin-bottom: 1px;
+    }
+
+    .biz-card-back-title {
+      font-size: 7px;
+      font-weight: 400;
+      color: var(--slate);
+      opacity: 0.7;
+    }
+
+    .biz-card-back-divider {
+      width: 24px;
+      height: 1.5px;
+      background: var(--gold);
+      margin: 10px 0;
+    }
+
+    .card-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate);
+      opacity: 0.5;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* ── LETTERHEAD ── */
+    .letterhead {
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .letterhead-header {
+      background: var(--green);
+      padding: 20px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .letterhead-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .letterhead-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.2px;
+      line-height: 1;
+    }
+
+    .letterhead-name span { color: var(--gold); }
+
+    .letterhead-sub {
+      font-size: 7px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+
+    .letterhead-contact {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .letterhead-contact-line {
+      font-size: 8px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.3px;
+    }
+
+    .letterhead-gold-bar {
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .letterhead-body-preview {
+      padding: 22px 36px 18px;
+      background: var(--white);
+    }
+
+    .letterhead-date {
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--slate);
+      opacity: 0.6;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .letterhead-subject {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.2px;
+      margin-bottom: 6px;
+    }
+
+    .letterhead-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .letterhead-line {
+      height: 8px;
+      background: #f0ece4;
+      border-radius: 2px;
+    }
+
+    .letterhead-line.short { width: 55%; }
+    .letterhead-line.medium { width: 80%; }
+    .letterhead-line.long { width: 92%; }
+
+    /* ── BOTTOM ROW ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .bottom-col {
+      padding: 48px 64px;
+    }
+
+    .bottom-col.left {
+      border-right: 1px solid var(--cream-dark);
+    }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer {
+      background: var(--green);
+      padding: 18px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .page-footer-left {
+      font-size: 9px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1px;
+    }
+
+    .page-footer-right {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Card wrapper under bizcard */
+    .card-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <div class="doc-label">Brand Identity Package</div>
+      <div class="doc-title">Verdana Wellness Co.</div>
+      <div class="doc-subtitle">Full Brand System — Riverside, Ohio</div>
+    </div>
+    <div class="doc-header-right">
+      <div class="doc-meta">Prepared by <strong>Naomi Seay</strong></div>
+      <div class="doc-meta">Document Version <strong>1.0</strong></div>
+      <div class="doc-meta">Year <strong>2025</strong></div>
+    </div>
+  </div>
+
+  <!-- TOP SECTION: Logo + Color Palette -->
+  <div class="main-grid">
+
+    <!-- LEFT: Logo Concepts -->
+    <div class="grid-col left">
+      <div class="section-label">01 — Logomark</div>
+      <div class="section-title">Brand Mark &amp; Wordmark</div>
+
+      <!-- Light version -->
+      <div class="logo-container">
+        <div class="logo-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Leaf icon: teardrop shape made of two bezier curves -->
+            <path d="M26 46 C14 36 8 24 14 12 C18 5 26 4 26 4 C26 4 34 5 38 12 C44 24 38 36 26 46Z" fill="#1B4332"/>
+            <!-- Center vein -->
+            <line x1="26" y1="46" x2="26" y2="10" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/>
+            <!-- Side veins -->
+            <path d="M26 30 C22 27 18 26 15 26" stroke="#C9A84C" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.7"/>
+            <path d="M26 30 C30 27 34 26 37 26" stroke="#C9A84C" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.7"/>
+            <path d="M26 22 C22 19 19 19 17 20" stroke="#C9A84C" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.5"/>
+            <path d="M26 22 C30 19 33 19 35 20" stroke="#C9A84C" stroke-width="0.7" stroke-linecap="round" fill="none" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="logo-wordmark">
+          <div class="logo-name">Verdana <span>Wellness</span></div>
+          <div class="logo-tagline">Cultivating Well-Being · Riverside</div>
+        </div>
+      </div>
+      <div class="logo-variants-label">Light background version</div>
+
+      <!-- Dark version -->
+      <div class="logo-container dark" style="margin-top: 12px;">
+        <div class="logo-icon">
+          <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 46 C14 36 8 24 14 12 C18 5 26 4 26 4 C26 4 34 5 38 12 C44 24 38 36 26 46Z" fill="#C9A84C"/>
+            <line x1="26" y1="46" x2="26" y2="10" stroke="#1B4332" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M26 30 C22 27 18 26 15 26" stroke="#1B4332" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.7"/>
+            <path d="M26 30 C30 27 34 26 37 26" stroke="#1B4332" stroke-width="0.8" stroke-linecap="round" fill="none" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="logo-wordmark">
+          <div class="logo-name">Verdana <span>Wellness</span></div>
+          <div class="logo-tagline">Cultivating Well-Being · Riverside</div>
+        </div>
+      </div>
+      <div class="logo-variants-label">Dark background version (reversed)</div>
+    </div>
+
+    <!-- RIGHT: Color Palette -->
+    <div class="grid-col">
+      <div class="section-label">02 — Color System</div>
+      <div class="section-title">Brand Palette</div>
+
+      <div class="palette-grid">
+        <div class="swatch primary">
+          <div class="swatch-hex">#1B4332</div>
+          <div class="swatch-name">Primary</div>
+        </div>
+        <div class="swatch secondary">
+          <div class="swatch-hex">#2D6A4F</div>
+          <div class="swatch-name">Secondary</div>
+        </div>
+        <div class="swatch accent">
+          <div class="swatch-hex">#C9A84C</div>
+          <div class="swatch-name">Accent</div>
+        </div>
+        <div class="swatch neutral">
+          <div class="swatch-hex">#4A5568</div>
+          <div class="swatch-name">Neutral</div>
+        </div>
+        <div class="swatch white-swatch">
+          <div class="swatch-hex">#F5F0E8</div>
+          <div class="swatch-name">Cream</div>
+        </div>
+      </div>
+
+      <div class="palette-usage">
+        <div class="usage-item">
+          <div class="usage-dot" style="background:#1B4332;"></div>
+          <div class="usage-label">Backgrounds<br>Headers</div>
+        </div>
+        <div class="usage-item">
+          <div class="usage-dot" style="background:#2D6A4F;"></div>
+          <div class="usage-label">CTAs<br>Highlights</div>
+        </div>
+        <div class="usage-item">
+          <div class="usage-dot" style="background:#C9A84C;"></div>
+          <div class="usage-label">Accents<br>Borders</div>
+        </div>
+        <div class="usage-item">
+          <div class="usage-dot" style="background:#4A5568;"></div>
+          <div class="usage-label">Body Text<br>Captions</div>
+        </div>
+        <div class="usage-item">
+          <div class="usage-dot" style="background:#F5F0E8; border:1px solid #ccc;"></div>
+          <div class="usage-label">Canvas<br>Cards</div>
+        </div>
+      </div>
+
+      <!-- Color usage note -->
+      <div style="margin-top: 28px; padding: 16px 18px; background: var(--white); border-left: 3px solid var(--gold);">
+        <div style="font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;">Color Ratio</div>
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
+          <div style="height: 10px; width: 60%; background: var(--green); border-radius: 2px 0 0 2px;"></div>
+          <div style="height: 10px; width: 30%; background: var(--cream); border: 1px solid #ddd;"></div>
+          <div style="height: 10px; width: 10%; background: var(--gold); border-radius: 0 2px 2px 0;"></div>
+        </div>
+        <div style="display: flex; gap: 24px;">
+          <div style="font-size: 8px; color: var(--slate); opacity:0.7;"><strong style="color:var(--green)">60%</strong> Primary Green</div>
+          <div style="font-size: 8px; color: var(--slate); opacity:0.7;"><strong style="color:var(--slate)">30%</strong> Cream &amp; White</div>
+          <div style="font-size: 8px; color: var(--slate); opacity:0.7;"><strong style="color:var(--gold)">10%</strong> Gold Accent</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MIDDLE SECTION: Typography -->
+  <div style="border-top: 1px solid var(--cream-dark); padding: 52px 64px;">
+    <div class="section-label">03 — Typography System</div>
+    <div class="section-title" style="max-width: 400px;">Type Hierarchy — Playfair Display + Source Sans 3</div>
+
+    <div class="type-samples">
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-style-name">H1</div>
+          <div class="type-specs">Playfair Display<br>700 · 40px<br>−1px tracking</div>
+        </div>
+        <div class="type-sample-h1">Wellness Begins Here</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-style-name">H2</div>
+          <div class="type-specs">Playfair Display<br>600 · 26px<br>−0.3px tracking</div>
+        </div>
+        <div class="type-sample-h2">Services &amp; Programs</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-style-name">H3</div>
+          <div class="type-specs">Playfair Display<br>600 Italic · 18px</div>
+        </div>
+        <div class="type-sample-h3">Mindful Movement, Every Day</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-style-name">Body</div>
+          <div class="type-specs">Source Sans 3<br>400 · 14px<br>1.6 line-height</div>
+        </div>
+        <div class="type-sample-body">Our holistic approach combines evidence-based wellness practices with the warmth of community. Every session is designed to restore balance, reduce stress, and strengthen your connection to self.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">
+          <div class="type-style-name">Caption</div>
+          <div class="type-specs">Source Sans 3<br>300 · 11px<br>+1.5px tracking</div>
+        </div>
+        <div class="type-sample-caption">Riverside's Premier Wellness Studio · Est. 2020</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM SECTION: Business Card + Letterhead -->
+  <div class="bottom-row">
+
+    <!-- Business Cards -->
+    <div class="bottom-col left">
+      <div class="section-label">04 — Stationery</div>
+      <div class="section-title">Business Card — 3.5" × 2"</div>
+
+      <div class="biz-cards-wrap">
+
+        <!-- FRONT -->
+        <div class="card-item">
+          <div class="biz-card front">
+            <div class="biz-card-leaf">
+              <svg width="100" height="100" viewBox="0 0 52 52" fill="none">
+                <path d="M26 46 C14 36 8 24 14 12 C18 5 26 4 26 4 C26 4 34 5 38 12 C44 24 38 36 26 46Z" fill="white"/>
+              </svg>
+            </div>
+            <div class="biz-card-front-top">
+              <svg width="20" height="20" viewBox="0 0 52 52" fill="none">
+                <path d="M26 46 C14 36 8 24 14 12 C18 5 26 4 26 4 C26 4 34 5 38 12 C44 24 38 36 26 46Z" fill="#C9A84C"/>
+                <line x1="26" y1="46" x2="26" y2="10" stroke="#1B4332" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <div>
+                <div class="biz-card-name">Verdana <span>Wellness</span></div>
+                <div class="biz-card-tagline">Cultivating Well-Being</div>
+              </div>
+            </div>
+            <div class="biz-card-contact">
+              <div class="biz-card-contact-line">verdanawellness.com</div>
+              <div class="biz-card-contact-line">Riverside, Ohio 45202</div>
+            </div>
+            <div class="biz-card-accent-bar"></div>
+          </div>
+          <div class="card-label">Front</div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-item">
+          <div class="biz-card back">
+            <div class="biz-card-back-name">Verdana <span>Wellness</span></div>
+            <div class="biz-card-back-role">Wellness Consultant</div>
+            <div class="biz-card-back-person">Dr. Sarah Linden</div>
+            <div class="biz-card-back-title">Founder &amp; Lead Practitioner</div>
+            <div class="biz-card-back-divider"></div>
+            <div style="font-size:7.5px; color:var(--slate); opacity:0.7; line-height:1.6;">
+              sarah@verdanawellness.com<br>
+              (513) 404-2200
+            </div>
+          </div>
+          <div class="card-label">Back</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Letterhead -->
+    <div class="bottom-col">
+      <div class="section-label">05 — Stationery</div>
+      <div class="section-title">Letterhead Header Mockup</div>
+
+      <div class="letterhead">
+        <div class="letterhead-header">
+          <div class="letterhead-logo">
+            <svg width="28" height="28" viewBox="0 0 52 52" fill="none">
+              <path d="M26 46 C14 36 8 24 14 12 C18 5 26 4 26 4 C26 4 34 5 38 12 C44 24 38 36 26 46Z" fill="#C9A84C"/>
+              <line x1="26" y1="46" x2="26" y2="10" stroke="#1B4332" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <div class="letterhead-name">Verdana <span>Wellness</span></div>
+              <div class="letterhead-sub">Riverside · Ohio</div>
+            </div>
+          </div>
+          <div class="letterhead-contact">
+            <div class="letterhead-contact-line">verdanawellness.com</div>
+            <div class="letterhead-contact-line">sarah@verdanawellness.com</div>
+            <div class="letterhead-contact-line">(513) 404-2200</div>
+          </div>
+        </div>
+        <div class="letterhead-gold-bar"></div>
+        <div class="letterhead-body-preview">
+          <div class="letterhead-date">April 21, 2025</div>
+          <div class="letterhead-subject">Re: Wellness Program Enrollment — Spring 2025</div>
+          <div class="letterhead-lines" style="margin-top: 12px;">
+            <div class="letterhead-line medium"></div>
+            <div class="letterhead-line long"></div>
+            <div class="letterhead-line long"></div>
+            <div class="letterhead-line medium"></div>
+            <div class="letterhead-line short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PAGE FOOTER -->
+  <div class="page-footer">
+    <div class="page-footer-left">Verdana Wellness Co. — Brand Identity Package v1.0 · Confidential</div>
+    <div class="page-footer-right">Designed by Naomi Seay</div>
+  </div>
+
+</body>
+</html>

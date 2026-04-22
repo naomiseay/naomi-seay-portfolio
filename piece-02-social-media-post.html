@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=800">
+  <title>Lumina Nail Studio — Instagram Post</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 800px;
+      height: 800px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .post {
+      width: 800px;
+      height: 800px;
+      position: relative;
+      overflow: hidden;
+      background: #1c1310;
+    }
+
+    /* Background gradient layers */
+    .bg-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 500px at 80% 20%, rgba(201,169,154,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 400px 600px at 10% 90%, rgba(160,112,96,0.14) 0%, transparent 50%),
+        linear-gradient(145deg, #1c1310 0%, #2a1f1c 40%, #1c1310 100%);
+    }
+
+    /* Decorative circle element */
+    .deco-circle-large {
+      position: absolute;
+      width: 580px;
+      height: 580px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,154,0.15);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .deco-circle-med {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,154,0.10);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Petal decorations */
+    .petal {
+      position: absolute;
+      font-size: 36px;
+      opacity: 0.25;
+      user-select: none;
+    }
+    .petal-1 { top: 42px; left: 58px; transform: rotate(-20deg); }
+    .petal-2 { top: 80px; right: 70px; transform: rotate(30deg); font-size: 22px; opacity: 0.18; }
+    .petal-3 { bottom: 100px; right: 60px; transform: rotate(-10deg); font-size: 28px; opacity: 0.20; }
+    .petal-4 { bottom: 70px; left: 50px; transform: rotate(15deg); font-size: 20px; opacity: 0.15; }
+
+    /* Corner accent lines */
+    .corner-tl, .corner-br {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+    }
+    .corner-tl {
+      top: 32px;
+      left: 32px;
+      border-top: 1.5px solid rgba(201,169,154,0.5);
+      border-left: 1.5px solid rgba(201,169,154,0.5);
+    }
+    .corner-br {
+      bottom: 32px;
+      right: 32px;
+      border-bottom: 1.5px solid rgba(201,169,154,0.5);
+      border-right: 1.5px solid rgba(201,169,154,0.5);
+    }
+
+    /* Main content */
+    .content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 80px;
+    }
+
+    .eyebrow {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      color: #c9a99a;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: rgba(201,169,154,0.5);
+      display: block;
+    }
+
+    /* Main headline */
+    .headline-wrapper {
+      margin-bottom: 28px;
+    }
+
+    .headline-pre {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 22px;
+      font-weight: 400;
+      font-style: italic;
+      color: #b09080;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .headline-main {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 72px;
+      font-weight: 700;
+      color: #f2ece8;
+      line-height: 0.92;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .headline-main .accent {
+      color: #c9a99a;
+      display: block;
+      font-size: 60px;
+      font-weight: 300;
+      text-transform: none;
+      font-style: italic;
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    /* Visual separator */
+    .separator {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .sep-line {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,169,154,0.6));
+    }
+    .sep-line.right {
+      background: linear-gradient(90deg, rgba(201,169,154,0.6), transparent);
+    }
+    .sep-diamond {
+      width: 6px;
+      height: 6px;
+      background: #c9a99a;
+      transform: rotate(45deg);
+    }
+
+    /* Offer callout */
+    .offer-callout {
+      background: rgba(201,169,154,0.12);
+      border: 1px solid rgba(201,169,154,0.3);
+      border-radius: 2px;
+      padding: 16px 32px;
+      margin-bottom: 32px;
+    }
+    .offer-callout .offer-text {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      color: #e8d8d0;
+    }
+    .offer-callout .offer-highlight {
+      font-family: Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #e8c8be;
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* CTA button */
+    .cta-button {
+      background: #c9a99a;
+      color: #1c1310;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 14px 44px;
+      border-radius: 1px;
+      margin-bottom: 32px;
+      display: inline-block;
+    }
+
+    /* Services pills */
+    .services-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .service-pill {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #a09090;
+      border: 1px solid rgba(160,144,144,0.35);
+      padding: 5px 14px;
+      border-radius: 1px;
+    }
+
+    /* Bottom account info */
+    .account-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .account-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9a99a, #8a6a5a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .account-info {
+      text-align: left;
+    }
+    .account-handle {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #e0d0c8;
+      letter-spacing: 0.5px;
+    }
+    .account-sub {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      color: #7a6a66;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hashtag row */
+    .hashtags {
+      position: absolute;
+      bottom: 52px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      color: #6a5a56;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="post">
+    <div class="bg-gradient"></div>
+    <div class="deco-circle-large"></div>
+    <div class="deco-circle-med"></div>
+
+    <div class="petal petal-1">🌸</div>
+    <div class="petal petal-2">✿</div>
+    <div class="petal petal-3">🌸</div>
+    <div class="petal petal-4">✿</div>
+
+    <div class="corner-tl"></div>
+    <div class="corner-br"></div>
+
+    <div class="content">
+      <div class="eyebrow">Lumina Nail Studio</div>
+
+      <div class="headline-wrapper">
+        <div class="headline-pre">your nails deserve</div>
+        <div class="headline-main">
+          THE BEST<span class="accent">of everything.</span>
+        </div>
+      </div>
+
+      <div class="separator">
+        <div class="sep-line"></div>
+        <div class="sep-diamond"></div>
+        <div class="sep-line right"></div>
+      </div>
+
+      <div class="offer-callout">
+        <div class="offer-text">Spring Special — April Only</div>
+        <div class="offer-highlight">Gel Manicure + Spa Pedicure from $79</div>
+      </div>
+
+      <div class="cta-button">Book Your Appointment Today</div>
+
+      <div class="services-row">
+        <div class="service-pill">Gel Nails</div>
+        <div class="service-pill">Acrylics</div>
+        <div class="service-pill">Nail Art</div>
+        <div class="service-pill">Spa Pedicure</div>
+        <div class="service-pill">Hand Therapy</div>
+      </div>
+
+      <div class="account-row">
+        <div class="account-avatar">💅</div>
+        <div class="account-info">
+          <div class="account-handle">@luminanailstudio</div>
+          <div class="account-sub">Riverside, OH · Link in bio to book</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hashtags">
+      #nailsofinstagram &nbsp;·&nbsp; #riversidenails &nbsp;·&nbsp; #gelnails &nbsp;·&nbsp; #nailart &nbsp;·&nbsp; #spalife &nbsp;·&nbsp; #selfcare
+    </div>
+  </div>
+</body>
+</html>

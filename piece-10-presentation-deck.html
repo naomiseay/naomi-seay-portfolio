@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Q2 Operations Review — Presentation Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --charcoal: #1C1C1E;
+      --charcoal-mid: #2C2C2E;
+      --charcoal-light: #3A3A3C;
+      --teal: #0D9488;
+      --teal-light: #14B8AA;
+      --teal-dim: rgba(13,148,136,0.15);
+      --white: #FFFFFF;
+      --off-white: #F5F5F7;
+      --muted: #8E8E93;
+      --border: rgba(255,255,255,0.10);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #0F0F10;
+      padding: 48px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ── Slide wrapper ── */
+    .slide-wrapper {
+      width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .slide-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      padding: 20px 0 8px;
+      text-align: right;
+    }
+
+    .slide-label:first-child { padding-top: 0; }
+
+    /* ── Base slide ── */
+    .slide {
+      width: 960px;
+      height: 540px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* ── SLIDE 1 — TITLE ── */
+    .slide-1 {
+      background: var(--charcoal);
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-1-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-light) 40%, transparent 100%);
+    }
+
+    .slide-1-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Grid lines */
+    .slide-1-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Large teal circle bleed */
+    .slide-1-bg::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(13,148,136,0.15);
+      right: -160px;
+      top: -140px;
+    }
+
+    .slide-1-inner {
+      position: relative;
+      z-index: 1;
+      padding: 56px 64px 48px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .slide-1-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .company-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .company-logo-box {
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .company-logo-inner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid white;
+      border-radius: 3px;
+    }
+
+    .company-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .slide-date-badge {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.05);
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .slide-1-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-1-eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+    .slide-1-title {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .slide-1-title span { color: var(--teal-light); }
+
+    .slide-1-subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.50);
+      max-width: 520px;
+    }
+
+    .slide-1-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .presenter-info strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.80);
+    }
+
+    .presenter-info span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .slide-number {
+      font-size: 12px;
+      color: rgba(255,255,255,0.20);
+      font-weight: 500;
+    }
+
+    /* ── SLIDE 2 — EXEC SUMMARY ── */
+    .slide-2 {
+      background: var(--charcoal);
+      flex-direction: column;
+    }
+
+    .slide-header {
+      padding: 36px 56px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 20px;
+    }
+
+    .slide-header-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+    }
+
+    .slide-number-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--teal);
+      background: var(--teal-dim);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .slide-2-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 0;
+      padding: 40px 56px;
+    }
+
+    .exec-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-right: 48px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .exec-bullet {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .bullet-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      background: var(--teal-dim);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .bullet-text strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .bullet-text p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.50);
+    }
+
+    .exec-stat-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 40px;
+      gap: 8px;
+    }
+
+    .pull-stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      margin-bottom: 4px;
+    }
+
+    .pull-stat-number {
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--teal-light);
+      line-height: 1;
+      letter-spacing: -3px;
+    }
+
+    .pull-stat-unit {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.40);
+      margin-bottom: 12px;
+    }
+
+    .pull-stat-context {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.5;
+      max-width: 200px;
+    }
+
+    /* ── SLIDE 3 — DATA CHARTS ── */
+    .slide-3 {
+      background: var(--charcoal);
+      flex-direction: column;
+    }
+
+    .slide-3-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 36px 56px;
+    }
+
+    .chart-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chart-panel + .chart-panel {
+      border-left: 1px solid rgba(255,255,255,0.07);
+      padding-left: 44px;
+    }
+
+    .chart-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 6px;
+    }
+
+    .chart-subtitle {
+      font-size: 12px;
+      color: rgba(255,255,255,0.30);
+      margin-bottom: 24px;
+    }
+
+    .bar-chart {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .bar-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .bar-val {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .bar {
+      width: 100%;
+      background: var(--teal);
+      border-radius: 4px 4px 0 0;
+      position: relative;
+    }
+
+    .bar.accent {
+      background: var(--teal-light);
+    }
+
+    .bar.dim {
+      background: var(--charcoal-light);
+    }
+
+    .bar-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.30);
+      text-align: center;
+    }
+
+    .chart-copy {
+      margin-top: 16px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.40);
+    }
+
+    /* ── SLIDE 4 — PROCESS ── */
+    .slide-4 {
+      background: var(--charcoal);
+      flex-direction: column;
+    }
+
+    .slide-4-body {
+      flex: 1;
+      padding: 36px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+
+    .process-step {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .process-step.highlight {
+      background: var(--teal-dim);
+      border-color: rgba(13,148,136,0.35);
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 1.5px;
+    }
+
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.40);
+      line-height: 1.5;
+    }
+
+    .process-arrow {
+      width: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow-line {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+      position: relative;
+    }
+
+    .arrow-line::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -4px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid rgba(255,255,255,0.25);
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+    }
+
+    .process-description {
+      font-size: 13px;
+      color: rgba(255,255,255,0.40);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+    /* ── SLIDE 5 — CLOSING ── */
+    .slide-5 {
+      background: var(--charcoal);
+    }
+
+    .slide-5-left {
+      flex: 1;
+      padding: 52px 52px 52px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .closing-statement {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+
+    .closing-statement span { color: var(--teal-light); }
+
+    .closing-tagline {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      margin-top: 16px;
+      max-width: 340px;
+      line-height: 1.55;
+    }
+
+    .slide-5-right {
+      width: 340px;
+      padding: 52px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .next-steps-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 20px;
+    }
+
+    .next-steps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .next-steps-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .step-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(13,148,136,0.50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-check.done {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .step-check-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.50);
+    }
+
+    .step-check.done .step-check-dot {
+      background: white;
+    }
+
+    .next-steps-list span {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.4;
+    }
+
+    .contact-block {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 8px;
+    }
+
+    .contact-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.70);
+    }
+
+    .contact-email {
+      font-size: 13px;
+      color: var(--teal-light);
+      margin-top: 3px;
+    }
+
+    .slide-divider {
+      width: 100%;
+      height: 16px;
+      background: #0F0F10;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-wrapper">
+
+    <!-- SLIDE 1 — TITLE -->
+    <div class="slide-label">Slide 1 of 5 — Title</div>
+    <div class="slide slide-1">
+      <div class="slide-1-accent-bar"></div>
+      <div class="slide-1-bg"></div>
+      <div class="slide-1-inner">
+        <div class="slide-1-top">
+          <div class="company-mark">
+            <div class="company-logo-box"><div class="company-logo-inner"></div></div>
+            <span class="company-name">Meridian Corp</span>
+          </div>
+          <div class="slide-date-badge">April 21, 2026 — Confidential</div>
+        </div>
+
+        <div class="slide-1-main">
+          <div class="slide-1-eyebrow">Quarterly Business Review</div>
+          <div class="slide-1-title">Q2 Operations<br /><span>Review</span></div>
+          <div class="slide-1-subtitle">Performance analysis, operational metrics, and strategic initiatives for Q2 FY2026</div>
+        </div>
+
+        <div class="slide-1-footer">
+          <div class="presenter-info">
+            <strong>Presented by Jordan Ellis</strong>
+            <span>Chief Operating Officer · Meridian Corp</span>
+          </div>
+          <div class="slide-number">01 / 05</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-divider"></div>
+
+    <!-- SLIDE 2 — EXEC SUMMARY -->
+    <div class="slide-label">Slide 2 of 5 — Executive Summary</div>
+    <div class="slide slide-2">
+      <div class="slide-header">
+        <div class="slide-header-title">Executive Summary</div>
+        <div class="slide-number-badge">02 / 05</div>
+      </div>
+      <div class="slide-2-body">
+        <div class="exec-bullets">
+          <div class="exec-bullet">
+            <div class="bullet-num">1</div>
+            <div class="bullet-text">
+              <strong>Revenue exceeded target by 11%</strong>
+              <p>Q2 closed at $4.8M against a $4.3M target, driven primarily by enterprise upsell activity and two new regional accounts in the Midwest segment.</p>
+            </div>
+          </div>
+          <div class="exec-bullet">
+            <div class="bullet-num">2</div>
+            <div class="bullet-text">
+              <strong>Operational efficiency improved 18 points</strong>
+              <p>Process automation initiatives reduced manual processing time by 34%, freeing ~420 hours of team capacity reallocated to customer success activities.</p>
+            </div>
+          </div>
+          <div class="exec-bullet">
+            <div class="bullet-num">3</div>
+            <div class="bullet-text">
+              <strong>Headcount plan remains on track for Q3</strong>
+              <p>Six strategic hires are in final-stage interviews across Engineering and Sales. Board approval secured for expanded headcount budget through EOY.</p>
+            </div>
+          </div>
+        </div>
+        <div class="exec-stat-panel">
+          <div class="pull-stat-label">Q2 Revenue</div>
+          <div class="pull-stat-number">$4.8</div>
+          <div class="pull-stat-unit">million</div>
+          <div class="pull-stat-context">+11% vs. target · +28% year-over-year</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-divider"></div>
+
+    <!-- SLIDE 3 — DATA -->
+    <div class="slide-label">Slide 3 of 5 — Data</div>
+    <div class="slide slide-3">
+      <div class="slide-header">
+        <div class="slide-header-title">Q2 Metrics</div>
+        <div class="slide-number-badge">03 / 05</div>
+      </div>
+      <div class="slide-3-body">
+        <!-- Chart 1: Revenue by Quarter -->
+        <div class="chart-panel">
+          <div class="chart-title">Revenue by Quarter ($M)</div>
+          <div class="chart-subtitle">FY2025–2026 · Actuals vs. Target</div>
+          <div class="bar-chart">
+            <div class="bar-group">
+              <div class="bar-val">2.9</div>
+              <div class="bar" style="height: 90px;"></div>
+              <div class="bar-label">Q3'25</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">3.4</div>
+              <div class="bar" style="height: 110px;"></div>
+              <div class="bar-label">Q4'25</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">3.7</div>
+              <div class="bar" style="height: 125px;"></div>
+              <div class="bar-label">Q1'26</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">4.3</div>
+              <div class="bar dim" style="height: 140px;"></div>
+              <div class="bar-label">Target</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">4.8</div>
+              <div class="bar accent" style="height: 158px;"></div>
+              <div class="bar-label">Q2'26</div>
+            </div>
+          </div>
+          <div class="chart-copy">Q2 actuals exceeded plan by $0.5M. Q3 target set at $5.2M based on current pipeline coverage of 2.3×.</div>
+        </div>
+
+        <!-- Chart 2: Operational Efficiency -->
+        <div class="chart-panel">
+          <div class="chart-title">Process Efficiency Score</div>
+          <div class="chart-subtitle">By department · Q2 FY2026</div>
+          <div class="bar-chart">
+            <div class="bar-group">
+              <div class="bar-val">88</div>
+              <div class="bar accent" style="height: 148px;"></div>
+              <div class="bar-label">Eng</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">74</div>
+              <div class="bar" style="height: 118px;"></div>
+              <div class="bar-label">Sales</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">91</div>
+              <div class="bar accent" style="height: 155px;"></div>
+              <div class="bar-label">CS</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">65</div>
+              <div class="bar dim" style="height: 100px;"></div>
+              <div class="bar-label">HR</div>
+            </div>
+            <div class="bar-group">
+              <div class="bar-val">80</div>
+              <div class="bar" style="height: 132px;"></div>
+              <div class="bar-label">Ops</div>
+            </div>
+          </div>
+          <div class="chart-copy">HR is the primary area of focus for Q3 automation investment. Customer Success leads company-wide with a score of 91.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-divider"></div>
+
+    <!-- SLIDE 4 — PROCESS -->
+    <div class="slide-label">Slide 4 of 5 — Process Diagram</div>
+    <div class="slide slide-4">
+      <div class="slide-header">
+        <div class="slide-header-title">Q3 Operational Roadmap</div>
+        <div class="slide-number-badge">04 / 05</div>
+      </div>
+      <div class="slide-4-body">
+        <div class="process-flow">
+          <div class="process-step highlight">
+            <div class="step-num">STEP 01</div>
+            <div class="step-title">Audit &amp; Baseline</div>
+            <div class="step-desc">Map current workflows, document process owners, identify highest-friction handoffs and automation candidates.</div>
+          </div>
+          <div class="process-arrow"><div class="arrow-line"></div></div>
+          <div class="process-step">
+            <div class="step-num">STEP 02</div>
+            <div class="step-title">Design &amp; Prioritize</div>
+            <div class="step-desc">Rank initiatives by impact-to-effort ratio. Lock Q3 roadmap with department leads and confirm resource allocation.</div>
+          </div>
+          <div class="process-arrow"><div class="arrow-line"></div></div>
+          <div class="process-step">
+            <div class="step-num">STEP 03</div>
+            <div class="step-title">Implement &amp; Test</div>
+            <div class="step-desc">Deploy automation in parallel with live operations. 2-week UAT window with KPI checkpoints at 30 and 60 days.</div>
+          </div>
+          <div class="process-arrow"><div class="arrow-line"></div></div>
+          <div class="process-step">
+            <div class="step-num">STEP 04</div>
+            <div class="step-title">Measure &amp; Scale</div>
+            <div class="step-desc">Validate outcomes against baseline. Expand successful pilots company-wide and incorporate learnings into Q4 planning.</div>
+          </div>
+        </div>
+        <div class="process-description">
+          This 4-phase approach ensures changes are evidence-based and reversible. Each gate has defined success criteria before progression. Step 01 is currently underway — estimated completion June 14.
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-divider"></div>
+
+    <!-- SLIDE 5 — CLOSING -->
+    <div class="slide-label">Slide 5 of 5 — Closing</div>
+    <div class="slide slide-5">
+      <div class="slide-5-left">
+        <div>
+          <div class="closing-statement">Q3 starts with<br />real <span>momentum.</span></div>
+          <div class="closing-tagline">The Q2 results position us well. The focus now is on execution discipline, headcount delivery, and protecting the efficiency gains already made.</div>
+        </div>
+        <div class="slide-number" style="color: rgba(255,255,255,0.18); font-size: 13px;">05 / 05</div>
+      </div>
+
+      <div class="slide-5-right">
+        <div>
+          <div class="next-steps-label">Next Steps</div>
+          <ul class="next-steps-list">
+            <li>
+              <div class="step-check done"><div class="step-check-dot"></div></div>
+              <span>Board approval for Q3 headcount budget — secured April 18</span>
+            </li>
+            <li>
+              <div class="step-check"><div class="step-check-dot"></div></div>
+              <span>Finalize 6 open hires by May 15</span>
+            </li>
+            <li>
+              <div class="step-check"><div class="step-check-dot"></div></div>
+              <span>Launch HR automation pilot — June 1</span>
+            </li>
+            <li>
+              <div class="step-check"><div class="step-check-dot"></div></div>
+              <span>Q3 all-hands briefing — July 7</span>
+            </li>
+            <li>
+              <div class="step-check"><div class="step-check-dot"></div></div>
+              <span>Q3 mid-point review — August 5</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-block">
+          <div class="contact-label">Questions</div>
+          <div class="contact-name">Jordan Ellis, COO</div>
+          <div class="contact-email">j.ellis@meridiancorp.io</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
