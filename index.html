@@ -9,40 +9,57 @@
   <meta property="og:description" content="20-piece portfolio: graphic design, data analytics, operations, and administrative work samples.">
   <meta property="og:url" content="https://naomiseay.github.io/naomi-seay-portfolio">
   <meta name="author" content="Naomi Seay">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:       #0F0F0F;
-      --warm-white: #F9F6F1;
-      --teal:       #0D9488;
-      --teal-light: #14B8AA;
-      --teal-dim:   rgba(13,148,136,0.12);
-      --amber:      #F59E0B;
-      --amber-dim:  rgba(245,158,11,0.12);
-      --white:      #FFFFFF;
-      --muted:      #6B7280;
-      --muted-light:#9CA3AF;
-      --border:     rgba(15,15,15,0.10);
-      --card-bg:    #FFFFFF;
-      /* category colors */
-      --cat-graphic: #0D9488;
-      --cat-data:    #F59E0B;
-      --cat-ops:     #4F46E5;
-      --cat-admin:   #E11D48;
-      --cat-ui:      #7C3AED;
-      --cat-social:  #EA580C;
-      --cat-print:   #475569;
-      --cat-brand:   #059669;
+      /* ── KINBAKU THEME — Modern Japanese Craftsmanship ── */
+      --ink:            #0F0D0B;
+      --surface:        #1C1711;
+      --surface-2:      #251E17;
+      --border:         rgba(240,230,211,0.10);
+      --border-strong:  rgba(240,230,211,0.22);
+
+      --vermillion:     #C63527;
+      --vermillion-h:   #D9412F;
+      --vermillion-dim: rgba(198,53,39,0.14);
+
+      --gold:           #C9A84C;
+      --gold-dim:       rgba(201,168,76,0.12);
+
+      --cream:          #F0E6D3;
+      --muted:          #9D8E7A;
+      --muted-light:    #6B5E50;
+
+      /* legacy aliases — all existing var() refs auto-remap */
+      --dark:       var(--cream);
+      --warm-white: var(--ink);
+      --teal:       var(--vermillion);
+      --teal-light: var(--vermillion-h);
+      --teal-dim:   var(--vermillion-dim);
+      --amber:      var(--gold);
+      --amber-dim:  var(--gold-dim);
+      --white:      var(--surface);
+      --card-bg:    var(--surface);
+
+      /* category chips — readable on dark bg */
+      --cat-graphic: #C63527;
+      --cat-data:    #C9A84C;
+      --cat-ops:     #7B6FA0;
+      --cat-admin:   #C47A5A;
+      --cat-ui:      #5B9E87;
+      --cat-social:  #B5765A;
+      --cat-print:   #6B8FA8;
+      --cat-brand:   #9E8F4F;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--warm-white);
-      color: var(--dark);
+      background: var(--ink);
+      color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -51,14 +68,14 @@
       position: sticky;
       top: 0;
       z-index: 300;
-      background: rgba(249,246,241,0.85);
+      background: rgba(15,13,11,0.92);
       border-bottom: 1px solid var(--border);
       transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
     }
 
     nav.scrolled {
-      background: rgba(249,246,241,0.70);
-      backdrop-filter: blur(12px);
+      background: rgba(15,13,11,0.80);
+      backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 1px 24px rgba(15,15,15,0.08);
     }
@@ -90,7 +107,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 14px;
       color: white;
       letter-spacing: 0.5px;
@@ -98,7 +115,7 @@
     }
 
     .nav-name {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 20px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -215,11 +232,11 @@
     }
 
     .hero-name {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 96px;
       line-height: 0.95;
       letter-spacing: -3px;
-      color: var(--dark);
+      color: var(--cream);
       margin-bottom: 28px;
     }
 
@@ -481,7 +498,7 @@
     }
 
     .section-title {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 42px;
       letter-spacing: -1px;
       color: var(--dark);
@@ -536,7 +553,7 @@
       width: 100%;
       height: 200px;
       overflow: hidden;
-      background: #F1F5F9;
+      background: var(--surface-2);
       position: relative;
     }
 
@@ -602,7 +619,7 @@
     }
 
     .card-title {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 17px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -672,7 +689,7 @@
     }
 
     .about-heading {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 52px;
       letter-spacing: -1.5px;
       color: white;
@@ -761,7 +778,7 @@
     }
 
     .cta-headline {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 64px;
       letter-spacing: -2px;
       color: white;
@@ -846,7 +863,7 @@
     }
 
     .footer-name {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 17px;
       color: rgba(255,255,255,0.70);
     }
@@ -966,11 +983,11 @@
       width: 100%;
       height: 100%;
       border: none;
-      background: #fff;
+      background: var(--ink);
     }
 
     .lightbox-bottom-bar {
-      background: #111;
+      background: var(--surface);
       height: 44px;
       display: flex;
       align-items: center;
@@ -1046,7 +1063,7 @@
     }
 
     .profiles-heading {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 36px;
       letter-spacing: -0.8px;
       color: var(--dark);
@@ -1089,12 +1106,12 @@
       flex-shrink: 0;
     }
 
-    .profile-card-icon.li-icon { background: #EFF6FF; }
-    .profile-card-icon.gh-icon { background: #F3F4F6; }
-    .profile-card-icon.site-icon { background: #F0FDFB; }
+    .profile-card-icon.li-icon { background: var(--vermillion-dim); }
+    .profile-card-icon.gh-icon { background: rgba(240,230,211,0.06); }
+    .profile-card-icon.site-icon { background: var(--gold-dim); }
 
     .profile-card-name {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 16px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -1133,7 +1150,7 @@
     }
 
     .certs-heading {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 36px;
       letter-spacing: -0.8px;
       color: var(--dark);
@@ -1164,7 +1181,7 @@
     }
 
     .cert-card-name {
-      font-family: 'DM Serif Display', serif;
+      font-family: 'Playfair Display', serif;
       font-size: 15px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -1820,14 +1837,14 @@
 
     // ── Category chip colors ──
     const catChipColors = {
-      social: '#EA580C',
-      graphic: '#0D9488',
-      data: '#F59E0B',
-      operations: '#4F46E5',
-      administrative: '#E11D48',
-      ui: '#7C3AED',
-      print: '#475569',
-      brand: '#059669'
+      social: '#C47A5A',
+      graphic: '#C63527',
+      data: '#C9A84C',
+      operations: '#7B6FA0',
+      administrative: '#C63527',
+      ui: '#5B9E87',
+      print: '#6B8FA8',
+      brand: '#9E8F4F'
     };
 
     const catLabels = {
@@ -1873,7 +1890,7 @@
       iframe.src = piece.src;
       lbTitle.textContent = piece.title;
       // Category chip
-      const catColor = catChipColors[piece.cat] || '#0D9488';
+      const catColor = catChipColors[piece.cat] || '#C63527';
       lbCat.textContent = catLabels[piece.cat] || piece.cat;
       lbCat.style.background = catColor;
       overlay.classList.add('open');
