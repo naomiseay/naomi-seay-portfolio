@@ -9,58 +9,57 @@
   <meta property="og:description" content="20-piece portfolio: graphic design, data analytics, operations, and administrative work samples.">
   <meta property="og:url" content="https://naomiseay.github.io/naomi-seay-portfolio">
   <meta name="author" content="Naomi Seay">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* ── VERDANT THEME — Modern Green Beige ── */
-      --sand:          #EDE5D0;
-      --sand-2:        #E3D8C2;
-      --sand-3:        #D4C9B0;
-      --border:        rgba(45,74,53,0.13);
-      --border-strong: rgba(45,74,53,0.24);
+      /* ── HALFTONE THEME — Bold Pop Art ── */
+      --pop-white:   #FAFAFA;
+      --pop-paper:   #F5F0E8;
+      --pop-paper2:  #EDE8DE;
+      --pop-black:   #0A0A0A;
+      --pop-yellow:  #FFE500;
+      --pop-yellow-h:#F0D600;
+      --pop-magenta: #FF006E;
+      --pop-magenta-h:#E0005E;
+      --pop-blue:    #2B2BFF;
+      --pop-gray:    #5A5A5A;
 
-      --forest:        #2D4A35;
-      --forest-h:      #3A5F44;
-      --forest-dim:    rgba(45,74,53,0.10);
+      --border:        rgba(10,10,10,0.14);
+      --border-strong: rgba(10,10,10,0.28);
 
-      --sage:          #6B8A72;
-      --sage-dim:      rgba(107,138,114,0.12);
+      /* legacy aliases */
+      --ink:          var(--pop-white);
+      --surface:      var(--pop-paper);
+      --surface-2:    var(--pop-paper2);
+      --cream:        var(--pop-black);
+      --dark:         var(--pop-black);
+      --warm-white:   var(--pop-white);
+      --teal:         var(--pop-magenta);
+      --teal-light:   var(--pop-magenta-h);
+      --teal-dim:     rgba(255,0,110,0.08);
+      --amber:        var(--pop-yellow);
+      --amber-dim:    rgba(255,229,0,0.18);
+      --white:        var(--pop-paper);
+      --card-bg:      var(--pop-paper);
+      --muted:        var(--pop-gray);
+      --muted-light:  #8A8A8A;
+      --vermillion:   var(--pop-magenta);
+      --vermillion-h: var(--pop-magenta-h);
+      --vermillion-dim: rgba(255,0,110,0.08);
+      --gold:         var(--pop-yellow);
+      --gold-dim:     rgba(255,229,0,0.18);
 
-      --bark:          #1C2E22;
-      --muted:         #7A9480;
-      --muted-light:   #9AAFA0;
-
-      /* legacy aliases — all existing var() refs auto-remap */
-      --ink:          var(--sand);
-      --surface:      var(--sand-2);
-      --surface-2:    var(--sand-3);
-      --cream:        var(--bark);
-      --dark:         var(--forest);
-      --warm-white:   var(--sand);
-      --teal:         var(--forest);
-      --teal-light:   var(--forest-h);
-      --teal-dim:     var(--forest-dim);
-      --amber:        var(--sage);
-      --amber-dim:    var(--sage-dim);
-      --white:        var(--sand-2);
-      --card-bg:      var(--sand-2);
-      --vermillion:   var(--forest);
-      --vermillion-h: var(--forest-h);
-      --vermillion-dim: var(--forest-dim);
-      --gold:         var(--sage);
-      --gold-dim:     var(--sage-dim);
-
-      /* category chips — readable on sand bg */
-      --cat-graphic: #2D6B45;
-      --cat-data:    #4A7A35;
-      --cat-ops:     #5B6B9E;
-      --cat-admin:   #9E6B3A;
-      --cat-ui:      #3A8A7A;
-      --cat-social:  #8A6B3A;
-      --cat-print:   #5A6B7A;
-      --cat-brand:   #7A6B2D;
+      /* category chips */
+      --cat-graphic: #FF006E;
+      --cat-data:    #2B2BFF;
+      --cat-ops:     #FF006E;
+      --cat-admin:   #0A0A0A;
+      --cat-ui:      #2B2BFF;
+      --cat-social:  #FF006E;
+      --cat-print:   #5A5A5A;
+      --cat-brand:   #0A0A0A;
     }
 
     html { scroll-behavior: smooth; }
@@ -77,16 +76,16 @@
       position: sticky;
       top: 0;
       z-index: 300;
-      background: rgba(237,229,208,0.96);
+      background: rgba(250,250,250,0.97);
       border-bottom: 1px solid var(--border);
       transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
     }
 
     nav.scrolled {
-      background: rgba(237,229,208,0.90);
+      background: rgba(250,250,250,0.92);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 1px 24px rgba(45,74,53,0.10);
+      box-shadow: 0 3px 0 #0A0A0A;
     }
 
     .nav-inner {
@@ -116,7 +115,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 14px;
       color: white;
       letter-spacing: 0.5px;
@@ -124,7 +123,7 @@
     }
 
     .nav-name {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 20px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -156,7 +155,7 @@
     .filter-btn:hover {
       color: var(--dark);
       border-color: var(--border);
-      background: rgba(45,74,53,0.06);
+      background: rgba(10,10,10,0.06);
     }
 
     .filter-btn.active {
@@ -178,7 +177,7 @@
       align-items: center;
       gap: 7px;
       background: var(--teal-dim);
-      border: 1px solid rgba(45,74,53,0.22);
+      border: 1px solid rgba(10,10,10,0.22);
       border-radius: 100px;
       padding: 6px 14px;
       font-size: 12px;
@@ -241,7 +240,7 @@
     }
 
     .hero-name {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 96px;
       line-height: 0.95;
       letter-spacing: -3px;
@@ -362,7 +361,7 @@
       height: 220px;
       border-radius: 50%;
       background: var(--teal-dim);
-      border: 1.5px solid rgba(45,74,53,0.20);
+      border: 1.5px solid rgba(10,10,10,0.20);
     }
 
     .art-circle-2 {
@@ -373,7 +372,7 @@
       height: 150px;
       border-radius: 50%;
       background: var(--amber-dim);
-      border: 1.5px solid rgba(245,158,11,0.20);
+      border: 1.5px solid rgba(255,229,0,0.20);
     }
 
     .art-circle-3 {
@@ -403,7 +402,7 @@
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: rgba(45,74,53,0.30);
+      background: rgba(10,10,10,0.30);
       align-self: center;
       justify-self: center;
     }
@@ -414,7 +413,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(45,74,53,0.30), transparent);
+      background: linear-gradient(90deg, transparent, rgba(10,10,10,0.30), transparent);
     }
 
     .art-line-v {
@@ -487,9 +486,9 @@
     }
 
     .skill-chip:hover {
-      background: rgba(45,74,53,0.20);
+      background: rgba(10,10,10,0.20);
       color: var(--teal-light);
-      border-color: rgba(45,74,53,0.30);
+      border-color: rgba(10,10,10,0.30);
     }
 
     /* ── PORTFOLIO SECTION ── */
@@ -507,7 +506,7 @@
     }
 
     .section-title {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 42px;
       letter-spacing: -1px;
       color: var(--dark);
@@ -542,7 +541,7 @@
 
     .portfolio-card {
       background: var(--card-bg);
-      border: 1px solid #E5E7EB;
+      border: 1px solid #0A0A0A;
       border-radius: 12px;
       overflow: hidden;
       transition: transform 0.30s ease, box-shadow 0.30s ease;
@@ -628,7 +627,7 @@
     }
 
     .card-title {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 17px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -654,7 +653,7 @@
       align-items: center;
       gap: 6px;
       background: none;
-      border: 1px solid #E5E7EB;
+      border: 1px solid #0A0A0A;
       border-radius: 7px;
       padding: 8px 14px;
       font-family: 'DM Sans', sans-serif;
@@ -698,7 +697,7 @@
     }
 
     .about-heading {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 52px;
       letter-spacing: -1.5px;
       color: white;
@@ -727,8 +726,8 @@
       top: 0; left: 0;
       width: 180px; height: 180px;
       border-radius: 20px;
-      border: 1.5px solid rgba(45,74,53,0.30);
-      background: rgba(45,74,53,0.06);
+      border: 1.5px solid rgba(10,10,10,0.30);
+      background: rgba(10,10,10,0.06);
     }
 
     .aa-rect-2 {
@@ -736,8 +735,8 @@
       top: 40px; left: 40px;
       width: 180px; height: 180px;
       border-radius: 20px;
-      border: 1.5px solid rgba(245,158,11,0.25);
-      background: rgba(245,158,11,0.05);
+      border: 1.5px solid rgba(255,229,0,0.25);
+      background: rgba(255,229,0,0.05);
     }
 
     .aa-rect-3 {
@@ -765,7 +764,7 @@
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: rgba(45,74,53,0.40);
+      background: rgba(10,10,10,0.40);
       align-self: center;
       justify-self: center;
     }
@@ -775,7 +774,7 @@
       bottom: 60px;
       left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, rgba(45,74,53,0.30), transparent);
+      background: linear-gradient(90deg, rgba(10,10,10,0.30), transparent);
     }
 
     /* ── CTA STRIP ── */
@@ -787,7 +786,7 @@
     }
 
     .cta-headline {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 64px;
       letter-spacing: -2px;
       color: white;
@@ -872,7 +871,7 @@
     }
 
     .footer-name {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 17px;
       color: rgba(255,255,255,0.70);
     }
@@ -1072,7 +1071,7 @@
     }
 
     .profiles-heading {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 36px;
       letter-spacing: -0.8px;
       color: var(--dark);
@@ -1090,7 +1089,7 @@
       flex: 1;
       min-width: 200px;
       background: var(--white);
-      border: 1px solid #E5E7EB;
+      border: 1px solid #0A0A0A;
       border-radius: 12px;
       padding: 24px 22px;
       display: flex;
@@ -1120,7 +1119,7 @@
     .profile-card-icon.site-icon { background: var(--gold-dim); }
 
     .profile-card-name {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 16px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -1159,7 +1158,7 @@
     }
 
     .certs-heading {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 36px;
       letter-spacing: -0.8px;
       color: var(--dark);
@@ -1175,7 +1174,7 @@
 
     .cert-card {
       background: var(--white);
-      border: 1px solid #E5E7EB;
+      border: 1px solid #0A0A0A;
       border-radius: 12px;
       padding: 22px 20px;
       display: flex;
@@ -1190,7 +1189,7 @@
     }
 
     .cert-card-name {
-      font-family: 'Space Grotesk', serif;
+      font-family: 'Bebas Neue', serif;
       font-size: 15px;
       color: var(--dark);
       letter-spacing: -0.2px;
@@ -1216,7 +1215,7 @@
       letter-spacing: 0.5px;
       color: var(--teal);
       background: var(--teal-dim);
-      border: 1px solid rgba(45,74,53,0.20);
+      border: 1px solid rgba(10,10,10,0.20);
       border-radius: 100px;
       padding: 3px 8px;
       margin-top: 4px;
@@ -1236,6 +1235,208 @@
     @media (max-width: 480px) {
       .certs-grid { grid-template-columns: 1fr; }
     }
+
+    /* ══════════════════════════════════════════
+       HALFTONE STRUCTURAL OVERRIDES
+    ══════════════════════════════════════════ */
+
+    /* Sharp corners everywhere */
+    .monogram, .filter-btn, .avail-badge-nav, .nav-contact-btn,
+    .cta-primary, .cta-ghost, .portfolio-card, .card-view-btn,
+    .count-badge, .card-category-chip, .social-icon, .skill-chip,
+    .profile-card, .cert-chip, .contact-card, .lightbox-bottom-bar,
+    .lb-chip { border-radius: 0 !important; }
+
+    /* Nav thick border */
+    nav { border-bottom: 3px solid #0A0A0A !important; }
+
+    /* Monogram — square yellow */
+    .monogram {
+      background: #FFE500 !important;
+      color: #0A0A0A !important;
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 2px 2px 0 #0A0A0A !important;
+      border-radius: 0 !important;
+    }
+
+    /* Nav name — Bebas */
+    .nav-name {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 22px !important;
+      letter-spacing: 2px !important;
+    }
+
+    /* Filter buttons — pop art tabs */
+    .filter-btn { border: 2px solid transparent !important; }
+    .filter-btn:hover {
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 2px 2px 0 #0A0A0A !important;
+      background: none !important;
+      color: #0A0A0A !important;
+    }
+    .filter-btn.active {
+      background: #FFE500 !important;
+      border: 2px solid #0A0A0A !important;
+      color: #0A0A0A !important;
+      box-shadow: 3px 3px 0 #0A0A0A !important;
+    }
+
+    /* Available badge */
+    .avail-badge-nav {
+      background: #FF006E !important;
+      border: 2px solid #0A0A0A !important;
+      color: white !important;
+      box-shadow: 2px 2px 0 #0A0A0A !important;
+    }
+    .pulse-dot { background: #FFE500 !important; }
+
+    /* Hero — halftone dot background */
+    .hero { position: relative; overflow: hidden; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(10,10,10,0.07) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-left, .hero-right { position: relative; z-index: 1; }
+
+    /* Hero name — Bebas display */
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif !important;
+      letter-spacing: 1px !important;
+      font-size: clamp(72px, 10vw, 108px) !important;
+    }
+
+    /* CTA buttons */
+    .cta-primary {
+      background: #0A0A0A !important;
+      color: #FFE500 !important;
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 4px 4px 0 rgba(10,10,10,0.22) !important;
+    }
+    .cta-primary:hover {
+      background: #222 !important;
+      transform: translate(-2px,-2px) !important;
+      box-shadow: 6px 6px 0 rgba(10,10,10,0.18) !important;
+    }
+    .cta-ghost {
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 4px 4px 0 rgba(10,10,10,0.12) !important;
+      color: #0A0A0A !important;
+    }
+    .cta-ghost:hover {
+      transform: translate(-2px,-2px) !important;
+      box-shadow: 6px 6px 0 rgba(10,10,10,0.12) !important;
+    }
+
+    /* Nav contact button */
+    .nav-contact-btn {
+      background: #0A0A0A !important;
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 2px 2px 0 rgba(10,10,10,0.25) !important;
+    }
+    .nav-contact-btn:hover { background: #222 !important; }
+
+    /* Hero art — pop art shapes */
+    .art-circle-1 {
+      border-radius: 0 !important;
+      background: #FFE500 !important;
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 4px 4px 0 #0A0A0A !important;
+    }
+    .art-circle-2 { border-radius: 0 !important; background: rgba(255,0,110,0.08) !important; border: 2px solid rgba(255,0,110,0.25) !important; }
+    .art-circle-3 { border-radius: 0 !important; border: 2px solid rgba(10,10,10,0.14) !important; }
+    .art-rect, .art-rect-2 { border-radius: 0 !important; }
+    .art-rect { background: #FF006E !important; opacity: 0.14 !important; }
+    .art-rect-2 { background: #FFE500 !important; opacity: 0.4 !important; }
+
+    /* Section titles — Bebas */
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif !important;
+      letter-spacing: 2px !important;
+      font-size: 40px !important;
+    }
+
+    /* Count badge — pop art style */
+    .count-badge {
+      background: #FFE500 !important;
+      color: #0A0A0A !important;
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 2px 2px 0 #0A0A0A !important;
+    }
+
+    /* Portfolio cards */
+    .portfolio-card {
+      border: 3px solid #0A0A0A !important;
+      box-shadow: 5px 5px 0 #0A0A0A !important;
+      border-radius: 0 !important;
+      background: #FAFAFA !important;
+    }
+    .portfolio-card:hover {
+      transform: translate(-3px,-3px) !important;
+      box-shadow: 8px 8px 0 #0A0A0A !important;
+    }
+    .card-thumb { border-bottom: 3px solid #0A0A0A !important; }
+
+    /* Card titles — Bebas */
+    .card-title {
+      font-family: 'Bebas Neue', sans-serif !important;
+      font-size: 19px !important;
+      letter-spacing: 0.8px !important;
+      line-height: 1.15 !important;
+    }
+
+    /* Category chips */
+    .card-category-chip {
+      border: 2px solid #0A0A0A !important;
+      border-radius: 0 !important;
+    }
+    .chip-graphic, .chip-ops, .chip-social { background: #FF006E !important; color: white !important; }
+    .chip-data, .chip-ui { background: #2B2BFF !important; color: white !important; }
+    .chip-admin, .chip-brand { background: #0A0A0A !important; color: #FFE500 !important; }
+    .chip-print { background: #5A5A5A !important; color: white !important; }
+
+    /* Card view button */
+    .card-view-btn {
+      border: 2px solid #0A0A0A !important;
+      box-shadow: 2px 2px 0 #0A0A0A !important;
+      background: white !important;
+      color: #0A0A0A !important;
+    }
+    .card-view-btn:hover {
+      background: #0A0A0A !important;
+      color: #FFE500 !important;
+      transform: translate(-1px,-1px) !important;
+      box-shadow: 3px 3px 0 #0A0A0A !important;
+    }
+
+    /* Skills strip */
+    .skills-strip {
+      border-top: 3px solid #0A0A0A !important;
+      border-bottom: 3px solid #0A0A0A !important;
+    }
+    .skill-chip {
+      border-radius: 0 !important;
+      border: 1px solid rgba(255,255,255,0.15) !important;
+    }
+    .skill-chip:hover {
+      background: rgba(255,229,0,0.15) !important;
+      color: #FFE500 !important;
+      border-color: rgba(255,229,0,0.30) !important;
+    }
+
+    /* About/profile section */
+    .about-section {
+      border-top: 3px solid #0A0A0A !important;
+      border-bottom: 3px solid #0A0A0A !important;
+    }
+
+    /* Social icons */
+    .social-icon { border: 2px solid rgba(10,10,10,0.18) !important; border-radius: 0 !important; }
+    .social-link:hover .social-icon { border-color: #FF006E !important; box-shadow: 0 0 0 3px rgba(255,0,110,0.10) !important; }
   </style>
 </head>
 <body>
@@ -1366,7 +1567,7 @@
 
       <a href="https://naomiseay.github.io/naomi-seay-portfolio" target="_blank" rel="noopener" class="profile-card">
         <div class="profile-card-icon site-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2D4A35" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="#2D4A35" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#FF006E" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" stroke="#FF006E" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <div class="profile-card-name">Portfolio Live</div>
         <div class="profile-card-label">This site — 20-piece portfolio across design, data, and operations</div>
@@ -1846,14 +2047,14 @@
 
     // ── Category chip colors ──
     const catChipColors = {
-      social: '#8A6B3A',
-      graphic: '#2D6B45',
-      data: '#4A7A35',
-      operations: '#5B6B9E',
-      administrative: '#9E6B3A',
-      ui: '#3A8A7A',
-      print: '#5A6B7A',
-      brand: '#7A6B2D'
+      social: '#FF006E',
+      graphic: '#FF006E',
+      data: '#2B2BFF',
+      operations: '#FF006E',
+      administrative: '#0A0A0A',
+      ui: '#2B2BFF',
+      print: '#5A5A5A',
+      brand: '#0A0A0A'
     };
 
     const catLabels = {
@@ -1899,7 +2100,7 @@
       iframe.src = piece.src;
       lbTitle.textContent = piece.title;
       // Category chip
-      const catColor = catChipColors[piece.cat] || '#2D4A35';
+      const catColor = catChipColors[piece.cat] || '#FF006E';
       lbCat.textContent = catLabels[piece.cat] || piece.cat;
       lbCat.style.background = catColor;
       overlay.classList.add('open');
