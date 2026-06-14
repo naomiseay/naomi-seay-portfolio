@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnamese &harr; English Translation Samples — Naomi Seay</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #0F0F0F;
+      --rose: #E11D48;
+      --rose-light: #FB7185;
+      --rose-dim: rgba(225,29,72,0.08);
+      --amber: #F59E0B;
+      --warm-white: #F9F6F1;
+      --white: #FFFFFF;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+    .case-header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 60px 80px 56px;
+    }
+    .case-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--rose-light); margin-bottom: 20px;
+    }
+    .case-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px; line-height: 1.1; letter-spacing: -1px;
+      color: var(--white); max-width: 700px; margin-bottom: 32px;
+    }
+    .case-meta { display: flex; gap: 40px; flex-wrap: wrap; }
+    .meta-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.40); margin-bottom: 6px;
+    }
+    .meta-value { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+    .content { max-width: 960px; margin: 0 auto; padding: 60px 40px 80px; }
+
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px; color: var(--dark); letter-spacing: -0.3px;
+      margin-bottom: 20px; padding-top: 48px;
+      border-top: 2px solid var(--rose);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-heading:first-of-type { border-top: none; padding-top: 0; }
+    .section-icon {
+      width: 36px; height: 36px; background: var(--rose-dim);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+
+    p.body-text { font-size: 16px; line-height: 1.7; color: #374151; margin-top: 4px; }
+
+    .sample-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .sample-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      background: #FAFAFA;
+    }
+    .sample-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 14px; color: var(--muted);
+    }
+    .sample-type-tag {
+      background: var(--rose-dim);
+      color: var(--rose);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .translation-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .lang-block {
+      padding: 28px;
+    }
+    .lang-block:first-child {
+      border-right: 1px solid var(--border);
+    }
+    .lang-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .lang-flag { font-size: 16px; }
+    .lang-text {
+      font-size: 15px; line-height: 1.7; color: #374151;
+    }
+    .translator-note {
+      padding: 16px 28px;
+      background: #F0FDF4;
+      border-top: 1px solid #BBF7D0;
+      font-size: 13px;
+      color: #166534;
+      line-height: 1.5;
+    }
+    .translator-note strong { font-weight: 700; }
+
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .process-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 20px;
+      position: relative;
+    }
+    .process-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--rose);
+      border-radius: 12px 12px 0 0;
+    }
+    .process-step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px; color: var(--rose); opacity: 0.2;
+      line-height: 1; margin-bottom: 8px;
+    }
+    .process-step-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .process-step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .skills-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .skill-tag {
+      background: var(--rose-dim);
+      color: var(--rose);
+      border: 1px solid rgba(225,29,72,0.15);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="case-header">
+    <div class="case-label">Languages — Vietnamese / English</div>
+    <h1 class="case-title">Vietnamese &harr; English Translation Samples</h1>
+    <div class="case-meta">
+      <div class="meta-item">
+        <div class="meta-label">Languages</div>
+        <div class="meta-value">Vietnamese (native) / English (professional)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Registers</div>
+        <div class="meta-value">Formal business, Conversational, Technical</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Method</div>
+        <div class="meta-value">Native + AI-assisted MTPE</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2 class="section-heading" style="border-top:none;padding-top:0;">
+      <span class="section-icon">&#127760;</span>
+      About My Translation Work
+    </h2>
+    <p class="body-text">I am a native Vietnamese speaker with professional written English. My translation workflow combines native fluency with AI-assisted MTPE (machine translation post-editing): AI produces a fast first draft, I review and refine for tone, cultural nuance, and accuracy. The result is professional-quality bilingual content delivered significantly faster than manual translation alone.</p>
+
+    <h2 class="section-heading">
+      <span class="section-icon">&#128196;</span>
+      Sample 1 &mdash; Formal Business (English &rarr; Vietnamese)
+    </h2>
+    <div class="sample-card">
+      <div class="sample-header">
+        <span class="sample-num">Sample 01</span>
+        <span class="sample-type-tag">Business Formal</span>
+      </div>
+      <div class="translation-pair">
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127482;&#127480;</span> English Original</div>
+          <div class="lang-text">
+            Dear Mr. Nguyen,<br><br>
+            Thank you for your inquiry regarding our data management services. We would be pleased to schedule a consultation at your earliest convenience to discuss how our team can support your organization's needs.<br><br>
+            Please feel free to contact us at any time.<br><br>
+            Best regards,<br>
+            Naomi Seay
+          </div>
+        </div>
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127483;&#127475;</span> Vietnamese Translation</div>
+          <div class="lang-text vi">
+            K&iacute;nh g&#7917;i anh Nguy&#7877;n,<br><br>
+            C&#7843;m &#417;n anh &eth;&atilde; li&ecirc;n h&#7879; v&agrave; h&#7887;i th&#259;m v&#7873; d&#7883;ch v&#7909; qu&#7843;n l&yacute; d&#7919; li&#7879;u c&#7911;a ch&uacute;ng t&ocirc;i. Ch&uacute;ng t&ocirc;i r&#7845;t vui &eth;&#432;&#7907;c s&#7855;p x&#7871;p m&#7897;t bu&#7893;i t&#432; v&#7845;n v&agrave;o th&#7901;i gian thu&#7853;n ti&#7879;n nh&#7845;t cho anh &eth;&#7875; th&#7843;o lu&#7853;n v&#7873; c&aacute;ch &eth;&#7897;i ng&#361; c&#7911;a ch&uacute;ng t&ocirc;i c&oacute; th&#7875; h&#7895; tr&#7907; nhu c&#7847;u c&#7911;a t&#7893; ch&#7913;c.<br><br>
+            Xin vui l&ograve;ng li&ecirc;n h&#7879; v&#7899;i ch&uacute;ng t&ocirc;i b&#7845;t c&#7913; l&uacute;c n&agrave;o.<br><br>
+            Tr&acirc;n tr&#7885;ng,<br>
+            Naomi Seay
+          </div>
+        </div>
+      </div>
+      <div class="translator-note"><strong>Translator note:</strong> Formal Vietnamese uses specific honorifics ("Kính gửi", "Trân trọng") that don't have word-for-word English equivalents — they signal professional respect in a culturally appropriate way. Literal translation would sound unnatural to a Vietnamese reader.</div>
+    </div>
+
+    <h2 class="section-heading">
+      <span class="section-icon">&#128172;</span>
+      Sample 2 &mdash; Customer-Facing / Conversational (Vietnamese &rarr; English)
+    </h2>
+    <div class="sample-card">
+      <div class="sample-header">
+        <span class="sample-num">Sample 02</span>
+        <span class="sample-type-tag">Conversational</span>
+      </div>
+      <div class="translation-pair">
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127483;&#127475;</span> Vietnamese Original</div>
+          <div class="lang-text vi">
+            T&ocirc;i mu&#7889;n h&#7887;i v&#7873; l&#7883;ch h&#7865;n c&#7911;a t&ocirc;i v&agrave;o tu&#7847;n t&#7899;i. T&ocirc;i c&oacute; th&#7875; d&#7901;i l&#7883;ch sang ng&agrave;y th&#7913; T&#432; &eth;&#432;&#7907;c kh&ocirc;ng? T&ocirc;i c&#7847;n &eth;i&#7873;u ch&#7881;nh v&igrave; c&oacute; vi&#7879;c &eth;&#7897;t xu&#7845;t gia &eth;&igrave;nh.
+          </div>
+        </div>
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127482;&#127480;</span> English Translation</div>
+          <div class="lang-text">
+            I would like to ask about my appointment next week. Is it possible to reschedule to Wednesday? I need to adjust due to an unexpected family matter.
+          </div>
+        </div>
+      </div>
+      <div class="translator-note"><strong>Translator note:</strong> The Vietnamese original uses informal but polite register — common in service contexts. The English translation preserves the polite, non-urgent tone appropriate for a customer service interaction without over-formalizing it.</div>
+    </div>
+
+    <h2 class="section-heading">
+      <span class="section-icon">&#9881;</span>
+      Sample 3 &mdash; Technical / Instructional (English &rarr; Vietnamese)
+    </h2>
+    <div class="sample-card">
+      <div class="sample-header">
+        <span class="sample-num">Sample 03</span>
+        <span class="sample-type-tag">Technical</span>
+      </div>
+      <div class="translation-pair">
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127482;&#127480;</span> English Original</div>
+          <div class="lang-text">
+            Data entry associates are responsible for inputting client records accurately into the system. Each entry must be reviewed for completeness before submission. Any discrepancies should be flagged immediately using the error-reporting form located in the shared drive.
+          </div>
+        </div>
+        <div class="lang-block">
+          <div class="lang-label"><span class="lang-flag">&#127483;&#127475;</span> Vietnamese Translation</div>
+          <div class="lang-text vi">
+            Nh&acirc;n vi&ecirc;n nh&#7853;p li&#7879;u c&oacute; tr&aacute;ch nhi&#7879;m nh&#7853;p th&ocirc;ng tin h&#7891; s&#417; kh&aacute;ch h&agrave;ng v&agrave;o h&#7879; th&#7889;ng m&#7897;t c&aacute;ch ch&iacute;nh x&aacute;c. M&#7895;i m&#7909;c nh&#7853;p ph&#7843;i &eth;&#432;&#7907;c ki&#7875;m tra &eth;&#7847;y &eth;&#7911; tr&#432;&#7899;c khi g&#7917;i. B&#7845;t k&#7923; sai l&#7879;ch n&agrave;o c&#361;ng c&#7847;n &eth;&#432;&#7907;c b&aacute;o c&aacute;o ngay l&#7853;p t&#7913;c th&ocirc;ng qua m&#7851;u b&aacute;o c&aacute;o l&#7895;i trong th&#432; m&#7909;c d&ugrave;ng chung.
+          </div>
+        </div>
+      </div>
+      <div class="translator-note"><strong>Translator note:</strong> Technical Vietnamese uses specific terminology for business processes. "Nhập liệu" (data entry), "hồ sơ" (records), and "sai lệch" (discrepancies) are standard professional terms — not literal word-for-word translations — ensuring the document reads naturally to a Vietnamese professional audience.</div>
+    </div>
+
+    <h2 class="section-heading">
+      <span class="section-icon">&#128257;</span>
+      My Translation Process
+    </h2>
+    <div class="process-strip">
+      <div class="process-card">
+        <div class="process-step-num">1</div>
+        <div class="process-step-title">First read</div>
+        <div class="process-step-desc">Understand the full context and intent — not just the words. Identify tone, audience, and register before typing anything.</div>
+      </div>
+      <div class="process-card">
+        <div class="process-step-num">2</div>
+        <div class="process-step-title">Draft translation</div>
+        <div class="process-step-desc">Translate meaning, not just words. Match register and cultural tone. Use MTPE for speed on longer pieces.</div>
+      </div>
+      <div class="process-card">
+        <div class="process-step-num">3</div>
+        <div class="process-step-title">Back-check</div>
+        <div class="process-step-desc">Re-read both versions to catch unnatural phrasing, missed nuance, or idioms that don't transfer cleanly.</div>
+      </div>
+      <div class="process-card">
+        <div class="process-step-num">4</div>
+        <div class="process-step-title">Final review</div>
+        <div class="process-step-desc">Confirm terminology consistency and cultural appropriateness. Would a native speaker find this natural?</div>
+      </div>
+    </div>
+
+    <h2 class="section-heading">
+      <span class="section-icon">&#127919;</span>
+      Skills Demonstrated
+    </h2>
+    <div class="skills-strip">
+      <span class="skill-tag">Vietnamese (Native)</span>
+      <span class="skill-tag">English (Professional)</span>
+      <span class="skill-tag">MTPE (Machine Translation Post-Editing)</span>
+      <span class="skill-tag">Register Matching</span>
+      <span class="skill-tag">Technical Translation</span>
+      <span class="skill-tag">Business Communication</span>
+      <span class="skill-tag">Cultural Adaptation</span>
+      <span class="skill-tag">Bilingual Content</span>
+    </div>
+
+  </div>
+</body>
+</html>
